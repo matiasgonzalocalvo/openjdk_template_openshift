@@ -72,15 +72,15 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.0</version>
-                 <configuration>
-                 <!--           <outputDirectory>webapps</outputDirectory> 
+                 <!-- <configuration>
+                           <outputDirectory>webapps</outputDirectory> 
                             <warName>ROOT</warName> 
-                          <finalName>ROOT</finalName> -->
-                          <archive>ROOT.jar</archive>
+                          <finalName>ROOT</finalName> 
+                          <archive>ROOT.jar</archive>-->
                  </configuration>     
             </plugin>
 
         </plugins>
-
+          <finalName>ROOT</finalName>
     </build>
 </project>
