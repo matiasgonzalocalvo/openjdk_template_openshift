@@ -4,7 +4,7 @@
       <id>example-proxy</id>
       <active>true</active>
       <protocol>http</protocol>
-      <host>localhost</host>
+      <host>10.245.146.29</host>
       <port>3128</port>
     </proxy>
   </proxies>
