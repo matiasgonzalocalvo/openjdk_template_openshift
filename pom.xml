@@ -76,8 +76,8 @@
                            <outputDirectory>webapps</outputDirectory> 
                             <warName>ROOT</warName> 
                           <finalName>ROOT</finalName> 
-                          <archive>ROOT.jar</archive>-->
-                 </configuration>     
+                          <archive>ROOT.jar</archive>
+                 </configuration>-->     
             </plugin>
 
         </plugins>
