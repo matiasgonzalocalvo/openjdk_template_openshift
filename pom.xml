@@ -74,8 +74,9 @@
                 <version>2.22.0</version>
                  <configuration>
                  <!--           <outputDirectory>webapps</outputDirectory> 
-                            <warName>ROOT</warName> -->
-                          <finalName>ROOT</finalName> 
+                            <warName>ROOT</warName> 
+                          <finalName>ROOT</finalName> -->
+                          <archive>ROOT.jar</archive>
                  </configuration>     
             </plugin>
 
