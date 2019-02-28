@@ -1,4 +1,9 @@
 <settings>
+  <server>
+    <id>github</id>
+    <username>matiasgonzalocalvo</username>
+    <password>YOUR_PASSWORD</password>
+  </server>
   <proxies>
    <proxy>
       <id>example-proxy</id>
