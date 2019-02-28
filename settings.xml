@@ -2,7 +2,7 @@
   <server>
     <id>github</id>
     <username>matiasgonzalocalvo</username>
-    <password>YOUR_PASSWORD</password>
+    <password>${git_username}</password>
   </server>
   <proxies>
    <proxy>
