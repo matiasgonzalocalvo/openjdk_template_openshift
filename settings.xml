@@ -1,8 +1,8 @@
 <settings>
   <server>
     <id>github</id>
-    <username>matiasgonzalocalvo</username>
-    <password>${git_username}</password>
+    <username>${git_username}</username>
+    <password>${git_password}</password>
   </server>
   <proxies>
    <proxy>
