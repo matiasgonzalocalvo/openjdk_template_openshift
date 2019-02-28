@@ -82,5 +82,10 @@
 
         </plugins>
           <finalName>ROOT</finalName>
-    </build>
+  </build>
+<scm>
+	<url>https://github.com/matiasgonzalocalvo/openjdk_template_openshift</url>
+	<connection>scm:git:git://github.com/matiasgonzalocalvo/openjdk_template_openshift.git</connection>
+	<developerConnection>scm:git:git@github.com/matiasgonzalocalvo/openjdk_template_openshift.git</developerConnection>
+</scm>
 </project>
