@@ -15,7 +15,9 @@ pipeline {
         }
         stage('Test Funciones') {
             steps {
-                externalScripts.test()
+                script {
+                    externalScripts.test()
+                }
             }
         }
     }
