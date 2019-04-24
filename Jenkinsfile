@@ -6,11 +6,11 @@ pipeline {
         stage('config docker') {
             //def common = load "function.groovy"
             steps {
-                sh "ls -atlrh"
                 //def rootDir = pwd()
                 //def example = load "${rootDir}@script/Example.Groovy "
                 //def common = load "function.groovy"
                 script {
+                    sh "ls -atlrh"
                     def common = load "function.groovy"
                     common.aws_config()
                 }
@@ -26,13 +26,16 @@ pipeline {
     }
     post {
         always {
-            send_slack("always",":squirrel:")
+            echo "always"
+            //send_slack("always",":squirrel:")
         }
         failure {
-            send_slack("failure",":squirrel:")
+            echo "failure"
+            //send_slack("failure",":squirrel:")
         }
         unstable {
-            send_slack("unstable",":squirrel:")
+            echo "unstable"
+            //send_slack("unstable",":squirrel:")
         }
     }
 }
