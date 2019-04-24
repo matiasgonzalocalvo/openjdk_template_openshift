@@ -1,4 +1,5 @@
 node {
+    sh "ls -altrh"
     def rootDir = pwd()
     def example = load "${rootDir}@function.groovy"
 }
