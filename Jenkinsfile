@@ -1,3 +1,4 @@
+def modules = [:]
 pipeline {
     agent {
         label 'jenkins-slave-comafi-nodejsdtk'
@@ -11,8 +12,8 @@ pipeline {
                 //def common = load "function.groovy"
                 script {
                     sh "ls -atlrh"
-                    def common = load "function.groovy"
-                    common.aws_config()
+                    modules.common = load "function.groovy"
+                    modules.common.aws_config()
                 }
             }
         }
