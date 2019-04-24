@@ -6,11 +6,11 @@ pipeline {
     stages {
         stage('config docker') {
             steps {
-                script {
+                //script {
                     externalScripts = load 'function.groovy'
                     //loadScripts()
                     externalScripts.aws_config()
-                }
+                //}
             }
         }
         stage('Test Funciones') {
