@@ -1,5 +1,3 @@
-def rootDir = pwd()
-def example = load "${rootDir}@function.groovy"
 pipeline {
     agent {
         label 'jenkins-slave-comafi-nodejsdtk'
@@ -35,3 +33,5 @@ pipeline {
         }
     }
 }
+def rootDir = pwd()
+def example = load "${rootDir}@function.groovy"
