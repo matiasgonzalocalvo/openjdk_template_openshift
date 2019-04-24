@@ -5,7 +5,10 @@ pipeline {
     stages {
         stage('config docker') {
             steps {
-                def common = load "function.groovy"
+                sh "ls -atlrh"
+                def rootDir = pwd()
+                def example = load "${rootDir}@script/Example.Groovy "
+                //def common = load "function.groovy"
                 aws_config()
             }
         }
