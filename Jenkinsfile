@@ -8,7 +8,6 @@ pipeline {
 	}
     stages {
         stage('config docker') {
-            constants = import("function.groovy")
             //def common = load "function.groovy"
             steps {
                 sh "ls -atlrh"
