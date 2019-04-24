@@ -23,13 +23,19 @@ pipeline {
     }
     post {
         always {
-            send_slack("always",":squirrel:")
+            script {
+                send_slack("always",":squirrel:")
+            }
         }
         failure {
-            send_slack("failure",":squirrel:")
+            script {
+                send_slack("failure",":squirrel:")
+            }
         }
         unstable {
-            send_slack("unstable",":squirrel:")
+            script {
+                send_slack("unstable",":squirrel:")
+            }
         }
     }
 }
@@ -40,5 +46,6 @@ def loadScripts() {
         credentialsId: 'devops-bitbucket',
         branch: "${branch}"
     )
+    sh "ls -altrh "
 	externalScripts = load 'function.groovy'
 }
