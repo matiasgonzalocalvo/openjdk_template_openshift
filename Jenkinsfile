@@ -1,21 +1,17 @@
-node {
-    sh "ls -altrh"
-    def rootDir = pwd()
-    def example = load "${rootDir}@function.groovy"
-}
 pipeline {
     agent {
         label 'jenkins-slave-comafi-nodejsdtk'
 	}
     stages {
         stage('config docker') {
+            constants = import("constants.groovy")
             //def common = load "function.groovy"
             steps {
                 sh "ls -atlrh"
                 //def rootDir = pwd()
                 //def example = load "${rootDir}@script/Example.Groovy "
                 //def common = load "function.groovy"
-                aws_config()
+                constants.aws_config()
             }
         }
         stage('Test Funciones') {
