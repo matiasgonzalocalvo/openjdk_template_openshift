@@ -1,7 +1,3 @@
-node {
-    def rootDir = pwd()
-    def example = load "${rootDir}@function.groovy"
-}
 pipeline {
     agent {
         label 'jenkins-slave-comafi-nodejsdtk'
@@ -14,7 +10,10 @@ pipeline {
                 //def rootDir = pwd()
                 //def example = load "${rootDir}@script/Example.Groovy "
                 //def common = load "function.groovy"
-                constants.aws_config()
+                script {
+                    def common = load "function.groovy"
+                    common.aws_config()
+                }
             }
         }
         stage('Test Funciones') {
