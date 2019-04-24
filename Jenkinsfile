@@ -1,10 +1,14 @@
+node {
+    def rootDir = pwd()
+    def example = load "${rootDir}@function.groovy"
+
 pipeline {
     agent {
         label 'jenkins-slave-comafi-nodejsdtk'
 	}
     stages {
         stage('config docker') {
-            constants = import("constants.groovy")
+            constants = import("function.groovy")
             //def common = load "function.groovy"
             steps {
                 sh "ls -atlrh"
@@ -33,4 +37,5 @@ pipeline {
             send_slack("unstable",":squirrel:")
         }
     }
+}
 }
