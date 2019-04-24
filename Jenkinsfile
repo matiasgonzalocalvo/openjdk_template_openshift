@@ -15,9 +15,7 @@ pipeline {
         }
         stage('Test Funciones') {
             steps {
-                sh """
-                    echo "hola mundo"
-                """
+                externalScripts.test()
             }
         }
     }
