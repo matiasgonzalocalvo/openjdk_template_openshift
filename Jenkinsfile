@@ -1,4 +1,5 @@
-def common = load "function.groovy"
+def rootDir = pwd()
+def example = load "${rootDir}@function.groovy"
 pipeline {
     agent {
         label 'jenkins-slave-comafi-nodejsdtk'
