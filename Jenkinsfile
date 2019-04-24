@@ -9,7 +9,7 @@ pipeline {
                 script {
                     sh "ls -atlrh"
                     loadScripts()
-                    externalScripts.aws_config()
+                    externalScripts.test()
                 }
             }
         }

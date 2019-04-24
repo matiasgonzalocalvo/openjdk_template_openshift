@@ -18,3 +18,7 @@ def send_slack(def estado=null,def emoji="ghost",def channel="#jenkins",def text
     payload = "{\"channel\": \"${channel}\", \"username\": \"webhookbot\", \"text\": \"${text} - ${estado} \", \"icon_emoji\": \"${emoji}\"}"
     sh "curl -X POST --data-urlencode \'payload=${payload}\' ${slackurl}" 
 }
+
+def test() {
+    sh "echo test"
+}
