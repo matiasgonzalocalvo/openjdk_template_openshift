@@ -7,8 +7,8 @@ pipeline {
         stage('config docker') {
             steps {
                 script {
-                    sh "ls -atlrh"
-                    loadScripts()
+                    externalScripts = load 'function.groovy'
+                    //loadScripts()
                     externalScripts.aws_config()
                 }
             }
@@ -36,7 +36,7 @@ pipeline {
         }
     }
 }
-def loadScripts() {
-    sh "ls -atlrh"
-	externalScripts = load 'function.groovy'
-}
+//def loadScripts() {
+//    sh "ls -atlrh"
+//	externalScripts = load 'function.groovy'
+//}
