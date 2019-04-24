@@ -22,3 +22,4 @@ def send_slack(def estado=null,def emoji="ghost",def channel="#jenkins",def text
 def test() {
     sh "echo test"
 }
+return this
