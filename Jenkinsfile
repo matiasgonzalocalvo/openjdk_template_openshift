@@ -5,15 +5,10 @@ pipeline {
 	}
     stages {
         stage('config docker') {
-            //def common = load "function.groovy"
             steps {
-                //def rootDir = pwd()
-                //def example = load "${rootDir}@script/Example.Groovy "
-                //def common = load "function.groovy"
                 script {
                     sh "ls -atlrh"
-                    modules.common = load "function.groovy"
-                    modules.common.aws_config()
+                    loadScripts()
                 }
             }
         }
@@ -39,4 +34,8 @@ pipeline {
             //send_slack("unstable",":squirrel:")
         }
     }
+}
+def loadScripts() {
+    sh "ls -atlrh"
+	externalScripts = load 'function.groovy'
 }
