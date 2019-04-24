@@ -1,10 +1,11 @@
+def common = load "function.groovy"
 pipeline {
     agent {
         label 'jenkins-slave-comafi-nodejsdtk'
 	}
     stages {
         stage('config docker') {
-            def common = load "function.groovy"
+            //def common = load "function.groovy"
             steps {
                 sh "ls -atlrh"
                 //def rootDir = pwd()
