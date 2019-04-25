@@ -3,12 +3,15 @@ pipeline {
     agent {
         label 'jenkins-slave-comafi-nodejsdtk'
 	}
+    script {
+        loadScripts()
+    }
     stages {
         stage('config docker') {
             steps {
                 script {
                     //externalScripts = load 'function.groovy'
-                    loadScripts()
+                    //loadScripts()
                     externalScripts.aws_config()
                 }
             }
