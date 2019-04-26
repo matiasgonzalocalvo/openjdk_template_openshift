@@ -1,7 +1,8 @@
 def modules = [:]
 pipeline {
     agent {
-        label 'jenkins-slave-comafi-nodejsdtk'
+        //label 'jenkins-slave-comafi-nodejsdtk'
+        any
 	}
     stages {
         stage('config docker') {
@@ -60,16 +61,11 @@ def loadScripts() {
 
 def setenv() {
     if (env.BRANCH_NAME == "master") {
-        echo "branch master"
-        //environment {
-            env.prueba="master"
-        //}
+        env.prueba="master"
+        prueba="master"
         echo "cargue la variable ${env.prueba} - prueba - ${prueba}"
     } else {
         echo "branch else"
-        environment {
-            prueba="otro"
-        }
     }
 
 }
