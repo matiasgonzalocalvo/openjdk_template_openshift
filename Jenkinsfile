@@ -14,7 +14,7 @@ pipeline {
                 }
             }
         }
-        stage('Test Funciones') {
+        stage(prueba) {
             steps {
                 script {
                     //externalScripts.test()
