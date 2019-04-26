@@ -29,29 +29,32 @@ pipeline {
     post {
         always {
             script {
-                send_slack("always",":squirrel:")
+                echo "always"
+                //send_slack("always",":squirrel:")
             }
         }
         failure {
             script {
-                send_slack("failure",":squirrel:")
+                echo "failure"
+                //send_slack("failure",":squirrel:")
             }
         }
         unstable {
             script {
-                send_slack("unstable",":squirrel:")
+                echo "unstable"
+                //send_slack("unstable",":squirrel:")
             }
         }
     }
 }
 def loadScripts() {
-    branch = "master"
-    git(
-        url: 'https://bitbucket.org/comafi/devops-jenkins',
-        credentialsId: 'devops-bitbucket',
-        branch: "${branch}"
-    )
-    sh "ls -altrh "
+//    branch = "master"
+//    git(
+//        url: 'https://bitbucket.org/comafi/devops-jenkins',
+//        credentialsId: 'devops-bitbucket',
+//        branch: "${branch}"
+//    )
+//    sh "ls -altrh "
 	externalScripts = load 'function.groovy'
 }
 
