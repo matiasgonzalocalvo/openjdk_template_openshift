@@ -1,9 +1,6 @@
 def modules = [:]
 pipeline {
-    agent {
-        //label 'jenkins-slave-comafi-nodejsdtk'
-        any
-	}
+    agent any
     stages {
         stage('config docker') {
             steps {
