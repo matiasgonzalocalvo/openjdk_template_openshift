@@ -9,8 +9,8 @@ pipeline {
                 script {
                     //externalScripts = load 'function.groovy'
                     setenv()
-                    loadScripts()
-                    externalScripts.aws_config()
+                    //loadScripts()
+                    //externalScripts.aws_config()
                     sh "export"
                     sh "echo prueba ${prueba}"
                 }
@@ -19,7 +19,7 @@ pipeline {
         stage('Test Funciones') {
             steps {
                 script {
-                    externalScripts.test()
+                    //externalScripts.test()
                     sh "export"
                     sh "echo prueba ${prueba}"
                 }
@@ -60,10 +60,12 @@ def loadScripts() {
 
 def setenv() {
     if (env.BRANCH_NAME == "master") {
+        echo "branch master"
         environment {
             env.prueba="master"
         }
     } else {
+        echo "branch else"
         environment {
             env.prueba="otro"
         }
