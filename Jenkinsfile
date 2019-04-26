@@ -9,8 +9,8 @@ pipeline {
                     setenv()
                     //loadScripts()
                     //externalScripts.aws_config()
-                    sh "export"
-                    sh "echo prueba ${prueba}"
+                    //sh "export"
+                    //sh "echo prueba ${prueba}"
                 }
             }
         }
