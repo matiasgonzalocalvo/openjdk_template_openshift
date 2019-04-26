@@ -61,9 +61,9 @@ def loadScripts() {
 def setenv() {
     if (env.BRANCH_NAME == "master") {
         echo "branch master"
-        environment {
-            prueba="master"
-        }
+        //environment {
+            env.prueba="master"
+        //}
         echo "cargue la variable ${env.prueba} - prueba - ${prueba}"
     } else {
         echo "branch else"
