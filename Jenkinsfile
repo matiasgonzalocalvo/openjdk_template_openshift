@@ -62,13 +62,13 @@ def setenv() {
     if (env.BRANCH_NAME == "master") {
         echo "branch master"
         environment {
-            env.prueba="master"
+            prueba="master"
         }
-        echo "cargue la variable ${env.prueba} - prueba"
+        echo "cargue la variable ${env.prueba} - prueba - ${prueba}"
     } else {
         echo "branch else"
         environment {
-            env.prueba="otro"
+            prueba="otro"
         }
     }
 
