@@ -14,7 +14,7 @@ pipeline {
                 }
             }
         }
-        stage(prueba) {
+        stage(build_list[0]) {
             steps {
                 script {
                     //externalScripts.test()
@@ -61,6 +61,7 @@ def setenv() {
         env.prueba="master"
         prueba="master"
         echo "cargue la variable ${env.prueba} - prueba - ${prueba}"
+        build_list = ['job1', 'job2', 'job3']
     } else {
         echo "branch else"
     }
