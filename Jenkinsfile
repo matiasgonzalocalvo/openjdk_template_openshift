@@ -14,7 +14,7 @@ pipeline {
                 }
             }
         }
-        stage(build_list[0]) {
+        stage(stage1) {
             steps {
                 script {
                     //externalScripts.test()
