@@ -9,9 +9,9 @@ pipeline {
                 anyof {
                     branch 'master'
                 }
-                environment {
-                    prueba="prueba"
-                }
+                //environment {
+                    //prueba="prueba"
+                //}
             }
             steps {
                 script {
