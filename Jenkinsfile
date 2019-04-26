@@ -7,9 +7,10 @@ pipeline {
         stage('config docker') {
             when {
                 anyof {
-                    environment {
-                        prueba="prueba"
-                    }
+                    branch 'master'
+                }
+                environment {
+                    prueba="prueba"
                 }
             }
             steps {
