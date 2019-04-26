@@ -8,13 +8,13 @@ pipeline {
             when {
                 anyOf {
                     branch 'master'
-                    environment {
-                        prueba="prueba"
-                    }
+                    //environment {
+                        //prueba="prueba"
+                    //}
                 }
-                //environment {
-                    //prueba="prueba"
-                //}
+                environment {
+                    prueba="prueba"
+                }
             }
             steps {
                 script {
