@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('config docker') {
             when {
-                anyof {
+                anyOf {
                     branch 'master'
                 }
                 //environment {
