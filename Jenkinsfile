@@ -64,6 +64,7 @@ def setenv() {
         environment {
             env.prueba="master"
         }
+        echo "cargue la variable ${env.prueba} - prueba"
     } else {
         echo "branch else"
         environment {
