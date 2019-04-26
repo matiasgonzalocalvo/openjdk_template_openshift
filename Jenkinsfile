@@ -3,20 +3,12 @@ pipeline {
     agent {
         label 'jenkins-slave-comafi-nodejsdtk'
 	}
-    if (env.BRANCH_NAME == "master") {
-        environment {
-            prueba="master"
-        }
-    } else {
-        environment {
-            prueba="otro"
-        }
-    }
     stages {
         stage('config docker') {
             steps {
                 script {
                     //externalScripts = load 'function.groovy'
+                    setenv()
                     loadScripts()
                     externalScripts.aws_config()
                     sh "export"
@@ -29,6 +21,7 @@ pipeline {
                 script {
                     externalScripts.test()
                     sh "export"
+                    sh "echo prueba ${prueba}"
                 }
             }
         }
@@ -60,4 +53,17 @@ def loadScripts() {
     )
     sh "ls -altrh "
 	externalScripts = load 'function.groovy'
+}
+
+def setenv() {
+    if (env.BRANCH_NAME == "master") {
+        environment {
+            env.prueba="master"
+        }
+    } else {
+        environment {
+            env.prueba="otro"
+        }
+    }
+
 }
