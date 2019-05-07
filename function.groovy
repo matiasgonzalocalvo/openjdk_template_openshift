@@ -1,4 +1,5 @@
 def aws_config(credential_id, def AWS_ACCESS_KEY_ID="AWS_ACCESS_KEY_ID", def AWS_SECRET_ACCESS_KEY="AWS_SECRET_ACCESS_KEY") {
+    echo "${credential_id} ${AWS_ACCESS_KEY_ID} ${AWS_SECRET_ACCESS_KEY}"
     withCredentials([[
     $class: "AmazonWebServicesCredentialsBinding",
     credentialsId: "${credential_id}",
