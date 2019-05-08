@@ -19,7 +19,7 @@ def update_aws_credentials(UPDATE_SERVICE_KEY_ID,UPDATE_SERVICE_SECRET_KEY)
     env.AWS_ACCESS_KEY_ID = "${UPDATE_SERVICE_KEY_ID}"
     env.AWS_SECRET_ACCESS_KEY = "${UPDATE_SERVICE_SECRET_KEY}"    
 }
-def mavane_verify(def settings="null")
+def mavane_verify(def settings="setting.xml")
 {
     sh "mvn verify -DskipTests -s ${settings} -X"
 }
