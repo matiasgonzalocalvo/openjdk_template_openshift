@@ -63,6 +63,7 @@ def jenkins_docker_build(def url_repo="null", def name="null",def tag="null",def
     //sh """
     //    docker -H "${url_docker_tcp}" build -t ${url_repo}/${name}:${tag} .
     //"""
+    sh "echo ejecutando docker usando plugin de jenkins"
     app = docker.build("${url_repo}/${name}:${tag}")
 }
 return this
