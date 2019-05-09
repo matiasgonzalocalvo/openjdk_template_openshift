@@ -33,11 +33,11 @@ def maven_deploy(def settings="null")
 }
 def docker_build(def name="null",def tag="null",def url_docker_tcp="null")
 {
-    sh 'docker -H "${url_docker_tcp}" build -t ${name}:${tag} .'
+    sh "docker -H \"${url_docker_tcp}\" build -t ${name}:${tag} ."
 }
 def docker_push(def name="null",def tag="null",def url_docker_tcp="null")
 {
-    sh 'docker -H "${url_docker_tcp}" push -t ${name}:${tag} .'
+    sh "docker -H \"${url_docker_tcp}\" push -t ${name}:${tag} ."
 }
 
 return this
