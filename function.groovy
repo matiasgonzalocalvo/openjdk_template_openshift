@@ -54,7 +54,6 @@ def docker_build(def url_repo="null", def name="null",def tag="null",def url_doc
 def docker_push(def url_repo="null",def name="null",def tag="null",def url_docker_tcp="null")
 {
     sh """ 
-        #docker login ${url_repo} --username ${AWS_ACCESS_KEY_ID} --password ${AWS_SECRET_ACCESS_KEY}
         $(aws ecr get-login)
         docker -H "${url_docker_tcp}" push -t ${url_repo}/${name}:${tag} .
     """
