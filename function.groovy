@@ -53,7 +53,7 @@ def docker_build(def url_repo="null", def name="null",def tag="null",def url_doc
 }
 def docker_push(def url_repo="null",def name="null",def tag="null",def url_docker_tcp="null")
 {
-    sh "aws ecr get-login >> docker_login && bash docker_login"
+    sh "aws ecr get-login | sed 's/-e none//g' >> docker_login && bash docker_login"
     sh """ 
         docker -H "${url_docker_tcp}" push -t ${url_repo}/${name}:${tag} .
     """
