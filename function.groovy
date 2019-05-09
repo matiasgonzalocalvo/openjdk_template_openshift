@@ -58,5 +58,11 @@ def docker_push(def url_repo="null",def name="null",def tag="null",def url_docke
         docker -H "${url_docker_tcp}" push -t ${url_repo}/${name}:${tag} .
     """
 }
-
+def jenkins_docker_build(def url_repo="null", def name="null",def tag="null",def url_docker_tcp="null")
+{
+    //sh """
+    //    docker -H "${url_docker_tcp}" build -t ${url_repo}/${name}:${tag} .
+    //"""
+    app = docker.build("${url_repo}/${name}:${tag}")
+}
 return this
