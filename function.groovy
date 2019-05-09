@@ -40,13 +40,18 @@ def maven_deploy(def settings="null")
 {
     sh "mvn deploy -DskipTests -s ${settings} -X"
 }
-def docker_build(def name="null",def tag="null",def url_docker_tcp="null")
+def docker_build(def url_repo="null", def name="null",def tag="null",def url_docker_tcp="null")
 {
-    sh "docker -H \"${url_docker_tcp}\" build -t ${name}:${tag} ."
+    sh """
+        docker -H "${url_docker_tcp}" build -t ${url_repo}/${name}:${tag} .
+    """
 }
-def docker_push(def name="null",def tag="null",def url_docker_tcp="null")
+def docker_push(def url_repo="null",def name="null",def tag="null",def url_docker_tcp="null")
 {
-    sh "docker -H \"${url_docker_tcp}\" push -t ${name}:${tag} ."
+    sh """ 
+        docker login ${url_repo} --username ${AWS_ACCESS_KEY_ID} --password ${AWS_SECRET_ACCESS_KEY}
+        docker -H "${url_docker_tcp}" push -t ${url_repo}/${name}:${tag} .
+    """
 }
 
 return this
