@@ -25,7 +25,7 @@ def maven_verify(def settings="null")
 }
 def maven_sonar(def settings="null", def sonar_url="null", def sonar_login="null", def sonar_projectame="null")
 {
-    if ( sonar_projectname == null )
+    if ( sonar_projectname == "null" )
     {
         echo "sonar_projectname == ${sonar_projectame}"
         sh "mvn sonar:sonar -DskipTests -s ${settings} -X -Dsonar.host.url=${sonar_url} -Dsonar.login=${sonar_login}"
