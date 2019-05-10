@@ -55,7 +55,7 @@ def docker_push(def url_repo="null",def name="null",def tag="null",def url_docke
 {
     sh "aws ecr get-login | sed 's/-e none//g' >> docker_login && bash docker_login"
     sh """ 
-        docker -H "${url_docker_tcp}" push -t ${url_repo}/${name}:${tag} .
+        docker -H "${url_docker_tcp}" push  ${url_repo}/${name}:${tag} 
     """
 }
 def jenkins_docker_build(def url_repo="null", def name="null",def tag="null",def url_docker_tcp="null")
