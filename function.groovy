@@ -53,7 +53,6 @@ def docker_build(def url_repo="null", def name="null",def tag="null",def url_doc
 }
 def docker_push(def url_repo="null",def name="null",def tag="null",def url_docker_tcp="null")
 {
-    //sh "aws ecr get-login | sed 's/-e none//g' >> docker_login && bash docker_login"
     sh """ 
         docker -H "${url_docker_tcp}" push  ${url_repo}/${name}:${tag} 
     """
@@ -65,14 +64,12 @@ def jenkins_docker_build(def url_repo="null", def name="null",def tag="null",def
 }
 def docker_tag(def url_repo="null",def name="null",def tag="null",def tag2="null",def url_docker_tcp="null")
 {
-    //sh "aws ecr get-login | sed 's/-e none//g' >> docker_login && bash docker_login"
     sh """ 
         docker -H "${url_docker_tcp}" tag  ${url_repo}/${name}:${tag} ${url_repo}/${name}:${tag2}
     """
 }
 def docker_pull(def url_repo="null",def name="null",def tag="null",def url_docker_tcp="null")
 {
-    //sh "aws ecr get-login | sed 's/-e none//g' >> docker_login && bash docker_login"
     sh """ 
         docker -H "${url_docker_tcp}" pull  ${url_repo}/${name}:${tag}
     """
@@ -81,5 +78,4 @@ def docker_login()
 {
     sh "aws ecr get-login | sed 's/-e none//g' >> docker_login && bash docker_login"
 }
-
 return this
