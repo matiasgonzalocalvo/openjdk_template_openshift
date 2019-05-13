@@ -3,11 +3,13 @@ def aws_config(credential_id, def AWS_ACCESS_KEY_ID="AWS_ACCESS_KEY_ID", def AWS
         Funcion recibe por parametro el credential_id y setea el key_id y access_key como variable de entorno
     */
     echo "${credential_id} ${AWS_ACCESS_KEY_ID} ${AWS_SECRET_ACCESS_KEY} ${AWS_REGION}"
-    if ( "AWS_REGION" == "null" )
+    if ( "${AWS_REGION}" == "null" )
     {
-        //env.AWS_REGION="us-east-1"
-        //AWS_REGION="us-east-1"
+        env.AWS_REGION="us-east-1"
+        AWS_REGION="us-east-1"
+    }
     else
+    {
         echo "${env.AWS_REGION}"
     }
     withCredentials([[
