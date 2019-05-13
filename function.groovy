@@ -1,5 +1,14 @@
 def aws_config(credential_id, def AWS_ACCESS_KEY_ID="AWS_ACCESS_KEY_ID", def AWS_SECRET_ACCESS_KEY="AWS_SECRET_ACCESS_KEY") {
-    echo "${credential_id} ${AWS_ACCESS_KEY_ID} ${AWS_SECRET_ACCESS_KEY}"
+    /*
+        Funcion recibe por parametro el credential_id y setea el key_id y access_key como variable de entorno
+    */
+    echo "${credential_id} ${AWS_ACCESS_KEY_ID} ${AWS_SECRET_ACCESS_KEY} ${AWS_REGION}"
+    if ( "${env.AWS_REGION}" == "null" )
+    {
+        env.AWS_REGION="us-east-1"
+    else
+        echo "${env.AWS_REGION}"
+    }
     withCredentials([[
     $class: "AmazonWebServicesCredentialsBinding",
     credentialsId: "${credential_id}",
@@ -8,6 +17,10 @@ def aws_config(credential_id, def AWS_ACCESS_KEY_ID="AWS_ACCESS_KEY_ID", def AWS
     ]]) {
         evaluate "env.${AWS_ACCESS_KEY_ID}=${AWS_ACCESS_KEY_ID}"
         evaluate "env.${AWS_SECRET_ACCESS_KEY}=${AWS_SECRET_ACCESS_KEY}"
+        sh "aws configure set aws_access_key_id ${AWS_ACCESS_KEY_ID}"
+        sh "aws configure set aws_secret_access_key ${AWS_SECRET_ACCESS_KEY}"
+        sh "aws configure set region ${AWS_REGION}"
+        //sh "aws configure list --profile default"
     }
 }
 def send_slack(def estado=null,def emoji="ghost",def channel="#jenkins",def text="Job $JOB_NAME Build number $BUILD_NUMBER for branch $BRANCH_NAME ${RUN_DISPLAY_URL} |",def slackurl="https://hooks.slack.com/services/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") {
