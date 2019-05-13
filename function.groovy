@@ -58,7 +58,7 @@ def maven_sonar(def settings="null", def sonar_url="null", def sonar_login="null
     if( sonar_projectname != "null" )
     {
         echo "seteando sonar_projectname = ${sonar_projectname}"
-        sonar="${sonar} -Dsonar.projectName=${sonar_projectname}"
+        sonar="-Dsonar.projectName=${sonar_projectname}"
     }
    if( sonar_login != "null" )
     {
