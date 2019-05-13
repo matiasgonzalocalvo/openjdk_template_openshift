@@ -55,12 +55,12 @@ def maven_sonar(def settings="null", def sonar_url="null", def sonar_login="null
     /*
         Funcion que ejecuta maven sonar. recibe como parametro opcionales settings sonar_url sonar_login y sonar_projectname
     */
-   /* if( sonar_projectname !== "null" )
+    if( sonar_projectname !== "null" )
     {
         echo "seteando sonar_projectname = ${sonar_projectname}"
         sonar="${sonar} -Dsonar.projectName=${sonar_projectname}"
     }
-    if( sonar_login !== "null" )
+   /*if( sonar_login !== "null" )
     {
         echo "seteando sonar_login = ${sonar_login}"
         sonar="${sonar} -Dsonar.login=${sonar_login}"
