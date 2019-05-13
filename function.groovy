@@ -70,19 +70,19 @@ def maven_sonar(def settings="null", def sonar_url="null", def sonar_login="null
         echo "seteando sonar_url = ${sonar_url}"
         sonar="${sonar} -Dsonar.host.url=${sonar_url}"
     }*/
-    if( settings !== "null" )
-    {
+    //if( settings !== "null" )
+    //{
         sh """
-            mvn sonar:sonar -DskipTests -s ${settings} -X ${sonar}
+            mvn sonar:sonar -DskipTests -s ${settings} -X
         """
-    }
-    else 
-    {
-        echo "ejecutando sin settings"
-        sh """
-            mvn sonar:sonar -DskipTests -X ${sonar}
-        """
-    }
+    //}
+    //else 
+    //{
+    //    echo "ejecutando sin settings"
+    //    sh """
+    //        mvn sonar:sonar -DskipTests -X ${sonar}
+    //    """
+   // }
 }
 def maven_deploy(def settings="null")
 {
