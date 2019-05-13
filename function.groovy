@@ -38,29 +38,62 @@ def update_aws_credentials(UPDATE_SERVICE_KEY_ID,UPDATE_SERVICE_SECRET_KEY)
 }
 def maven_verify(def settings="null")
 {
-    sh "mvn verify -DskipTests -s ${settings} -X"
+    /*
+        Funcion que ejecuta maven verify recibe el archivo settings.xml de fomar opcional si no se pasa se ejecuta sin el parametro -s.
+    */
+    if ( settings == "null" )
+    {
+        sh "mvn verify -DskipTests -X"
+    }
+    else
+    {
+        sh "mvn verify -DskipTests -s ${settings} -X"
+    }
 }
 def maven_sonar(def settings="null", def sonar_url="null", def sonar_login="null", def sonar_projectname="null")
 {
-    sh "echo \"sonar_projectname == ${sonar_projectname}\""
-    if( sonar_projectname == "null" )
+    /*
+        Funcion que ejecuta maven sonar. recibe como parametro opcionales settings sonar_url sonar_login y sonar_projectname
+    */
+    if( sonar_projectname !== "null" )
+    {
+        echo "seteando sonar_projectname = ${sonar_projectname}"
+        sonar="${sonar} -Dsonar.projectName=${sonar_projectname}"
+    }
+    if( sonar_login !== "null" )
+    {
+        echo "seteando sonar_login = ${sonar_login}"
+        sonar="${sonar} -Dsonar.login=${sonar_login}"
+    }
+    if( sonar_url !== "null" )
+    {
+        echo "seteando sonar_url = ${sonar_url}"
+        sonar="${sonar} -Dsonar.host.url=${sonar_url}"
+    }
+    if( settings !== "null" )
     {
         sh """
-            echo "sonar_projectname == ${sonar_projectname}"
-            mvn sonar:sonar -DskipTests -s ${settings} -X -Dsonar.host.url=${sonar_url} -Dsonar.login=${sonar_login}
+            mvn sonar:sonar -DskipTests -s ${settings} -X ${sonar}
         """
     }
     else 
     {
+        echo "ejecutando sin settings"
         sh """
-            echo sonar_projectame == ${sonar_projectname}
-            mvn sonar:sonar -DskipTests -s ${settings} -X -Dsonar.host.url=${sonar_url} -Dsonar.login=${sonar_login} -Dsonar.projectName=${sonar_projectname}
+            mvn sonar:sonar -DskipTests -X ${sonar}
         """
     }
 }
 def maven_deploy(def settings="null")
 {
-    sh "mvn deploy -DskipTests -s ${settings} -X"
+    if ( settings == "null" )
+    {
+        sh "mvn deploy -DskipTests -X"
+    }
+    else
+    {
+        sh "mvn deploy -DskipTests -s ${settings} -X"
+    }
 }
 def docker_build(def url_repo="null", def name="null",def tag="null",def url_docker_tcp="null")
 {
