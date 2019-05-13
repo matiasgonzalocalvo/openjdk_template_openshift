@@ -78,7 +78,6 @@ def maven_sonar(def settings="null", def sonar_url="null", def sonar_login="null
     }
     else 
     {
-        echo "ejecutando sin settings"
         sh """
             mvn sonar:sonar -DskipTests -s ${settings} -X ${sonar}
         """
