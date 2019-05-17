@@ -25,8 +25,6 @@ def aws_config(credential_id) {
         sh "aws configure set region ${AWS_REGION}"
         sh "aws configure list --profile default"
     }
-    sh "echo cat credentials"
-    sh "cat $HOME/.aws/*"
 }
 def send_slack(def estado=null,def emoji="ghost",def channel="#jenkins",def text="Job $JOB_NAME Build number $BUILD_NUMBER for branch $BRANCH_NAME ${RUN_DISPLAY_URL} |",def slackurl="https://hooks.slack.com/services/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") {
     payload = "{\"channel\": \"${channel}\", \"username\": \"webhookbot\", \"text\": \"${text} - ${estado} \", \"icon_emoji\": \"${emoji}\"}"
@@ -138,9 +136,6 @@ def test_npm()
 }
 def sonar_js(sonar_projectKey, sonar_exclusions, sonar_javascript_lcov_reportPaths)
 {
-  sh "export"
-  //sh "ping -c 1 sonarqube.developmentcomafi.com"
-  //sh "curl http://sonarqube.developmentcomafi.com:9000"
   sonar_login="694e463e93ba0a27427fb8a46a266abc42c0f542"
   def scannerHome = tool 'SonarQube Scanner';
     withSonarQubeEnv('Sonarqube') {
@@ -155,12 +150,9 @@ def sonar_js(sonar_projectKey, sonar_exclusions, sonar_javascript_lcov_reportPat
         -Dsonar.javascript.lcov.reportPaths=${sonar_javascript_lcov_reportPaths} \
         -Dsonar.login=${sonar_login} -X"
     }
-  sh "export"
 }
 def wait_sonar()
 {
-  //withSonarQubeEnv('Sonarqube') 
-  //{
     timeout(time: 1, unit: 'HOURS')
     {
       sh "export"
@@ -169,12 +161,10 @@ def wait_sonar()
       // Requires SonarQube Scanner for Jenkins 2.7+
       waitForQualityGate abortPipeline: true
     }
-  //}
 }
 def build_comafi_digital()
 {
   echo 'Building..'
-  sh "export"
   sh 'env'
   sh 'chmod 755 scripts/build.sh'
   sh 'cd scripts && ./build.sh'
@@ -182,7 +172,6 @@ def build_comafi_digital()
 def deploy_comafi_digital()
 {
   echo 'Deploying....'
-  sh "export "
   sh 'chmod 755 scripts/deploy.sh'
   sh 'cd scripts && ./deploy.sh'
 }
