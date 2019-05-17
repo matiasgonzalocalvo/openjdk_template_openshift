@@ -158,12 +158,16 @@ def sonar_js(sonar_projectKey, sonar_exclusions, sonar_javascript_lcov_reportPat
 }
 def wait_sonar()
 {
-  timeout(time: 1, unit: 'HOURS')
+  withSonarQubeEnv('Sonarqube') 
   {
-    // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
-    // true = set pipeline to UNSTABLE, false = don't
-    // Requires SonarQube Scanner for Jenkins 2.7+
-    waitForQualityGate abortPipeline: true
+    timeout(time: 1, unit: 'HOURS')
+    {
+      sh "export"
+      // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
+      // true = set pipeline to UNSTABLE, false = don't
+      // Requires SonarQube Scanner for Jenkins 2.7+
+      waitForQualityGate abortPipeline: true
+    }
   }
 }
 def build_comafi_digital()
