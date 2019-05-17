@@ -2,7 +2,6 @@ def aws_config(credential_id) {
     /*
         Funcion recibe por parametro el credential_id y setea el key_id y access_key como variable de entorno y configura el aws cli.
     */
-    echo "${credential_id} ${AWS_ACCESS_KEY_ID} ${AWS_SECRET_ACCESS_KEY} ${AWS_REGION}"
     if ( "${AWS_REGION}" == "null" )
     {
         echo "seteo region a mano"
