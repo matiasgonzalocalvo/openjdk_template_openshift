@@ -137,11 +137,13 @@ def test_npm()
 }
 def sonar_js(sonar_projectKey, sonar_exclusions, sonar_javascript_lcov_reportPaths)
 {
+  sh "export"
   //sh "ping -c 1 sonarqube.developmentcomafi.com"
   //sh "curl http://sonarqube.developmentcomafi.com:9000"
   sonar_login="694e463e93ba0a27427fb8a46a266abc42c0f542"
   def scannerHome = tool 'SonarQube Scanner';
     withSonarQubeEnv('Sonarqube') {
+      sh "export"
       sh "${scannerHome}/bin/sonar-scanner \
         -Dsonar.projectKey=${sonar_projectKey} \
         -Dsonar.projectVersion=${BUILD_NUMBER} \
@@ -152,6 +154,7 @@ def sonar_js(sonar_projectKey, sonar_exclusions, sonar_javascript_lcov_reportPat
         -Dsonar.javascript.lcov.reportPaths=${sonar_javascript_lcov_reportPaths} \
         -Dsonar.login=${sonar_login} -X"
     }
+  sh "export"
 }
 def wait_sonar()
 {
