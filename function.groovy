@@ -148,7 +148,7 @@ def sonar_js(sonar_projectKey, sonar_exclusions, sonar_javascript_lcov_reportPat
         -Dsonar.language=js \
         -Dsonar.exclusions=${sonar_exclusions} \
         -Dsonar.javascript.lcov.reportPaths=${sonar_javascript_lcov_reportPaths} \
-        -Dsonar.login=${sonar_login}"
+        -Dsonar.login=${sonar_login} -X"
     }
 }
 def wait_sonar()
