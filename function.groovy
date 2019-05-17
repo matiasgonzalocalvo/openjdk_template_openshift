@@ -140,14 +140,39 @@ def sonar_js(sonar_projectKey, sonar_exclusions, sonar_javascript_lcov_reportPat
   sonar_login="694e463e93ba0a27427fb8a46a266abc42c0f542"
   def scannerHome = tool 'SonarQube Scanner';
     withSonarQubeEnv('Sonarqube') {
-    sh "${scannerHome}/bin/sonar-scanner \
-      -Dsonar.projectKey=${sonar_projectKey} \
-      -Dsonar.projectVersion=${BUILD_NUMBER} \
-      -Dsonar.projectBaseDir=${WORKSPACE} \
-      -Dsonar.sources=. \
-      -Dsonar.language=js \
-      -Dsonar.exclusions=${sonar_exclusions} \
-      -Dsonar.javascript.lcov.reportPaths=${sonar_javascript_lcov_reportPaths} \
-      -Dsonar.login=${sonar_login}"
+      sh "${scannerHome}/bin/sonar-scanner \
+        -Dsonar.projectKey=${sonar_projectKey} \
+        -Dsonar.projectVersion=${BUILD_NUMBER} \
+        -Dsonar.projectBaseDir=${WORKSPACE} \
+        -Dsonar.sources=. \
+        -Dsonar.language=js \
+        -Dsonar.exclusions=${sonar_exclusions} \
+        -Dsonar.javascript.lcov.reportPaths=${sonar_javascript_lcov_reportPaths} \
+        -Dsonar.login=${sonar_login}"
+    }
 }
+def wait_sonar()
+{
+  timeout(time: 1, unit: 'HOURS')
+  {
+    // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
+    // true = set pipeline to UNSTABLE, false = don't
+    // Requires SonarQube Scanner for Jenkins 2.7+
+    waitForQualityGate abortPipeline: true
+  }
+}
+def build_comafi_digital()
+{
+  echo 'Building..'
+  sh 'env'
+  sh 'chmod 755 scripts/build.sh'
+  sh 'cd scripts && ./build.sh'
+}
+def deploy_comafi_digital()
+{
+  echo 'Deploying....'
+  sh 'chmod 755 scripts/deploy.sh'
+  sh 'cd scripts && ./deploy.sh'
+}
+
 return this
