@@ -1,4 +1,4 @@
-def aws_config(credential_id, def AWS_ACCESS_KEY_ID="AWS_ACCESS_KEY_ID", def AWS_SECRET_ACCESS_KEY="AWS_SECRET_ACCESS_KEY") {
+def aws_config(credential_id) {
     /*
         Funcion recibe por parametro el credential_id y setea el key_id y access_key como variable de entorno y configura el aws cli.
     */
@@ -16,11 +16,11 @@ def aws_config(credential_id, def AWS_ACCESS_KEY_ID="AWS_ACCESS_KEY_ID", def AWS
     withCredentials([[
     $class: "AmazonWebServicesCredentialsBinding",
     credentialsId: "${credential_id}",
-    accessKeyVariable: "${AWS_ACCESS_KEY_ID}",
-    secretKeyVariable: "${AWS_SECRET_ACCESS_KEY}"
+    accessKeyVariable: "AWS_ACCESS_KEY_ID",
+    secretKeyVariable: "AWS_SECRET_ACCESS_KEY"
     ]]) {
-        evaluate "env.${AWS_ACCESS_KEY_ID}=${AWS_ACCESS_KEY_ID}"
-        evaluate "env.${AWS_SECRET_ACCESS_KEY}=${AWS_SECRET_ACCESS_KEY}"
+        env.AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID}"
+        env.AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY}"
         sh "aws configure set aws_access_key_id ${AWS_ACCESS_KEY_ID}"
         sh "aws configure set aws_secret_access_key ${AWS_SECRET_ACCESS_KEY}"
         sh "aws configure set region ${AWS_REGION}"
