@@ -31,6 +31,10 @@ def send_slack(def estado=null,def emoji="ghost",def channel="#jenkins",def text
     payload = "{\"channel\": \"${channel}\", \"username\": \"webhookbot\", \"text\": \"${text} - ${estado} \", \"icon_emoji\": \"${emoji}\"}"
     sh "curl -X POST --data-urlencode \'payload=${payload}\' ${slackurl}" 
 }
+def send_theeye(webhook,json) {
+    payload = "{\"channel\": \"${channel}\", \"username\": \"webhookbot\", \"text\": \"${text} - ${estado} \", \"icon_emoji\": \"${emoji}\"}"
+    sh "curl -X POST --data-urlencode \'payload=${payload}\' ${slackurl}"
+}
 def update_aws_credentials(UPDATE_SERVICE_KEY_ID,UPDATE_SERVICE_SECRET_KEY)
 {
     env.AWS_ACCESS_KEY_ID = "${UPDATE_SERVICE_KEY_ID}"
@@ -126,5 +130,24 @@ def docker_pull(def url_repo="null",def name="null",def tag="null",def url_docke
 def docker_login()
 {
     sh "aws ecr get-login | sed 's/-e none//g' >> docker_login && bash docker_login"
+}
+def test_npm()
+{
+  sh 'find . -maxdepth 3 -type d \\( ! -name . \\) -exec bash -c "cd \'{}\' && pwd && if [ -f cloudformation.yaml ]; then npm install && npm run test ; fi" \\;'
+}
+def sonar_js(sonar_projectKey, sonar_exclusions, sonar_javascript_lcov_reportPaths)
+{
+  sonar_login="694e463e93ba0a27427fb8a46a266abc42c0f542"
+  def scannerHome = tool 'SonarQube Scanner';
+    withSonarQubeEnv('Sonarqube') {
+    sh "${scannerHome}/bin/sonar-scanner \
+      -Dsonar.projectKey=${sonar_projectKey} \
+      -Dsonar.projectVersion=${BUILD_NUMBER} \
+      -Dsonar.projectBaseDir=${WORKSPACE} \
+      -Dsonar.sources=. \
+      -Dsonar.language=js \
+      -Dsonar.exclusions=${sonar_exclusions} \
+      -Dsonar.javascript.lcov.reportPaths=${sonar_javascript_lcov_reportPaths} \
+      -Dsonar.login=${sonar_login}"
 }
 return this
