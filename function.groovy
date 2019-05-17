@@ -24,7 +24,7 @@ def aws_config(credential_id, def AWS_ACCESS_KEY_ID="AWS_ACCESS_KEY_ID", def AWS
         sh "aws configure set aws_access_key_id ${AWS_ACCESS_KEY_ID}"
         sh "aws configure set aws_secret_access_key ${AWS_SECRET_ACCESS_KEY}"
         sh "aws configure set region ${AWS_REGION}"
-        //sh "aws configure list --profile default"
+        sh "aws configure list --profile default"
     }
 }
 def send_slack(def estado=null,def emoji="ghost",def channel="#jenkins",def text="Job $JOB_NAME Build number $BUILD_NUMBER for branch $BRANCH_NAME ${RUN_DISPLAY_URL} |",def slackurl="https://hooks.slack.com/services/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") {
@@ -158,8 +158,8 @@ def sonar_js(sonar_projectKey, sonar_exclusions, sonar_javascript_lcov_reportPat
 }
 def wait_sonar()
 {
-  withSonarQubeEnv('Sonarqube') 
-  {
+  //withSonarQubeEnv('Sonarqube') 
+  //{
     timeout(time: 1, unit: 'HOURS')
     {
       sh "export"
@@ -168,11 +168,12 @@ def wait_sonar()
       // Requires SonarQube Scanner for Jenkins 2.7+
       waitForQualityGate abortPipeline: true
     }
-  }
+  //}
 }
 def build_comafi_digital()
 {
   echo 'Building..'
+  sh "export"
   sh 'env'
   sh 'chmod 755 scripts/build.sh'
   sh 'cd scripts && ./build.sh'
@@ -180,6 +181,7 @@ def build_comafi_digital()
 def deploy_comafi_digital()
 {
   echo 'Deploying....'
+  sh "export "
   sh 'chmod 755 scripts/deploy.sh'
   sh 'cd scripts && ./deploy.sh'
 }
