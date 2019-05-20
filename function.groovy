@@ -175,10 +175,10 @@ def deploy_comafi_digital()
   sh 'chmod 755 scripts/deploy.sh'
   sh 'cd scripts && ./deploy.sh'
 }
-def git_tag()
+/*def git_tag(def credentials="devops-bitbucket")
 {
   sh 'echo version=' + env.BRANCH_NAME + '.' + env.BUILD_NUMBER + ' > version.info'
-  withCredentials([usernamePassword(credentialsId: 'devops-bitbucket',
+  withCredentials([usernamePassword(credentialsId: credentials,
     passwordVariable: 'GIT_PASS', usernameVariable: 'GIT_USER')]) {
     sh """
       git_url="$(echo ${GIT_URL}| awk -F"//" '{print $2}')" 
@@ -188,6 +188,6 @@ def git_tag()
       export
     """
   }
-}
+}*/
 
 return this
