@@ -159,7 +159,12 @@ def wait_sonar()
       // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
       // true = set pipeline to UNSTABLE, false = don't
       // Requires SonarQube Scanner for Jenkins 2.7+
-      waitForQualityGate abortPipeline: true
+      def qg = waitForQualityGate()
+      //waitForQualityGate abortPipeline: true
+      if (qg.status != 'OK') 
+      {
+        error "Pipeline aborted due to quality gate failure: ${qg.status}"
+      }
     }
 }
 def build_comafi_digital()
@@ -175,19 +180,19 @@ def deploy_comafi_digital()
   sh 'chmod 755 scripts/deploy.sh'
   sh 'cd scripts && ./deploy.sh'
 }
-/*def git_tag(def credentials="devops-bitbucket")
+def git_tag(def credentials="devops-bitbucket")
 {
   sh 'echo version=' + env.BRANCH_NAME + '.' + env.BUILD_NUMBER + ' > version.info'
+  env.git_url = "${GIT_URL}".drop(8)
   withCredentials([usernamePassword(credentialsId: credentials,
     passwordVariable: 'GIT_PASS', usernameVariable: 'GIT_USER')]) {
     sh """
-      git_url="$(echo ${GIT_URL}| awk -F"//" '{print $2}')" 
       git tag `echo $BRANCH_NAME | cut -d "/" -f2`.$BUILD_NUMBER'
       git push https://devops:$GIT_PASS@${git_url} --tags
       echo "test export git_tag"
       export
     """
   }
-}*/
+}
 
 return this
