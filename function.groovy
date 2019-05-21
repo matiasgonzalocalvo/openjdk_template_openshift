@@ -205,7 +205,7 @@ def deploy_comafi_digital()
 {
   echo 'Deploying....'
   sh 'chmod 755 scripts/deploy.sh'
-  sh 'cd scripts && ./deploy.sh'
+  sh 'cd scripts && bash -x ./deploy.sh'
 }
 def git_tag(def credentials="devops-bitbucket")
 {
