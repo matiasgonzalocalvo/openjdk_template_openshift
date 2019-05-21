@@ -139,7 +139,7 @@ def docker_login()
 }
 def test_npm()
 {
-  sh "export |base64 "
+  sh "ls -atlrhR /mnt "
   sh """
     if ! [ -d "/mnt/efs/cache/" ] ; then
       mkdir -p /mnt/efs/cache/
