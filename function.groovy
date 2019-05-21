@@ -26,10 +26,11 @@ def aws_config(credential_id) {
         sh "aws configure list --profile default"
     }
 }
-def credentials_to_variable(env_variable,env_credentials)
+def credentials_to_variable(env_variable, env_credentials)
 {
   withCredentials([string(credentialsId: "${env_credentials}" , variable: "variable")]) 
   {
+    echo "env_variable = ${env_variable} | variable = ${variable} | env_credentials = ${env_credentials}"
     evaluate "env.${env_variable}=\"${variable}\""
   }
 }
