@@ -132,7 +132,25 @@ def docker_login()
 }
 def test_npm()
 {
-  sh 'find . -maxdepth 3 -type d \\( ! -name . \\) -exec bash -c "cd \'{}\' && pwd && if [ -f cloudformation.yaml ]; then npm install && npm run test ; fi" \\;'
+  sh """
+    if ! [ -d "/mnt/efs/cache/" ] ; then
+      mkdir -p /mnt/efs/cache/
+    fi
+    if [ -d "./libs/circuits-engine" ] ; then
+      echo "existe ./libs/circuits-engine"
+      cd ./libs/circuits-engine && $WORKSPACE/scripts/cache.sh && npm install && npm test && npm unlink && npm link
+    fi
+    if [ -d "./libs/circuits-engine-api-helper" ] ; then
+      echo "existe ./libs/circuits-engine-api-helper"
+      cd ./libs/circuits-engine-api-helper && $WORKSPACE/scripts/cache.sh && npm install && npm test && npm unlink && npm link
+    fi
+    if [ -f "$WORKSPACE/scripts/cache.sh" ] ; then
+      find . -maxdepth 3 -type d \\( ! -name . \\) -exec bash -c "cd \'{}\' && pwd && if [ -f cloudformation.yaml ]; then $WORKSPACE/scripts/cache.sh && npm install && npm run test ; fi" \\;
+    else
+      find . -maxdepth 3 -type d \\( ! -name . \\) -exec bash -c "cd \'{}\' && pwd && if [ -f cloudformation.yaml ]; then npm install && npm run test ; fi" \\;
+    fi
+  """
+  junit 'junit/**/*.xml'
 }
 def sonar_js(sonar_projectKey, sonar_exclusions, sonar_javascript_lcov_reportPaths)
 {
