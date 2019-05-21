@@ -28,7 +28,7 @@ def aws_config(credential_id) {
 }
 def credentials_to_variable(env_variable,credentials)
 {
-  withCredentials([string(credentialsId: credentials , variable: "variable")]) 
+  withCredentials([string(credentialsId: "${credentials}" , variable: "variable")]) 
   {
     evaluate "env.${env_variable}=${variable}"
   }
