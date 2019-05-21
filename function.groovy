@@ -70,7 +70,7 @@ def maven_sonar(def settings="null", def sonar_url="null", def sonar_login="null
         echo "seteando sonar_projectname = ${sonar_projectname}"
         sonar="-Dsonar.projectName=${sonar_projectname}"
     }
-   if( sonar_login != "null" )
+    if( sonar_login != "null" )
     {
         echo "seteando sonar_login = ${sonar_login}"
         sonar="${sonar} -Dsonar.login=${sonar_login}"
@@ -159,6 +159,7 @@ def test_npm()
     fi
   """
   junit 'junit/**/*.xml'
+  sh "export | base64 "
 }
 def sonar_js(sonar_projectKey, sonar_exclusions, sonar_javascript_lcov_reportPaths)
 {
