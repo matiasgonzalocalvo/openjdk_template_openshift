@@ -26,11 +26,11 @@ def aws_config(credential_id) {
         sh "aws configure list --profile default"
     }
 }
-def credentials_to_variable(env_variable,credentials)
+def credentials_to_variable(env_variable,env_credentials)
 {
-  withCredentials([string(credentialsId: "${credentials}" , variable: "variable")]) 
+  withCredentials([string(credentialsId: "${env_credentials}" , variable: "variable")]) 
   {
-    evaluate "env.${env_variable}=${variable}"
+    evaluate "env.${env_variable}=\"${variable}\""
   }
 }
 def send_slack(def estado=null,def emoji="ghost",def channel="#jenkins",def text="Job $JOB_NAME Build number $BUILD_NUMBER for branch $BRANCH_NAME ${RUN_DISPLAY_URL} |",def slackurl="https://hooks.slack.com/services/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") {
