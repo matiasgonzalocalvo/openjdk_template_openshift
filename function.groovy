@@ -211,7 +211,8 @@ def deploy_comafi_digital()
 }
 def git_tag(def credentials="devops-bitbucket")
 {
-  sh 'echo version=' + env.BRANCH_NAME + '.' + env.BUILD_NUMBER + ' > version.info'
+  //sh 'echo version=' + env.BRANCH_NAME + '.' + env.BUILD_NUMBER + ' > version.info'
+  sh 'echo "version=${BRANCH_NAME}.${BUILD_NUMBER}" > version.info'
   env.git_url = "${GIT_URL}".drop(8)
   withCredentials([usernamePassword(credentialsId: credentials,
     passwordVariable: 'GIT_PASS', usernameVariable: 'GIT_USER')]) {
