@@ -213,10 +213,12 @@ def git_tag(def credentials="devops-bitbucket")
 {
   //sh 'echo version=' + env.BRANCH_NAME + '.' + env.BUILD_NUMBER + ' > version.info'
   sh 'echo "version=${BRANCH_NAME}.${BUILD_NUMBER}" > version.info'
-  env.git_url = "${GIT_URL}".drop(8)
+  //env.git_url = "${GIT_URL}".drop(8)
+  //GIT_URL.split(/\/{2}/) 
   withCredentials([usernamePassword(credentialsId: credentials,
     passwordVariable: 'GIT_PASS', usernameVariable: 'GIT_USER')]) {
     sh """
+      git_url=`echo ${GIT_URL} | sed 's"http://""g'|sed 's"https://""g'`
       git tag `echo $BRANCH_NAME | cut -d "/" -f2`.$BUILD_NUMBER'
       git push https://devops:$GIT_PASS@${git_url} --tags
       echo "test export git_tag"
