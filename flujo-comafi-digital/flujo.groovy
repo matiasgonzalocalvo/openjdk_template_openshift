@@ -13,7 +13,7 @@ def flujo {
         {
           script
           {
-            prepare_environment()
+            //prepare_environment()
             setenv()
           }
         }
