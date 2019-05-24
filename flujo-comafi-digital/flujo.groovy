@@ -27,14 +27,14 @@ def flujo() {
         {
           label "jenkins-slave-comafi-nodejsdtk"
         }
-        steps 
-        {
-          script
-          {
+        //steps 
+        //{
+          //script
+          //{
             echo "test"
             devops.test_npm()
-          }
-        }
+         // }
+        //}
       }
       stage('SonarQube analysis') 
       {
