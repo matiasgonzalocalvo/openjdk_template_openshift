@@ -235,7 +235,7 @@ def git_tag(def credentials="devops-bitbucket")
     passwordVariable: 'GIT_PASS', usernameVariable: 'GIT_USER')]) {
     sh """
       tag="`echo $BRANCH_NAME | cut -d "/" -f2`.$BUILD_NUMBER"
-      if [ "$(git tag|grep "${tag}"|wc -l ) -gt 0 ] ; then
+      if [ "`git tag|grep "${tag}"|wc -l` -gt 0 ] ; then
         tag="${tag}`date +%s`"
       fi
       git tag ${tag}
