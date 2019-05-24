@@ -1,5 +1,6 @@
 def setenv()
 {
+    echo "funcion setenv"
     /*
       Variables Globales a todos los ambientes
     */
