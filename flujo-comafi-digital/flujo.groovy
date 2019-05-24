@@ -8,8 +8,8 @@ def flujo() {
       //label "${AGENT_LABEL}"
       //label "jenkins-slave-comafi-nodejsdtk"
     //}
-    stages 
-    {
+    //stages 
+    //{
       stage('set env')
       {
         steps 
@@ -87,7 +87,7 @@ def flujo() {
           }
         }
       }
-    }
+    //}
     post 
     {
       always 
