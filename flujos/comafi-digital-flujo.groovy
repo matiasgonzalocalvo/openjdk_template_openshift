@@ -7,6 +7,7 @@ def flujo()
     {
       stage('set env')
       {
+        echo "loadvar.setenv"
         loadvar.setenv()
       }
       stage('test') 
@@ -43,6 +44,7 @@ def flujo()
     catch (e) 
     {
       echo e.getMessage()
+      echo "FALLO !!!!!"
       devops.fail()
     }
     finally 
