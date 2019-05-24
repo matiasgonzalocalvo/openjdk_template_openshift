@@ -3,11 +3,11 @@ def flujo() {
   //flujo.select_agent()
   pipeline 
   {
-    agent 
-    {
+    //agent 
+    //{
       //label "${AGENT_LABEL}"
-      label "jenkins-slave-comafi-nodejsdtk"
-    }
+      //label "jenkins-slave-comafi-nodejsdtk"
+    //}
     stages 
     {
       stage('set env')
@@ -23,6 +23,10 @@ def flujo() {
       }
       stage('test') 
       {
+        agent
+        {
+          label "jenkins-slave-comafi-nodejsdtk"
+        }
         steps 
         {
           script
