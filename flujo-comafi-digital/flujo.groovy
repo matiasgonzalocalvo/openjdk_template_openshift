@@ -1,3 +1,4 @@
+#!groovy
 def flujo {
   pipeline 
   {
@@ -107,3 +108,4 @@ def flujo {
     }
   }
 }
+return this;
