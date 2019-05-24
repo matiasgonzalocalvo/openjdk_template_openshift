@@ -96,3 +96,4 @@ def setenv()
         sh "abort"
     }
 }
+return this;
