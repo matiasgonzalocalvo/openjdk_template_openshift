@@ -37,30 +37,6 @@ def flujo() {
     {
       devops.deploy_comafi_digital()
     }
-    post 
-    {
-      always 
-      {
-        script 
-        {
-          devops.send_slack("always",":squirrel:")
-        }
-      }
-      failure 
-      {
-        script
-        {
-          devops.send_slack("failure",":squirrel:")
-        }
-      }
-      unstable 
-      {
-        script
-        {
-          devops.send_slack("unstable",":squirrel:")
-        }
-      }
-    }
   }
 }
 return this;
