@@ -23,10 +23,10 @@ def flujo() {
       }
       stage('test') 
       {
-        agent
-        {
-          label "jenkins-slave-comafi-nodejsdtk"
-        }
+        //agent
+        //{
+          //label "jenkins-slave-comafi-nodejsdtk"
+        //}
         //steps 
         //{
           //script
