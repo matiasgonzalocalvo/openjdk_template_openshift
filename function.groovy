@@ -157,7 +157,6 @@ def docker_login()
 }
 def test_npm()
 {
-  sh "ls -atlrhR /mnt "
   sh """
     if ! [ -d "/mnt/efs/cache/" ] ; then
       mkdir -p /mnt/efs/cache/
@@ -174,6 +173,7 @@ def test_npm()
       find . -maxdepth 3 -type d \\( ! -name . \\) -exec bash -c "cd \'{}\' && pwd && if [ -f cloudformation.yaml ]; then $WORKSPACE/scripts/cache.sh && npm install && npm run test ; fi" \\;
     else
       find . -maxdepth 3 -type d \\( ! -name . \\) -exec bash -c "cd \'{}\' && pwd && if [ -f cloudformation.yaml ]; then npm install && npm run test ; fi" \\;
+      echo "salida == $?"
     fi
   """
   junit 'junit/**/*.xml'
