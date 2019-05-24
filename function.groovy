@@ -218,9 +218,9 @@ def git_tag(def credentials="devops-bitbucket")
   withCredentials([usernamePassword(credentialsId: credentials,
     passwordVariable: 'GIT_PASS', usernameVariable: 'GIT_USER')]) {
     sh """
-      git_url=`echo ${GIT_URL} | sed 's"http://""g'|sed 's"https://""g'`
+      giturl=`echo ${GIT_URL} | sed 's"http://""g'|sed 's"https://""g'`
       git tag `echo $BRANCH_NAME | cut -d "/" -f2`.$BUILD_NUMBER
-      git push https://devops:$GIT_PASS@${git_url} --tags
+      git push https://devops:$GIT_PASS@${giturl} --tags
       echo "test export git_tag"
       export
     """
