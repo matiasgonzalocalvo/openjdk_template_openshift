@@ -2,7 +2,15 @@ def aws_config(credential_id) {
     /*
         Funcion recibe por parametro el credential_id y setea el key_id y access_key como variable de entorno y configura el aws cli.
     */
-    if ( "${AWS_REGION}" == "null" )
+    try 
+    {
+      echo "${AWS_REGION}"
+    }
+    catch (e) 
+    {
+      env.AWS_REGION="us-east-1"
+    }
+    /*if ( "${AWS_REGION}" == "null" )
     {
         echo "seteo region a mano"
         env.AWS_REGION="us-east-1"
@@ -11,7 +19,7 @@ def aws_config(credential_id) {
     else
     {
         echo "region existe y su valor es = ${env.AWS_REGION}"
-    }
+    }*/
     withCredentials([[
     $class: "AmazonWebServicesCredentialsBinding",
     credentialsId: "${credential_id}",
