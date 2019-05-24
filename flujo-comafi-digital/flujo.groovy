@@ -12,14 +12,14 @@ def flujo() {
     //{
       stage('set env')
       {
-        steps 
-        {
-          script
-          {
+        //steps 
+        //{
+          //script
+          //{
             //prepare_environment()
             flujo.setenv()
-          }
-        }
+          //}
+        //}
       }
       stage('test') 
       {
