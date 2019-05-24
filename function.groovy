@@ -28,6 +28,9 @@ def aws_config(credential_id) {
 }
 def credentials_to_variable(env_variable, env_credentials)
 {
+  /*
+    Funcion recibe como primer parametro env_variable que va hacer el nombre de la variable y como segundo parametro el nombre del credential. guarda el contenido de la credential adentro del nombre que se le paso como primer parametro
+  */
   withCredentials([string(credentialsId: "${env_credentials}" , variable: "variable")]) 
   {
     echo "env_variable = ${env_variable} | variable = ${variable} | env_credentials = ${env_credentials}"
@@ -35,16 +38,26 @@ def credentials_to_variable(env_variable, env_credentials)
   }
   //sh "export | base64"
 }
-def send_slack(def estado=null,def emoji="ghost",def channel="#jenkins",def text="Job $JOB_NAME Build number $BUILD_NUMBER for branch $BRANCH_NAME ${RUN_DISPLAY_URL} |",def slackurl="https://hooks.slack.com/services/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") {
+def send_slack(def estado=null,def emoji="ghost",def channel="#jenkins",def text="Job $JOB_NAME Build number $BUILD_NUMBER for branch $BRANCH_NAME ${RUN_DISPLAY_URL} |",def slackurl="https://hooks.slack.com/services/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") 
+{
+  /*
+    Funcion que envia a slack un mensaje (v1. hay que mejorar el mensaje)
+  */    
     payload = "{\"channel\": \"${channel}\", \"username\": \"webhookbot\", \"text\": \"${text} - ${estado} \", \"icon_emoji\": \"${emoji}\"}"
     sh "curl -X POST --data-urlencode \'payload=${payload}\' ${slackurl}" 
 }
 def send_theeye(webhook,json) {
+  /*
+    Funcion para ejecutar theeye version no productiva no usar
+  */
     payload = "{\"channel\": \"${channel}\", \"username\": \"webhookbot\", \"text\": \"${text} - ${estado} \", \"icon_emoji\": \"${emoji}\"}"
     sh "curl -X POST --data-urlencode \'payload=${payload}\' ${slackurl}"
 }
 def update_aws_credentials(UPDATE_SERVICE_KEY_ID,UPDATE_SERVICE_SECRET_KEY)
 {
+  /*
+    Funcion deprecada
+  */
     env.AWS_ACCESS_KEY_ID = "${UPDATE_SERVICE_KEY_ID}"
     env.AWS_SECRET_ACCESS_KEY = "${UPDATE_SERVICE_SECRET_KEY}"    
 }
@@ -97,6 +110,9 @@ def maven_sonar(def settings="null", def sonar_url="null", def sonar_login="null
 }
 def maven_deploy(def settings="null")
 {
+  /*
+    Funcion ejecuta deploy
+  */
     if ( settings == "null" )
     {
         sh "mvn deploy -DskipTests -X"
@@ -218,7 +234,11 @@ def git_tag(def credentials="devops-bitbucket")
   withCredentials([usernamePassword(credentialsId: credentials,
     passwordVariable: 'GIT_PASS', usernameVariable: 'GIT_USER')]) {
     sh """
-      git tag `echo $BRANCH_NAME | cut -d "/" -f2`.$BUILD_NUMBER
+      tag="`echo $BRANCH_NAME | cut -d "/" -f2`.$BUILD_NUMBER"
+      if [ "$(git tag|grep "${tag}"|wc -l ) -gt 0 ] ; then
+        tag="${tag}`date +%s`"
+      fi
+      git tag ${tag}
       git push https://devops-comafi:$GIT_PASS@`echo ${GIT_URL} | sed 's"http://""g'|sed 's"https://""g'` --tags
       echo "test export git_tag"
       export
