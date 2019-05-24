@@ -42,6 +42,7 @@ def flujo()
     }
     catch (e) 
     {
+      echo e.getMessage()
       devops.fail()
     }
     finally 
