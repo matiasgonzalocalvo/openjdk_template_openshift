@@ -38,33 +38,33 @@ def flujo() {
       }
       stage('SonarQube analysis') 
       {
-        steps
-        {
-          script
-          {
+        //steps
+        //{
+          //script
+          //{
             echo "sonar"
             devops.sonar_js("${sonar_projectKey}", "${sonar_exclusions}", "${sonar_javascript_lcov_reportPaths}")
-          }
-        }
+          //}
+        //}
       }
       stage("Quality Gate")
       {
-        steps
-        {
-          script
-          {
+        //steps
+        //{
+          //script
+          //{
             sh "echo sonar "
             //sh "ping -c 1 sonarqube.developmentcomafi.com"
             //devops.wait_sonar()
-          }
-        }
+          //}
+        //}
       }
       stage("Build Comafi Digital")
       {
-        steps
-        {
-          script
-          {
+        //steps
+        //{
+          //script
+          //{
             devops.build_comafi_digital()
             if ( "${env.tag}" == "true" ) 
             {
@@ -74,18 +74,18 @@ def flujo() {
             {
               echo "no se tagea || tag == ${env.tag} ||"
             }
-          }
-        }
-        }
+          //}
+        //}
+      }
       stage("Deploy Comafi Digital")
       {
-        steps
-        {
-          script
-          {
+        //steps
+        //{
+          //script
+          //{
             devops.deploy_comafi_digital()
-          }
-        }
+          //}
+        //}
       }
     //}
     post 
