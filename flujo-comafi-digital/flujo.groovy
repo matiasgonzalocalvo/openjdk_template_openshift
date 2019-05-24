@@ -1,11 +1,12 @@
 #!groovy
 def flujo() {
-  select_agent()
+  //flujo.select_agent()
   pipeline 
   {
     agent 
     {
-      label "${AGENT_LABEL}"
+      //label "${AGENT_LABEL}"
+      label "jenkins-slave-comafi-nodejsdtk"
     }
     stages 
     {
