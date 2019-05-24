@@ -4,7 +4,7 @@ def flujo() {
   {
     stage('set env')
     {
-      variables.setenv()
+      loadvar.setenv()
     }
     stage('test') 
     {
