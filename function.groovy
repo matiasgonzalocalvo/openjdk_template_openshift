@@ -282,28 +282,12 @@ def git_tag(def credentials="devops-bitbucket")
     """
   }
 }
-def fpost()
+def postfinal()
 {
-  always
-  {
-    script
-    {
       devops.send_slack("always",":squirrel:")
-    }
-  }
-  failure
-  {
-    script
-    {
+}
+def fail()
+{
       devops.send_slack("failure",":squirrel:")
-    }
-  }
-  unstable
-  {
-    script
-    {
-      devops.send_slack("unstable",":squirrel:")
-    }
-  }
 }
 return this
