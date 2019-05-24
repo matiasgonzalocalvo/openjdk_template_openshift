@@ -9,7 +9,8 @@ def flujo() {
     stage('test') 
     {
       echo "test"
-      devops.test_npm_comafi_digital()
+      //devops.test_npm_comafi_digital()
+      devops.test_npm_comafi_digital_yarn()
     }
     stage('SonarQube analysis') 
     {
