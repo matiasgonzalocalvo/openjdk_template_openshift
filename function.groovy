@@ -222,12 +222,12 @@ def sonar_js(sonar_projectKey, def sonar_exclusions="null", def sonar_javascript
   def scannerHome = tool 'SonarQube Scanner';
     withSonarQubeEnv('Sonarqube') {
       sh "export"
-      if( sonar_exclusions != "null" || sonar_exclusions != "" )
+      if( sonar_exclusions != "null" && sonar_exclusions != "" )
       {
         echo "seteando sonar.exclusions=|${sonar_exclusions}|"
         sonar="${sonar} -Dsonar.exclusions=${sonar_exclusions}"
       }
-      if( sonar_javascript_lcov_reportPaths != "null" || sonar_javascript_lcov_reportPaths != "" )
+      if( sonar_javascript_lcov_reportPaths != "null" && sonar_javascript_lcov_reportPaths != "" )
       {
         echo "seteando -Dsonar.javascript.lcov.reportPaths=|${sonar_javascript_lcov_reportPaths}|"
         sonar="${sonar} -Dsonar.javascript.lcov.reportPaths=${sonar_javascript_lcov_reportPaths}"
