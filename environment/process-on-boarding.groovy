@@ -64,6 +64,8 @@ def setenv()
     {
         devops.aws_config("705437fe-118c-4fbc-af26-595cbdc1e752")
         echo "problema no entro a ninguna condicion branch = ${env.BRANCH_NAME}"
+        currentBuild.result = 'ABORTED'
+        error('Branch no manejado')
         sh "abort"
     }
 }
