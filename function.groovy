@@ -215,21 +215,24 @@ def test_npm_comafi_digital_yarn()
     find . -maxdepth 10 -type d \\( ! -name . \\) -exec bash -c "cd \'{}\' && pwd && if [ -f cloudformation.yaml ]; then yarn install && yarn test ; fi" \\;
   """
 }
-def sonar_js(sonar_projectKey, sonar_exclusions, sonar_javascript_lcov_reportPaths)
+def sonar_js(sonar_projectKey, def sonar_exclusions="null", def sonar_javascript_lcov_reportPaths="null")
 {
   sonar_login="694e463e93ba0a27427fb8a46a266abc42c0f542"
+  sonar="-Dsonar.projectKey=${sonar_projectKey} -Dsonar.projectVersion=${BUILD_NUMBER} -Dsonar.projectBaseDir=${WORKSPACE} -Dsonar.sources=. -Dsonar.language=js -Dsonar.login=${sonar_login} -X"
   def scannerHome = tool 'SonarQube Scanner';
     withSonarQubeEnv('Sonarqube') {
       sh "export"
-      sh "${scannerHome}/bin/sonar-scanner \
-        -Dsonar.projectKey=${sonar_projectKey} \
-        -Dsonar.projectVersion=${BUILD_NUMBER} \
-        -Dsonar.projectBaseDir=${WORKSPACE} \
-        -Dsonar.sources=. \
-        -Dsonar.language=js \
-        -Dsonar.exclusions=${sonar_exclusions} \
-        -Dsonar.javascript.lcov.reportPaths=${sonar_javascript_lcov_reportPaths} \
-        -Dsonar.login=${sonar_login} -X"
+      if( sonar_exclusions != "null" )
+      {
+        echo "seteando sonar.exclusions=${sonar_exclusions}"
+        sonar="${sonar} -Dsonar.exclusions=${sonar_exclusions}"
+      }
+      if( sonar_exclusions != "null" )
+      {
+        echo "seteando -Dsonar.javascript.lcov.reportPaths=${sonar_javascript_lcov_reportPaths}"
+        sonar="${sonar} -Dsonar.javascript.lcov.reportPaths=${sonar_javascript_lcov_reportPaths}"
+      }
+      sh "${scannerHome}/bin/sonar-scanner ${sonar}"
     }
 }
 def wait_sonar()
