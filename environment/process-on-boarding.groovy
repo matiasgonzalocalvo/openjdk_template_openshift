@@ -3,7 +3,7 @@ def setenv()
     /*
       Variables Globales a todos los ambientes
     */
-    env.sonar_projectKey="process on boarding"
+    env.sonar_projectKey="process-on-boarding"
     env.sonar_exclusions=""
     env.sonar_javascript_lcov_reportPaths=""
     env.AWS_DEFAULT_REGION='us-east-1'
