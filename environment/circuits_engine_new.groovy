@@ -66,17 +66,19 @@ def setenv()
         //devops.credentials_to_variable("SECURITY_GROUP","SECURITY_GROUP_DEV")
         //devops.credentials_to_variable("SECURITY_GROUP_PRIV","SECURITY_GROUP_PRIV_DEV")
         devops.credentials_to_variable("SECURITY_GROUP","SECURITY_GROUP_COMAFI_DIGITAL_DEV")
+        devops.credentials_to_variable("SECURITY_GROUP_PRIV","SECURITY_GROUP_COMAFI_DIGITAL_DEV")
 
         //devops.credentials_to_variable("SUBNET1","SUBNETDEV1")
         //devops.credentials_to_variable("SUBNET2","SUBNETDEV2")
         //devops.credentials_to_variable("SUBNETPRIV1","SUBNETPRIVDEV1")
         devops.credentials_to_variable("SUBNET1","SUBNETDEV1-COMAFI-DIGITAL-DEV")
         devops.credentials_to_variable("SUBNET2","SUBNETDEV2-COMAFI-DIGITAL-DEV")
+        devops.credentials_to_variable("SUBNETPRIV1","SUBNETDEV1-COMAFI-DIGITAL-DEV")
 
         //devops.credentials_to_variable("ELASTICSEARCH_NAME","ELASTICSEARCH_NAME")
         //devops.credentials_to_variable("ELASTICSEARCH_URL","ELASTICSEARCH_URL_PREDEV")
         devops.credentials_to_variable("ELASTICSEARCH_NAME","ELASTICSEARCH_NAME-COMAFI-DIGITAL-DEV")
-        //devops.credentials_to_variable("ELASTICSEARCH_URL","ELASTICSEARCH_URL_PREDEV")
+        devops.credentials_to_variable("ELASTICSEARCH_URL","ELASTICSEARCH_URL_PREDEV")
     }
     else if (env.BRANCH_NAME == "impleqa" || env.BRANCH_NAME == "qa" || env.BRANCH_NAME =~ "release/*" )
     {
