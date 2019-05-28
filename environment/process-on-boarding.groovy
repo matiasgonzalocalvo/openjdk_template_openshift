@@ -25,7 +25,7 @@ def setenv()
     else if (env.BRANCH_NAME == "develop" || env.BRANCH_NAME == "developjenkinsfile" )
     {
         sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
-        devops.aws_config("AWS_DESA_CMF")
+        devops.aws_config("AWS_DESA")
         env.ENV='dev'
         env.COST_CENTER='comercios_dev'
         env.FILES_BUCKET='cmf-circuitcreator-files'
@@ -35,10 +35,10 @@ def setenv()
         env.STAGE_DEPLOY="DEPLOY ${STAGE} - ${ENV}"
 
     }
-    else if (env.BRANCH_NAME =~ "feature/*" || env.BRANCH_NAME =~ "PR*" || env.BRANCH_NAME == "test-flow")
+    else if (env.BRANCH_NAME =~ "feature/*" || env.BRANCH_NAME =~ "PR*")
     {
         sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
-        devops.aws_config("AWS_DESA_CMF")
+        devops.aws_config("AWS_DESA")
         env.ENV='predev'
         env.COST_CENTER='comercios_dev'
         env.FILES_BUCKET='cmf-circuitcreator-files'
@@ -50,7 +50,7 @@ def setenv()
     else if (env.BRANCH_NAME == "impleqa" || env.BRANCH_NAME == "qa" || env.BRANCH_NAME =~ "release/*" )
     {
         sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
-        devops.aws_config("AWS_DESA_CMF")
+        devops.aws_config("AWS_DESA")
         env.ENV='qa'
         env.COST_CENTER='comercios_dev'
         env.FILES_BUCKET='cmf-circuitcreator-files'
@@ -59,6 +59,18 @@ def setenv()
         env.STAGE_BUILD="Build ${STAGE} - ${ENV}"
         env.STAGE_DEPLOY="DEPLOY ${STAGE} - ${ENV}"
 
+    }
+    else if (env.BRANCH_NAME == "test-flow")
+    {
+        sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
+        devops.aws_config("AWS_DESA_CMF")
+        env.ENV='dev'
+        env.COST_CENTER='comercios_dev'
+        env.FILES_BUCKET='cmf-circuitcreator-files'
+        env.STACK_NAME='CircuitCreator'
+        env.STAGE="dev"
+        env.STAGE_BUILD="Build ${STAGE} - ${ENV}"
+        env.STAGE_DEPLOY="DEPLOY ${STAGE} - ${ENV}"
     }
     else
     {

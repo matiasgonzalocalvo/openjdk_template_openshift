@@ -49,7 +49,8 @@ def setenv()
     {
         sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
         devops.aws_config("AWS_DESA_CMF")
-        env.ENV='predev'
+        //env.ENV='predev'
+        env.ENV='dev'
         env.COST_CENTER='comercios_dev'
         env.STACK_NAME='AuthorizerComafiApi'
         env.FILES_BUCKET='AuthorizerComafiApi'
