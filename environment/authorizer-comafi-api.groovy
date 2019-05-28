@@ -36,7 +36,7 @@ def setenv()
         env.STACK_NAME='AuthorizerComafiApi'
         env.FILES_BUCKET='AuthorizerComafiApi'
     }
-    else if (env.BRANCH_NAME =~ "feature/*" || env.BRANCH_NAME =~ "PR*" || env.BRANCH_NAME == "test-flow")
+    else if (env.BRANCH_NAME =~ "feature/*" || env.BRANCH_NAME =~ "PR*")
     {
         sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
         devops.aws_config("AWS_DESA")
