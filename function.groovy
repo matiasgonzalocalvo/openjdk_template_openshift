@@ -254,7 +254,7 @@ def wait_sonar()
 def build_comafi_digital()
 {
   echo 'Building..'
-  if ( binding.hasVariable('${list_counts}') )
+  if ( !isNull(list_counts) )
   {
     for (counts in list_counts)
     {
@@ -281,7 +281,7 @@ def build_comafi_digital()
 def deploy_comafi_digital()
 {
   echo 'Deploying....'
-  if ( binding.hasVariable('${list_counts}') )
+  if ( !isNull(list_counts) )
   {
     for (counts in list_counts)
     {
