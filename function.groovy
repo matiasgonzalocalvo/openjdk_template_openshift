@@ -258,7 +258,9 @@ def build_comafi_digital()
   {
     for (counts in list_counts)
     {
+      echo "cargando cuenta ${counts}"
       devops.setenv(counts)
+      echo "buildando con la cuenta ${counts}"
       sh """ 
         chmod 755 scripts/build.sh
         cd scripts
@@ -268,6 +270,7 @@ def build_comafi_digital()
   }
   else
   {
+    echo "Buil en cuenta predetermida | list_counts == ${list_counts} |"
     sh """
       chmod 755 scripts/build.sh
       cd scripts
@@ -282,7 +285,9 @@ def deploy_comafi_digital()
   {
     for (counts in list_counts)
     {
+      echo "cargando cuenta ${counts}"
       devops.setenv(counts)
+      echo "buildando con la cuenta ${counts}"
       sh """
         chmod 755 scripts/deploy.sh
         cd scripts && bash -x ./deploy.sh
@@ -291,6 +296,7 @@ def deploy_comafi_digital()
   }
   else
   {
+      echo "deploy en cuenta predetermida | list_counts == ${list_counts} |"
       sh """
         chmod 755 scripts/deploy.sh
         cd scripts && bash -x ./deploy.sh
