@@ -258,7 +258,7 @@ def build_comafi_digital()
   {
     for (counts in list_counts)
     {
-      devops.aws_config(counts)
+      devops.setenv(counts)
       sh """ 
         chmod 755 scripts/build.sh
         cd scripts
@@ -282,7 +282,7 @@ def deploy_comafi_digital()
   {
     for (counts in list_counts)
     {
-      devops.aws_config(counts)
+      devops.setenv(counts)
       sh """
         chmod 755 scripts/deploy.sh
         cd scripts && bash -x ./deploy.sh

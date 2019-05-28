@@ -92,6 +92,7 @@ def setenv(def cuenta="null")
     else if (env.BRANCH_NAME == "test-flow1")
     {
         sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
+        env.list_counts='["AWS_DESA_CMF", "AWS_DESA"]'
         env.ENV='dev'
         env.COST_CENTER='comercios_dev'
         env.FILES_BUCKET='cmf-comercios-files'
@@ -100,6 +101,7 @@ def setenv(def cuenta="null")
         devops.credentials_to_variable("TASKS_QUEUE_URL","SQS_URL_PREDEV")
         if ( cuenta == "null" || cuenta == "AWS_DESA_CMF" ) 
         {
+          echo "cuenta es null o AWS_DESA_CMF | cuenta == ${cuenta}"
           devops.aws_config("AWS_DESA_CMF")
           devops.credentials_to_variable("SECURITY_GROUP","SECURITY_GROUP_COMAFI_DIGITAL_DEV")
           devops.credentials_to_variable("SECURITY_GROUP_PRIV","SECURITY_GROUP_COMAFI_DIGITAL_DEV")
@@ -111,6 +113,7 @@ def setenv(def cuenta="null")
         }
         else if ( cuenta == "AWS_DESA" )
         {
+          echo "cuenta es AWS_DESA | cuenta == ${cuenta}"
           devops.aws_config("AWS_DESA")
           devops.credentials_to_variable("SECURITY_GROUP","SECURITY_GROUP_DEV")
           devops.credentials_to_variable("SECURITY_GROUP_PRIV","SECURITY_GROUP_PRIV_DEV")
@@ -119,6 +122,11 @@ def setenv(def cuenta="null")
           devops.credentials_to_variable("SUBNETPRIV1","SUBNETPRIVDEV1")
           devops.credentials_to_variable("ELASTICSEARCH_NAME","ELASTICSEARCH_NAME")
           devops.credentials_to_variable("ELASTICSEARCH_URL","ELASTICSEARCH_URL_DEV")
+        }
+        else
+        {
+          echo "FALLO EL SETEO DE VARIABLES !!!!!"
+          devops.fail()
         }
     }
     else
