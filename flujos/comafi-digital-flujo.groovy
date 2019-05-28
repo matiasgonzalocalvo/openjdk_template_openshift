@@ -20,7 +20,7 @@ def flujo()
       stage("Quality Gate")
       {
         sh "echo sonar "
-        devops.wait_sonar()
+        //devops.wait_sonar()
       }
       stage("Build Comafi Digital")
       {
