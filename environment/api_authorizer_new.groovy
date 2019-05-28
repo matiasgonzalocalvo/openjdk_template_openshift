@@ -1,4 +1,4 @@
-def setenv()
+def setenv(def cuenta="null")
 {
     /*
       Variables Globales a todos los ambientes
