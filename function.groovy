@@ -265,6 +265,7 @@ def build_comafi_digital()
   {
     list_counts="null"
   }
+  //if ! ( list_counts == "null" )
   if ( list_counts )
   {
     for (counts in list_counts)
