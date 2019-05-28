@@ -58,10 +58,12 @@ def setenv(def cuenta="null")
         env.STACK_NAME='Authorizer'
         if ( cuenta == "null" || cuenta == "AWS_DESA_CMF" )
         {
+          echo "cuenta == ${cuenta} "
           devops.aws_config("AWS_DESA_CMF")
         }
         else if ( cuenta == "AWS_DESA" )
         {
+          echo "cuenta == ${cuenta} "
           devops.aws_config("AWS_DESA")
         }
         else
