@@ -1,4 +1,4 @@
-def setenv()
+def setenv(def cuenta="null")
 {
     echo "funcion setenv"
     /*
@@ -92,20 +92,34 @@ def setenv()
     else if (env.BRANCH_NAME == "test-flow1")
     {
         sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
-        devops.aws_config("AWS_DESA_CMF")
         env.ENV='dev'
         env.COST_CENTER='comercios_dev'
         env.FILES_BUCKET='cmf-comercios-files'
         env.STACK_NAME='CircuitEngine'
         devops.credentials_to_variable("WHITELIST_BUCKET","BUCKET_WHITELIST_PREDEV")
         devops.credentials_to_variable("TASKS_QUEUE_URL","SQS_URL_PREDEV")
-        devops.credentials_to_variable("SECURITY_GROUP","SECURITY_GROUP_COMAFI_DIGITAL_DEV")
-        devops.credentials_to_variable("SECURITY_GROUP_PRIV","SECURITY_GROUP_COMAFI_DIGITAL_DEV")
-        devops.credentials_to_variable("SUBNET1","SUBNETDEV1-COMAFI-DIGITAL-DEV")
-        devops.credentials_to_variable("SUBNET2","SUBNETDEV2-COMAFI-DIGITAL-DEV")
-        devops.credentials_to_variable("SUBNETPRIV1","SUBNETDEV1-COMAFI-DIGITAL-DEV")
-        devops.credentials_to_variable("ELASTICSEARCH_NAME","ELASTICSEARCH_NAME-COMAFI-DIGITAL-DEV")
-        devops.credentials_to_variable("ELASTICSEARCH_URL","ELASTICSEARCH_URL_COMAFI_DIGITAL_DEV")
+        if ( cuenta == "null" || cuenta == "AWS_DESA_CMF" ) 
+        {
+          devops.aws_config("AWS_DESA_CMF")
+          devops.credentials_to_variable("SECURITY_GROUP","SECURITY_GROUP_COMAFI_DIGITAL_DEV")
+          devops.credentials_to_variable("SECURITY_GROUP_PRIV","SECURITY_GROUP_COMAFI_DIGITAL_DEV")
+          devops.credentials_to_variable("SUBNET1","SUBNETDEV1-COMAFI-DIGITAL-DEV")
+          devops.credentials_to_variable("SUBNET2","SUBNETDEV2-COMAFI-DIGITAL-DEV")
+          devops.credentials_to_variable("SUBNETPRIV1","SUBNETDEV1-COMAFI-DIGITAL-DEV")
+          devops.credentials_to_variable("ELASTICSEARCH_NAME","ELASTICSEARCH_NAME-COMAFI-DIGITAL-DEV")
+          devops.credentials_to_variable("ELASTICSEARCH_URL","ELASTICSEARCH_URL_COMAFI_DIGITAL_DEV")
+        }
+        else if ( cuenta == "AWS_DESA" )
+        {
+          devops.aws_config("AWS_DESA")
+          devops.credentials_to_variable("SECURITY_GROUP","SECURITY_GROUP_DEV")
+          devops.credentials_to_variable("SECURITY_GROUP_PRIV","SECURITY_GROUP_PRIV_DEV")
+          devops.credentials_to_variable("SUBNET1","SUBNETDEV1")
+          devops.credentials_to_variable("SUBNET2","SUBNETDEV2")
+          devops.credentials_to_variable("SUBNETPRIV1","SUBNETPRIVDEV1")
+          devops.credentials_to_variable("ELASTICSEARCH_NAME","ELASTICSEARCH_NAME")
+          devops.credentials_to_variable("ELASTICSEARCH_URL","ELASTICSEARCH_URL_DEV")
+        }
     }
     else
     {

@@ -254,15 +254,7 @@ def wait_sonar()
 def build_comafi_digital()
 {
   echo 'Building..'
-  if ( list_counts == "null" )
-  {
-    sh """ 
-      chmod 755 scripts/build.sh
-      cd scripts
-      ./build.sh
-    """
-  }
-  else
+  if ( binding.hasVariable('list_counts') )
   {
     for (counts in list_counts)
     {
@@ -274,18 +266,19 @@ def build_comafi_digital()
       """
     }
   }
+  else
+  {
+    sh """
+      chmod 755 scripts/build.sh
+      cd scripts
+      ./build.sh
+    """
+  }
 }
 def deploy_comafi_digital()
 {
   echo 'Deploying....'
-  if ( list_counts == "null" )
-  {
-    sh """ 
-      chmod 755 scripts/deploy.sh
-      cd scripts && bash -x ./deploy.sh
-    """
-  }
-  else
+  if ( binding.hasVariable('list_counts') )
   {
     for (counts in list_counts)
     {
@@ -295,6 +288,13 @@ def deploy_comafi_digital()
         cd scripts && bash -x ./deploy.sh
       """
     }
+  }
+  else
+  {
+      sh """
+        chmod 755 scripts/deploy.sh
+        cd scripts && bash -x ./deploy.sh
+      """
   }
 }
 def git_tag(def credentials="devops-bitbucket")
