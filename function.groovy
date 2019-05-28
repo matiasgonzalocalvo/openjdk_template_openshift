@@ -254,7 +254,18 @@ def wait_sonar()
 def build_comafi_digital()
 {
   echo 'Building..'
-  if ( !isNull(list_counts) )
+  try 
+  {
+    if (list_counts)
+    {
+      echo "existe list_count"
+    }
+  }
+  catch (e)
+  {
+    list_counts="null"
+  }
+  if ( list_counts )
   {
     for (counts in list_counts)
     {
@@ -281,7 +292,7 @@ def build_comafi_digital()
 def deploy_comafi_digital()
 {
   echo 'Deploying....'
-  if ( !isNull(list_counts) )
+  if ( list_counts )
   {
     for (counts in list_counts)
     {
