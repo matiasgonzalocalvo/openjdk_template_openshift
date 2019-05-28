@@ -254,15 +254,48 @@ def wait_sonar()
 def build_comafi_digital()
 {
   echo 'Building..'
-  sh 'env'
-  sh 'chmod 755 scripts/build.sh'
-  sh 'cd scripts && ./build.sh'
+  if ( list_counts == "null" )
+  {
+    sh """ 
+      chmod 755 scripts/build.sh
+      cd scripts
+      ./build.sh
+    """
+  }
+  else
+  {
+    for (counts in list_counts)
+    {
+      devops.aws_config(counts)
+      sh """ 
+        chmod 755 scripts/build.sh
+        cd scripts
+        ./build.sh
+      """
+    }
+  }
 }
 def deploy_comafi_digital()
 {
   echo 'Deploying....'
-  sh 'chmod 755 scripts/deploy.sh'
-  sh 'cd scripts && bash -x ./deploy.sh'
+  if ( list_counts == "null" )
+  {
+    sh """ 
+      chmod 755 scripts/deploy.sh
+      cd scripts && bash -x ./deploy.sh
+    """
+  }
+  else
+  {
+    for (counts in list_counts)
+    {
+      devops.aws_config(counts)
+      sh """
+        chmod 755 scripts/deploy.sh
+        cd scripts && bash -x ./deploy.sh
+      """
+    }
+  }
 }
 def git_tag(def credentials="devops-bitbucket")
 {

@@ -105,7 +105,7 @@ def setenv()
         devops.credentials_to_variable("SUBNET2","SUBNETDEV2-COMAFI-DIGITAL-DEV")
         devops.credentials_to_variable("SUBNETPRIV1","SUBNETDEV1-COMAFI-DIGITAL-DEV")
         devops.credentials_to_variable("ELASTICSEARCH_NAME","ELASTICSEARCH_NAME-COMAFI-DIGITAL-DEV")
-        devops.credentials_to_variable("ELASTICSEARCH_URL","ELASTICSEARCH_URL_PREDEV")
+        devops.credentials_to_variable("ELASTICSEARCH_URL","ELASTICSEARCH_URL_COMAFI_DIGITAL_DEV")
     }
     else
     {

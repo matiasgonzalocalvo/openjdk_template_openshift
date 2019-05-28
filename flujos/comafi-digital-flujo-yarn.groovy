@@ -15,17 +15,20 @@ def flujo()
       }
       stage('SonarQube analysis') 
       {
-        echo "sonar"
         devops.sonar_js("${sonar_projectKey}", "${sonar_exclusions}", "${sonar_javascript_lcov_reportPaths}")
       }
       stage("Quality Gate")
       {
         sh "echo sonar "
+        //devops.wait_sonar()
       }
       stage("Build Comafi Digital")
       {
         devops.build_comafi_digital()
-        if ( "${env.tag}" == "true" ) 
+      }
+      stage("Tag Comafi Digital")
+      {
+        if ( "${env.tag}" == "true" )
         {
           devops.git_tag()
         }
