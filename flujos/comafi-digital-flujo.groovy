@@ -28,7 +28,11 @@ def flujo()
         {
           for (counts in env.list_counts)
           {
-            echo "cargando cuenta ${counts} | env.list_counts == ${env.list_counts}"
+            echo "for env cargando cuenta ${counts} | env.list_counts == ${env.list_counts}"
+          }
+          for (counts in list_counts)
+          {
+            echo "for sin env cargando cuenta ${counts} | env.list_counts == ${env.list_counts}"
           }
         }
       }
