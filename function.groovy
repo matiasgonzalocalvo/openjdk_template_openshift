@@ -266,7 +266,16 @@ def build_comafi_digital()
     echo "entro en catch"
     env.list_counts="null"
   }
-  if ( ! env.list_counts == "null" )
+  if ( env.list_counts == "null" )
+  {
+    echo "Buil en cuenta predetermida | env.list_counts == ${env.list_counts} | | list_counts == ${list_counts} |"
+    sh """
+      chmod 755 scripts/build.sh
+      cd scripts
+      ./build.sh
+    """
+  }
+  else
   {
     for (counts in env.list_counts)
     {
@@ -279,15 +288,6 @@ def build_comafi_digital()
         ./build.sh
       """
     }
-  }
-  else
-  {
-    echo "Buil en cuenta predetermida | env.list_counts == ${env.list_counts} | | list_counts == ${list_counts} |"
-    sh """
-      chmod 755 scripts/build.sh
-      cd scripts
-      ./build.sh
-    """
   }
 }
 def deploy_comafi_digital()
