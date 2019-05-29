@@ -50,7 +50,7 @@ def setenv(def cuenta="null")
     else if ( env.BRANCH_NAME =~ "test-flow" )
     {
         sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
-        def list_counts=["AWS_DESA_CMF", "AWS_DESA"]
+        //def list_counts=["AWS_DESA_CMF", "AWS_DESA"]
         //devops.aws_config("AWS_DESA_CMF")
         env.ENV='dev'
         env.COST_CENTER='comercios_dev'
@@ -60,18 +60,19 @@ def setenv(def cuenta="null")
         {
           echo "cuenta == ${cuenta} "
           devops.aws_config("AWS_DESA_CMF")
+          return true
         }
         else if ( cuenta == "AWS_DESA" )
         {
           echo "cuenta == ${cuenta} "
           devops.aws_config("AWS_DESA")
+          return true
         }
         else
         {
-          echo "FALLO EL SETEO DE VARIABLES !!!!!"
-          devops.fail()
+          return false
         }
-
+      echo "llego al final no deberia llegar"
     }
     else
     {
