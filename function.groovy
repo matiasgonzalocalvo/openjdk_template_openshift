@@ -288,7 +288,7 @@ def build_comafi_digital()
         ./build.sh
       """
     //}
-  }
+  //}
 }
 def deploy_comafi_digital()
 {
