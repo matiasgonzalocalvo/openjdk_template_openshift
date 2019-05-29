@@ -26,16 +26,16 @@ def flujo()
       {
         devops.build_comafi_digital()
       }
-      stage("Tag Comafi Digital")
+      if ( "${env.tag}" == "true" )
       {
-        if ( "${env.tag}" == "true" )
+        stage("Tag Comafi Digital")
         {
           devops.git_tag()
         }
-        else
-        {
-          echo "no se tagea || tag == ${env.tag} ||"
-        }
+      }
+      else
+      {
+        echo "no se tagea || tag == ${env.tag} ||"
       }
       stage("Deploy Comafi Digital")
       {
