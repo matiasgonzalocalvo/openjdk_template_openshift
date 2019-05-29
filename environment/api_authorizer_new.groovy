@@ -73,7 +73,6 @@ def setenv(def cuenta="null")
         }
 
     }
-
     else
     {
         echo "problema no entro a ninguna condicion branch = ${env.BRANCH_NAME}"

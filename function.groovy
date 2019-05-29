@@ -254,7 +254,7 @@ def wait_sonar()
 def build_comafi_digital()
 {
   echo 'Building..'
-  try 
+  /*try 
   {
     if (env.list_counts)
     {
@@ -281,19 +281,19 @@ def build_comafi_digital()
     {
       echo "cargando cuenta ${counts} | env.list_counts == ${env.list_counts}"
       loadvar.setenv("${counts}")
-      echo "buildando con la cuenta ${counts}"
+      echo "buildando con la cuenta ${counts}"*/
       sh """ 
         chmod 755 scripts/build.sh
         cd scripts
         ./build.sh
       """
-    }
+    //}
   }
 }
 def deploy_comafi_digital()
 {
   echo 'Deploying....'
-  if ( list_counts )
+  /*if ( list_counts )
   {
     for (counts in list_counts)
     {
@@ -308,12 +308,12 @@ def deploy_comafi_digital()
   }
   else
   {
-      echo "deploy en cuenta predetermida | list_counts == ${list_counts} |"
+      echo "deploy en cuenta predetermida | list_counts == ${list_counts} |"*/
       sh """
         chmod 755 scripts/deploy.sh
         cd scripts && bash -x ./deploy.sh
       """
-  }
+  //}
 }
 def git_tag(def credentials="devops-bitbucket")
 {
