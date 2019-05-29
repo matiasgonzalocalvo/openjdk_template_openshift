@@ -106,11 +106,11 @@ def setenv(def cuenta="null")
         //env.ENV='dev'
         env.COST_CENTER='comercios_dev'
         env.FILES_BUCKET='cmf-comercios-sec-files'
-        env.STACK_NAME='Authorizer'
         if ( cuenta == "null" || cuenta == "AWS_DESA_CMF" )
         {
           echo "cuenta == ${cuenta} "
           env.ENV='dev'
+          env.STACK_NAME='Authorizer'
           devops.aws_config("AWS_DESA_CMF")
           return true
         }
@@ -118,6 +118,7 @@ def setenv(def cuenta="null")
         {
           echo "cuenta == ${cuenta} "
           env.ENV='dtkdev'
+          env.STACK_NAME='AUTHORIZER'
           devops.aws_config("AWS_DESA")
           return true
         }
