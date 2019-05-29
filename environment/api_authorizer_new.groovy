@@ -103,20 +103,21 @@ def setenv(def cuenta="null")
     else if ( env.BRANCH_NAME =~ "test-flow" )
     {
         sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
-        env.ENV='dev'
+        //env.ENV='dev'
         env.COST_CENTER='comercios_dev'
         env.FILES_BUCKET='cmf-comercios-sec-files'
         env.STACK_NAME='Authorizer'
         if ( cuenta == "null" || cuenta == "AWS_DESA_CMF" )
         {
           echo "cuenta == ${cuenta} "
+          env.ENV='dev'
           devops.aws_config("AWS_DESA_CMF")
           return true
         }
         else if ( cuenta == "AWS_DESA" )
         {
           echo "cuenta == ${cuenta} "
-          env.DEPLOY_BUCKET_NAME="dtkdev-comercios-deploy"
+          env.ENV='dtkdev'
           devops.aws_config("AWS_DESA")
           return true
         }
