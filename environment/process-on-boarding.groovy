@@ -47,7 +47,7 @@ def setenv(def cuenta="null")
     {
       env.ENV='dtkqa'
       devops.aws_config("AWS_DESA")
-      env.STACK_NAME='CIRCUITCREATOR'
+      env.STACK_NAME='CIRCUIT-CREATOR'
       return true
     }
     else
@@ -72,7 +72,7 @@ def setenv(def cuenta="null")
     {
       env.ENV='dtkdev'
       devops.aws_config("AWS_DESA")
-      env.STACK_NAME='CIRCUITCREATOR'
+      env.STACK_NAME='CIRCUIT-CREATOR'
       return true
     }
     else
@@ -97,7 +97,7 @@ def setenv(def cuenta="null")
     {
       env.ENV='dtkpredev'
       devops.aws_config("AWS_DESA")
-      env.STACK_NAME='CIRCUITCREATOR'
+      env.STACK_NAME='CIRCUIT-CREATOR'
       return true
     }
     else
@@ -122,7 +122,7 @@ def setenv(def cuenta="null")
     {
       env.ENV='dtkdev'
       devops.aws_config("AWS_DESA")
-      env.STACK_NAME='CIRCUITCREATOR'
+      env.STACK_NAME='CIRCUIT-CREATOR'
       return true
     }
     else
