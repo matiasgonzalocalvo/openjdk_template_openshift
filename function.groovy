@@ -266,7 +266,7 @@ def build_comafi_digital()
     echo "entro en catch"
     env.list_counts="null"
   }
-  if ! ( env.list_counts == "null" )
+  if ( ! env.list_counts == "null" )
   {
     for (counts in env.list_counts)
     {
