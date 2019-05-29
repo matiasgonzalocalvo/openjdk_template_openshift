@@ -258,7 +258,7 @@ def build_comafi_digital()
   {
     if (env.list_counts)
     {
-      echo "existe env.list_count"
+      echo "existe env.list_count == ${env.list_counts}"
     }
   }
   catch (e)
@@ -279,8 +279,8 @@ def build_comafi_digital()
   {
     for (counts in env.list_counts)
     {
-      echo "cargando cuenta ${counts}"
-      devops.setenv(counts)
+      echo "cargando cuenta ${counts} | env.list_counts == ${env.list_counts}"
+      loadvar.setenv("${counts}")
       echo "buildando con la cuenta ${counts}"
       sh """ 
         chmod 755 scripts/build.sh
