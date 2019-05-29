@@ -8,18 +8,14 @@ def flujo()
       def cuentas=["AWS_DESA_CMF", "AWS_DESA","_srv_jenkins_pec"]
       stage('set env')
       {
-        loadvar.setenv()
-        /*for (cuenta in cuentas)
+        try
         {
-          if ( loadvar.setenv(cuenta) )
-          {
-            echo "if ${cuenta}"
-          }
-          else
-          {
-            echo "else ${cuenta}"
-          }
-        }*/
+          loadvar.set_env_global() 
+        }
+        catch (e)
+        {
+          loadvar.setenv()
+        }
       }
       stage('test') 
       {
