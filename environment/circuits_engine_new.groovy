@@ -64,7 +64,7 @@ def setenv(def cuenta="null")
         else if ( cuenta == "AWS_DESA" )
         {
           env.ENV='dtkqa'
-          env.STACK_NAME='CIRCUITENGINE'
+          env.STACK_NAME='CIRCUITS-ENGINE'
           devops.aws_config("AWS_DESA")
           return true
         }
@@ -99,7 +99,7 @@ def setenv(def cuenta="null")
         else if ( cuenta == "AWS_DESA" )
         {
           env.ENV='dtkdev'
-          env.STACK_NAME='CIRCUITENGINE'
+          env.STACK_NAME='CIRCUITS-ENGINE'
           devops.aws_config("AWS_DESA")
           return true
         }
@@ -136,7 +136,7 @@ def setenv(def cuenta="null")
         {
           env.ENV='dtkpredev'
           devops.aws_config("AWS_DESA")
-          env.STACK_NAME='CIRCUITENGINE'
+          env.STACK_NAME='CIRCUITS-ENGINE'
           return true
         }
         else
@@ -170,7 +170,7 @@ def setenv(def cuenta="null")
           echo "cuenta es AWS_DESA | cuenta == ${cuenta}"
           env.ENV='dtkdev'
           devops.aws_config("AWS_DESA")
-          env.STACK_NAME='CIRCUITENGINE'
+          env.STACK_NAME='CIRCUITS-ENGINE'
           devops.credentials_to_variable("SECURITY_GROUP","SECURITY_GROUP_DEV")
           devops.credentials_to_variable("SECURITY_GROUP_PRIV","SECURITY_GROUP_PRIV_DEV")
           devops.credentials_to_variable("SUBNET1","SUBNETDEV1")

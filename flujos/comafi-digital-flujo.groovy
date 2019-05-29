@@ -43,6 +43,10 @@ def flujo()
             devops.deploy_comafi_digital()
           }
         }
+        else
+        {
+          echo "No se hace nada en la cuenta ${cuenta}"
+        }
       }
       if ( "${env.tag}" == "true" )
       {
