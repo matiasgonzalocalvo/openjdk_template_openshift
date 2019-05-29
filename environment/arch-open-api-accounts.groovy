@@ -86,7 +86,7 @@ def setenv()
     }
     else if ( cuenta == "AWS_DESA" )
     {
-      env.ENV='dtkpredev'
+      env.ENV='compredev'
       devops.aws_config("AWS_DESA")
       env.STACK_NAME='ARCH-OPEN-API-ACCOUNTS'
       return true
@@ -108,7 +108,7 @@ def setenv()
     }
     else if ( cuenta == "AWS_DESA" )
     {
-      env.ENV='dtkdev'
+      env.ENV='comdev'
       devops.aws_config("AWS_DESA")
       env.STACK_NAME='ARCH-OPEN-API-ACCOUNTS'
       return true

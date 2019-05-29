@@ -5,9 +5,17 @@ def flujo()
   {
     try 
     {
+      def cuentas=["AWS_DESA_CMF", "AWS_DESA","_srv_jenkins_pec"]
       stage('set env')
       {
-        loadvar.setenv()
+        try
+        {
+          loadvar.set_env_global() 
+        }
+        catch (e)
+        {
+          loadvar.setenv()
+        }
       }
       stage('test') 
       {
@@ -22,28 +30,36 @@ def flujo()
         sh "echo sonar "
         //devops.wait_sonar()
       }
-      stage("Build Comafi Digital")
+      for (cuenta in cuentas)
       {
-        devops.build_comafi_digital()
-      }
-      stage("Tag Comafi Digital")
-      {
-        if ( "${env.tag}" == "true" )
+        if ( loadvar.setenv(cuenta) ) 
         {
-          devops.git_tag()
+          stage("Build Comafi Digital ${cuenta}")
+          {
+            devops.build_comafi_digital()
+          }
+          stage("Deploy Comafi Digital ${cuenta}")
+          {
+            devops.deploy_comafi_digital()
+          }
         }
         else
         {
-          echo "no se tagea || tag == ${env.tag} ||"
+          echo "No se hace nada en la cuenta ${cuenta}"
         }
       }
-      stage("Deploy Comafi Digital")
+      if ( "${env.tag}" == "true" )
       {
-        devops.deploy_comafi_digital()
+        stage("Tag Comafi Digital")
+        {
+          devops.git_tag()
+        }
       }
     }
     catch (e) 
     {
+      echo e.getMessage()
+      echo "FALLO !!!!!"
       devops.fail()
     }
     finally 
