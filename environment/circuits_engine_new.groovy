@@ -164,6 +164,7 @@ def setenv(def cuenta="null")
           devops.credentials_to_variable("SUBNETPRIV1","SUBNETDEV1-COMAFI-DIGITAL-DEV")
           devops.credentials_to_variable("ELASTICSEARCH_NAME","ELASTICSEARCH_NAME-COMAFI-DIGITAL-DEV")
           devops.credentials_to_variable("ELASTICSEARCH_URL","ELASTICSEARCH_URL_COMAFI_DIGITAL_DEV")
+          return true
         }
         else if ( cuenta == "AWS_DESA" )
         {
@@ -178,6 +179,7 @@ def setenv(def cuenta="null")
           devops.credentials_to_variable("SUBNETPRIV1","SUBNETPRIVDEV1")
           devops.credentials_to_variable("ELASTICSEARCH_NAME","ELASTICSEARCH_NAME")
           devops.credentials_to_variable("ELASTICSEARCH_URL","ELASTICSEARCH_URL_DEV")
+          return true
         }
         else
         {
