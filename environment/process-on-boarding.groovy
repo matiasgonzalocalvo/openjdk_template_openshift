@@ -10,7 +10,7 @@ def set_env_global()
   env.STAGE_BUILD="Build ${STAGE} - ${ENV}"
   env.STAGE_DEPLOY="DEPLOY ${STAGE} - ${ENV}"  
 }
-def setenv()
+def setenv(def cuenta="null")
 {
   if (env.BRANCH_NAME == "master" || env.BRANCH_NAME == "prod")
   {

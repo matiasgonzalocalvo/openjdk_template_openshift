@@ -8,7 +8,7 @@ def set_env_global()
   env.sonar_javascript_lcov_reportPaths=""
   env.AWS_DEFAULT_REGION='us-east-1'
 }
-def setenv()
+def setenv(def cuenta="null")
 {
   if (env.BRANCH_NAME == "master" || env.BRANCH_NAME == "prod")
   {

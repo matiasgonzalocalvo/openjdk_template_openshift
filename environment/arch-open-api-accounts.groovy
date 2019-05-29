@@ -11,7 +11,7 @@ def set_env_global()
   */
   env.COST_CENTER='arch_open_api'
 }
-def setenv()
+def setenv(def cuenta="null")
 {
   if ( env.BRANCH_NAME == "master" || env.BRANCH_NAME == "prod")
   {
