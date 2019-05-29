@@ -16,10 +16,11 @@ def setenv(def cuenta="null")
         env.tag="true"
         env.ENV='prod'
         env.COST_CENTER='comafi_digital_prod'
-        env.FILES_BUCKET='cmf-comercios-sec-files'
+        //env.FILES_BUCKET='cmf-comercios-sec-files'
         envSTACK_NAME='Authorizer'
         if ( cuenta == "_srv_jenkins_pec" )
         {
+          env.FILES_BUCKET='cmf-comercios-sec-files'
           devops.aws_config("_srv_jenkins_pec")
           return true
         }
@@ -38,13 +39,13 @@ def setenv(def cuenta="null")
         env.STACK_NAME='Authorizer'
         if ( cuenta == "null" || cuenta == "AWS_DESA_CMF" )
         {
-          echo "cuenta == ${cuenta} "
+          env.FILES_BUCKET='cmf-comercios-sec-files'
           devops.aws_config("AWS_DESA_CMF")
           return true
         }
         else if ( cuenta == "AWS_DESA" )
         {
-          echo "cuenta == ${cuenta} "
+          env.FILES_BUCKET='comercios-sec-files'
           devops.aws_config("AWS_DESA")
           return true
         }
@@ -59,15 +60,17 @@ def setenv(def cuenta="null")
         //devops.aws_config("AWS_DESA_CMF")
         env.ENV='predev'
         env.COST_CENTER='comercios_dev'
-        env.FILES_BUCKET='cmf-comercios-sec-files'
+        //env.FILES_BUCKET='cmf-comercios-sec-files'
         env.STACK_NAME='Authorizer'
         if ( cuenta == "null" || cuenta == "AWS_DESA_CMF" )
         {
+          env.FILES_BUCKET='cmf-comercios-sec-files'
           devops.aws_config("AWS_DESA_CMF")
           return true
         }
         else if ( cuenta == "AWS_DESA" )
         {
+          env.FILES_BUCKET='comercios-sec-files'
           devops.aws_config("AWS_DESA")
           return true
         }
@@ -83,15 +86,17 @@ def setenv(def cuenta="null")
         env.tag="true"
         env.ENV='qa'
         env.COST_CENTER='comafi_digital_qa'
-        env.FILES_BUCKET='cmf-comercios-sec-files'
+        //env.FILES_BUCKET='cmf-comercios-sec-files'
         env.STACK_NAME='Authorizer'
         if ( cuenta == "null" || cuenta == "AWS_DESA_CMF" )
         {
+          env.FILES_BUCKET='cmf-comercios-sec-files'
           devops.aws_config("AWS_DESA_CMF")
           return true
         }
         else if ( cuenta == "AWS_DESA" )
         {
+          env.FILES_BUCKET='comercios-sec-files'
           devops.aws_config("AWS_DESA")
           return true
         }
@@ -107,22 +112,25 @@ def setenv(def cuenta="null")
         //devops.aws_config("AWS_DESA_CMF")
         env.ENV='dev'
         env.COST_CENTER='comercios_dev'
-        env.FILES_BUCKET='cmf-comercios-sec-files'
+        //env.FILES_BUCKET='cmf-comercios-sec-files'
         env.STACK_NAME='Authorizer'
         if ( cuenta == "null" || cuenta == "AWS_DESA_CMF" )
         {
           echo "cuenta == ${cuenta} "
+          env.FILES_BUCKET='cmf-comercios-sec-files'
           devops.aws_config("AWS_DESA_CMF")
           return true
         }
         else if ( cuenta == "AWS_DESA" )
         {
           echo "cuenta == ${cuenta} "
+          env.FILES_BUCKET='comercios-sec-files'
           devops.aws_config("AWS_DESA")
           return true
         }
         else
         {
+          echo "return false"
           return false
         }
       //echo "llego al final no deberia llegar"
