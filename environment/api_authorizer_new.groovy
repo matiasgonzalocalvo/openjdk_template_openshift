@@ -16,11 +16,11 @@ def setenv(def cuenta="null")
         env.tag="true"
         env.ENV='prod'
         env.COST_CENTER='comafi_digital_prod'
-        //env.FILES_BUCKET='cmf-comercios-sec-files'
+        env.FILES_BUCKET='cmf-comercios-sec-files'
         envSTACK_NAME='Authorizer'
         if ( cuenta == "_srv_jenkins_pec" )
         {
-          env.FILES_BUCKET='cmf-comercios-sec-files'
+          env.DEPLOY_BUCKET_NAME="prod-comercios-deploy"
           devops.aws_config("_srv_jenkins_pec")
           return true
         }
@@ -32,20 +32,18 @@ def setenv(def cuenta="null")
     else if (env.BRANCH_NAME == "develop" || env.BRANCH_NAME == "developjenkinsfile")
     {
         sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
-        //devops.aws_config("AWS_DESA_CMF")
         env.ENV='dev'
         env.COST_CENTER='comercios_dev'
         env.FILES_BUCKET='cmf-comercios-sec-files'
         env.STACK_NAME='Authorizer'
         if ( cuenta == "null" || cuenta == "AWS_DESA_CMF" )
         {
-          env.FILES_BUCKET='cmf-comercios-sec-files'
           devops.aws_config("AWS_DESA_CMF")
           return true
         }
         else if ( cuenta == "AWS_DESA" )
         {
-          env.FILES_BUCKET='comercios-sec-files'
+          env.DEPLOY_BUCKET_NAME="dtkdev-comercios-deploy"
           devops.aws_config("AWS_DESA")
           return true
         }
@@ -57,20 +55,18 @@ def setenv(def cuenta="null")
     else if (env.BRANCH_NAME =~ "feature/*" || env.BRANCH_NAME =~ "PR*" )
     {
         sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
-        //devops.aws_config("AWS_DESA_CMF")
         env.ENV='predev'
         env.COST_CENTER='comercios_dev'
-        //env.FILES_BUCKET='cmf-comercios-sec-files'
+        env.FILES_BUCKET='cmf-comercios-sec-files'
         env.STACK_NAME='Authorizer'
         if ( cuenta == "null" || cuenta == "AWS_DESA_CMF" )
         {
-          env.FILES_BUCKET='cmf-comercios-sec-files'
           devops.aws_config("AWS_DESA_CMF")
           return true
         }
         else if ( cuenta == "AWS_DESA" )
         {
-          env.FILES_BUCKET='comercios-sec-files'
+          env.DEPLOY_BUCKET_NAME="dtkpredev-comercios-deploy"
           devops.aws_config("AWS_DESA")
           return true
         }
@@ -86,17 +82,16 @@ def setenv(def cuenta="null")
         env.tag="true"
         env.ENV='qa'
         env.COST_CENTER='comafi_digital_qa'
-        //env.FILES_BUCKET='cmf-comercios-sec-files'
+        env.FILES_BUCKET='cmf-comercios-sec-files'
         env.STACK_NAME='Authorizer'
         if ( cuenta == "null" || cuenta == "AWS_DESA_CMF" )
         {
-          env.FILES_BUCKET='cmf-comercios-sec-files'
           devops.aws_config("AWS_DESA_CMF")
           return true
         }
         else if ( cuenta == "AWS_DESA" )
         {
-          env.FILES_BUCKET='comercios-sec-files'
+          env.DEPLOY_BUCKET_NAME="qadev-comercios-deploy"
           devops.aws_config("AWS_DESA")
           return true
         }
@@ -108,23 +103,20 @@ def setenv(def cuenta="null")
     else if ( env.BRANCH_NAME =~ "test-flow" )
     {
         sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
-        //def list_counts=["AWS_DESA_CMF", "AWS_DESA"]
-        //devops.aws_config("AWS_DESA_CMF")
         env.ENV='dev'
         env.COST_CENTER='comercios_dev'
-        //env.FILES_BUCKET='cmf-comercios-sec-files'
+        env.FILES_BUCKET='cmf-comercios-sec-files'
         env.STACK_NAME='Authorizer'
         if ( cuenta == "null" || cuenta == "AWS_DESA_CMF" )
         {
           echo "cuenta == ${cuenta} "
-          env.FILES_BUCKET='cmf-comercios-sec-files'
           devops.aws_config("AWS_DESA_CMF")
           return true
         }
         else if ( cuenta == "AWS_DESA" )
         {
           echo "cuenta == ${cuenta} "
-          env.FILES_BUCKET='comercios-sec-files'
+          env.DEPLOY_BUCKET_NAME="dtkdev-comercios-deploy"
           devops.aws_config("AWS_DESA")
           return true
         }
@@ -133,7 +125,6 @@ def setenv(def cuenta="null")
           echo "return false"
           return false
         }
-      //echo "llego al final no deberia llegar"
     }
     else
     {
