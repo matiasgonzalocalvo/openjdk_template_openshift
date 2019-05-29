@@ -8,32 +8,9 @@ def flujo()
       stage('set env')
       {
         loadvar.setenv()
-        try 
+        for (String item : list) 
         {
-          if (env.list_counts)
-          {
-            echo "existe env.list_count == ${env.list_counts}"
-          }
-        }
-        catch (e)
-        {
-          echo "entro en catch"
-          env.list_counts="null"
-        }
-        if ( env.list_counts == "null" )
-        {
-          echo "list es null | env.list_counts == ${env.list_counts} | | list_counts == ${list_counts} |"
-        }
-        else
-        {
-          for (counts in env.list_counts)
-          {
-            echo "for env cargando cuenta ${counts} | env.list_counts == ${env.list_counts}"
-          }
-          for (counts in list_counts)
-          {
-            echo "for sin env cargando cuenta ${counts} | env.list_counts == ${env.list_counts}"
-          }
+          System.out.println(item)
         }
       }
       stage('test') 
