@@ -6,7 +6,7 @@ def flujo()
     try 
     {
       def cuentas=["AWS_DESA_CMF", "AWS_DESA","_srv_jenkins_pec"]
-      stage('set env')
+      /*stage('set env')
       {
         //loadvar.setenv()
         for (cuenta in cuentas)
@@ -20,7 +20,7 @@ def flujo()
             echo "else ${cuenta}"
           }
         }
-      }
+      }*/
       stage('test') 
       {
         devops.test_npm_comafi_digital()
@@ -38,11 +38,11 @@ def flujo()
       {
         if ( loadvar.setenv(cuenta) ) 
         {
-          stage("Build Comafi Digital")
+          stage("Build Comafi Digital ${cuenta}")
           {
             devops.build_comafi_digital()
           }
-          stage("Deploy Comafi Digital")
+          stage("Deploy Comafi Digital ${cuenta}")
           {
             devops.deploy_comafi_digital()
           }
