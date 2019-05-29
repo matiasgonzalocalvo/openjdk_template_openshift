@@ -50,7 +50,7 @@ def setenv(def cuenta="null")
     else if ( env.BRANCH_NAME =~ "test-flow" )
     {
         sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
-        env.list_counts=["AWS_DESA_CMF", "AWS_DESA"]
+        def env.list_counts=["AWS_DESA_CMF", "AWS_DESA"]
         //devops.aws_config("AWS_DESA_CMF")
         env.ENV='dev'
         env.COST_CENTER='comercios_dev'
