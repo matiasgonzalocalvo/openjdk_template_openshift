@@ -8,6 +8,29 @@ def flujo()
       stage('set env')
       {
         loadvar.setenv()
+        try 
+        {
+          if (env.list_counts)
+          {
+            echo "existe env.list_count == ${env.list_counts}"
+          }
+        }
+        catch (e)
+        {
+          echo "entro en catch"
+          env.list_counts="null"
+        }
+        if ( env.list_counts == "null" )
+        {
+          echo "list es null | env.list_counts == ${env.list_counts} | | list_counts == ${list_counts} |"
+        }
+        else
+        {
+          for (counts in env.list_counts)
+          {
+            echo "cargando cuenta ${counts} | env.list_counts == ${env.list_counts}"
+          }
+        }
       }
       stage('test') 
       {
