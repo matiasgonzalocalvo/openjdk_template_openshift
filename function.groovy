@@ -342,6 +342,8 @@ def postfinal()
 }
 def fail()
 {
-      devops.send_slack("failure",":squirrel:")
+  devops.send_slack("failure",":squirrel:")
+  currentBuild.result = 'ABORTED'
+  error('Revizar Ejecucion')
 }
 return this
