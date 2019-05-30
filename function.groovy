@@ -221,9 +221,6 @@ def sonar_js(sonar_projectKey, def sonar_exclusions="null", def sonar_javascript
   sonar="-Dsonar.projectKey=${sonar_projectKey} -Dsonar.projectVersion=${BUILD_NUMBER} -Dsonar.projectBaseDir=${WORKSPACE} -Dsonar.sources=. -Dsonar.language=js -Dsonar.login=${sonar_login} -X"
   def scannerHome = tool 'SonarQube Scanner';
     withSonarQubeEnv('Sonarqube') {
-      sh "export"
-      env.SONAR_AUTH_TOKEN=${SONAR_AUTH_TOKEN}
-      env.SONAR_HOST_URL="${SONAR_HOST_URL}"
       if( sonar_exclusions != "null" && sonar_exclusions != "" )
       {
         echo "seteando sonar.exclusions=|${sonar_exclusions}|"
@@ -326,6 +323,7 @@ def fail()
 }
 def reporting()
 {
+  sh "export"
   try 
   {
     if (currentBuild.currentResult == 'UNSTABLE')
