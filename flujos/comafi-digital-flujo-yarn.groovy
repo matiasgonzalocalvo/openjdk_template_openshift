@@ -64,6 +64,10 @@ def flujo()
     }
     finally 
     {
+      stage('Reportes')
+      {
+        devops.reporting()
+      }
       devops.postfinal()
     }
   }
