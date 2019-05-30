@@ -324,23 +324,32 @@ def fail()
 }
 def reporting()
 {
-  if (currentBuild.currentResult == 'UNSTABLE')
+  try 
   {
-    currentBuild.result = "UNSTABLE"
+    if (currentBuild.currentResult == 'UNSTABLE')
+    {
+      currentBuild.result = "UNSTABLE"
+    }
+    else if ( currentBuild.currentResult == 'SUCCESS' )
+    {
+      currentBuild.result = "SUCCESS"
+    }
+    else if ( currentBuild.currentResult == 'ABORTED' )
+    {
+      currentBuild.result = "ABORTED"
+    }
+    else if ( currentBuild.currentResult == 'FAILURE' )
+    {
+      currentBuild.result = "FAILURE"
+    }
+    echo "currentBuild.result == ${currentBuild.result} |currentBuild.currentResult == ${currentBuild.currentResult}|"
+    step([$class: 'InfluxDbPublisher', customData: null, customDataMap: null, customPrefix: null, target: 'default'])
   }
-  else if ( currentBuild.currentResult == 'SUCCESS' )
+  catch (e)
   {
-    currentBuild.result = "SUCCESS"
+    echo e.getMessage()
+    echo 'Error en el reporte adentro de la funcion : ' + e.toString()
+    echo "FALLO el reporte!!!!!"
   }
-  else if ( currentBuild.currentResult == 'ABORTED' )
-  {
-    currentBuild.result = "ABORTED"
-  }
-  else if ( currentBuild.currentResult == 'FAILURE' )
-  {
-    currentBuild.result = "FAILURE"
-  }
-  echo "currentBuild.result == ${currentBuild.result} |currentBuild.currentResult == ${currentBuild.currentResult}|"
-  step([$class: 'InfluxDbPublisher', customData: null, customDataMap: null, customPrefix: null, target: 'default'])
 }
 return this
