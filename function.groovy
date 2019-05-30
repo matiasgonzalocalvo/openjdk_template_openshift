@@ -254,32 +254,32 @@ def wait_sonar()
 def build_comafi_digital()
 {
   echo 'Building..'
-  sh """
+  bash """
     if [ -d "scripts" ] ; then
-      CARPETAS_SCRIPT="scripts"
+      CARPETASCRIPT="scripts"
     elif [ -d "_scripts" ] ; then
-      CARPETAS_SCRIPT="_scripts"
+      CARPETASCRIPT="_scripts"
     else
       exit 3
     fi
-    chmod 755 ${CARPETAS_SCRIPT}/build.sh
-    cd ${CARPETAS_SCRIPT}
+    chmod 755 ${CARPETASCRIPT}/build.sh
+    cd ${CARPETASCRIPT}
     ./build.sh
   """
 }
 def deploy_comafi_digital()
 {
   echo 'Deploying....'
-  sh """
+  bash """
     if [ -d "scripts" ] ; then
-      CARPETAS_SCRIPT="scripts"
+      CARPETASCRIPT="scripts"
     elif [ -d "_scripts" ] ; then
-      CARPETAS_SCRIPT="_scripts"
+      CARPETASCRIPT="_scripts"
     else
       exit 3
     fi
-    chmod 755 ${CARPETAS_SCRIPT}/deploy.sh
-    cd ${CARPETAS_SCRIPT} && bash -x ./deploy.sh
+    chmod 755 ${CARPETASCRIPT}/deploy.sh
+    cd ${CARPETASCRIPT} && bash -x ./deploy.sh
   """
 }
 def git_tag(def credentials="devops-bitbucket")
