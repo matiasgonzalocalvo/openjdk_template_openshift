@@ -268,7 +268,7 @@ def build_comafi_digital()
   {
     echo "exit 3 no se en que carpeta estan los scripts" 
   }
-  bash """
+  sh """
     if [ -e "scripts" ] ; then
       echo "set CARPETASCRIPT=scripts"
       CARPETASCRIPT="scripts"
