@@ -251,9 +251,8 @@ def wait_sonar()
       }
     }
 }
-def build_comafi_digital()
+def set_scripts_comafi_digital()
 {
-  echo 'Building..'
   if ( fileExists("scripts") )
   {
     echo "set script como carpeta"
@@ -266,8 +265,13 @@ def build_comafi_digital()
   }
   else
   {
-    echo "exit 3 no se en que carpeta estan los scripts" 
+    echo "exit 3 no se en que carpeta estan los scripts"
   }
+}
+def build_comafi_digital()
+{
+  echo 'Building..'
+  devops.set_scripts_comafi_digital()
   sh """
     if [ -e "scripts" ] ; then
       echo "set CARPETASCRIPT=scripts"
@@ -281,7 +285,7 @@ def build_comafi_digital()
 def deploy_comafi_digital()
 {
   echo 'Deploying....'
-  bash """
+  sh """
     chmod 755 ${CARPETASCRIPT}/deploy.sh
     cd ${CARPETASCRIPT} && bash -x ./deploy.sh
   """
