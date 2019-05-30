@@ -256,10 +256,13 @@ def build_comafi_digital()
   echo 'Building..'
   bash """
     if [ -d "scripts" ] ; then
+      echo "set script como carpeta"
       CARPETASCRIPT="scripts"
     elif [ -d "_scripts" ] ; then
+      echo ""set _script como carpeta
       CARPETASCRIPT="_scripts"
     else
+      echo "exit 3 no se en que carpeta estan los scripts"
       exit 3
     fi
     chmod 755 ${CARPETASCRIPT}/build.sh
