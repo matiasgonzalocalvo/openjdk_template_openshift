@@ -313,4 +313,25 @@ def fail()
   currentBuild.result = 'ABORTED'
   error('Revizar Ejecucion')
 }
+def reporting()
+{
+  if (currentBuild.currentResult == 'UNSTABLE')
+  {
+    currentBuild.result = "UNSTABLE"
+  }
+  else if ( currentBuild.currentResult == 'SUCCESS' )
+  {
+    currentBuild.result = "SUCCESS"
+  }
+  else if ( currentBuild.currentResult == 'ABORTED' )
+  {
+    currentBuild.result = "ABORTED"
+  }
+  else if ( currentBuild.currentResult == 'FAILURE' )
+  {
+    currentBuild.result = "FAILURE"
+  }
+  echo "currentBuild.result == ${currentBuild.result} |currentBuild.currentResult == ${currentBuild.currentResult}|"
+  step([$class: 'InfluxDbPublisher', customData: null, customDataMap: null, customPrefix: null, target: 'default'])
+}
 return this
