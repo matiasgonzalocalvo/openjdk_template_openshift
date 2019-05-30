@@ -254,17 +254,21 @@ def wait_sonar()
 def build_comafi_digital()
 {
   echo 'Building..'
+  if ( new File('scripts').exists() )
+  {
+    echo "set script como carpeta"
+    env.CARPETASCRIPT="scripts"
+  }
+  else if ( new File('_scripts').exists() )
+  {
+    echo "set _script como carpeta"
+    env.CARPETASCRIPT="_scripts"
+  }
+  else
+  {
+    echo "exit 3 no se en que carpeta estan los scripts" 
+  }
   bash """
-    if [ -d "scripts" ] ; then
-      echo "set script como carpeta"
-      CARPETASCRIPT="scripts"
-    elif [ -d "_scripts" ] ; then
-      echo ""set _script como carpeta
-      CARPETASCRIPT="_scripts"
-    else
-      echo "exit 3 no se en que carpeta estan los scripts"
-      exit 3
-    fi
     chmod 755 ${CARPETASCRIPT}/build.sh
     cd ${CARPETASCRIPT}
     ./build.sh
@@ -273,14 +277,21 @@ def build_comafi_digital()
 def deploy_comafi_digital()
 {
   echo 'Deploying....'
+  if ( new File('scripts').exists() )
+  {
+    echo "set script como carpeta"
+    env.CARPETASCRIPT="scripts"
+  }
+  else if ( new File('_scripts').exists() )
+  {
+    echo "set _script como carpeta"
+    env.CARPETASCRIPT="_scripts"
+  }
+  else
+  { 
+    echo "exit 3 no se en que carpeta estan los scripts"
+  }
   bash """
-    if [ -d "scripts" ] ; then
-      CARPETASCRIPT="scripts"
-    elif [ -d "_scripts" ] ; then
-      CARPETASCRIPT="_scripts"
-    else
-      exit 3
-    fi
     chmod 755 ${CARPETASCRIPT}/deploy.sh
     cd ${CARPETASCRIPT} && bash -x ./deploy.sh
   """
