@@ -67,16 +67,7 @@ def flujo()
     {
       stage('Reportes')
       {
-        try
-        {
-          devops.reporting()
-        }
-        catch (e)
-        {
-          echo e.getMessage()
-          echo 'Error en el reporte : ' + e.toString()
-          echo "FALLO el reporte!!!!!"
-        }
+        devops.reporting()
         devops.postfinal()
       }
     }

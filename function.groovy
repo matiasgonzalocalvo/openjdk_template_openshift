@@ -222,6 +222,8 @@ def sonar_js(sonar_projectKey, def sonar_exclusions="null", def sonar_javascript
   def scannerHome = tool 'SonarQube Scanner';
     withSonarQubeEnv('Sonarqube') {
       sh "export"
+      env.SONAR_AUTH_TOKEN=${SONAR_AUTH_TOKEN}
+      env.SONAR_HOST_URL="${SONAR_HOST_URL}"
       if( sonar_exclusions != "null" && sonar_exclusions != "" )
       {
         echo "seteando sonar.exclusions=|${sonar_exclusions}|"
