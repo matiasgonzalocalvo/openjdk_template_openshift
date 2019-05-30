@@ -256,14 +256,14 @@ def build_comafi_digital()
   echo 'Building..'
   sh """
     if [ -d "scripts" ] ; then
-      scripts="scripts"
+      folder="scripts"
     elif [ -d "_scripts" ] ; then
-      scripts="_scripts"
+      folder="_scripts"
     else
       exit 3
     fi
-    chmod 755 ${scripts}/build.sh
-    cd ${scripts}
+    chmod 755 ${folder}/build.sh
+    cd ${folder}
     ./build.sh
   """
 }
@@ -272,14 +272,14 @@ def deploy_comafi_digital()
   echo 'Deploying....'
   sh """
     if [ -d "scripts" ] ; then
-      scripts="scripts"
+      folder="scripts"
     elif [ -d "_scripts" ] ; then
-      scripts="_scripts"
+      folder="_scripts"
     else
       exit 3
     fi
-    chmod 755 ${scripts}/deploy.sh
-    cd ${scripts} && bash -x ./deploy.sh
+    chmod 755 ${folder}/deploy.sh
+    cd ${folder} && bash -x ./deploy.sh
   """
 }
 def git_tag(def credentials="devops-bitbucket")
