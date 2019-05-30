@@ -343,7 +343,9 @@ def reporting()
       currentBuild.result = "FAILURE"
     }
     echo "currentBuild.result == ${currentBuild.result} |currentBuild.currentResult == ${currentBuild.currentResult}|"
-    step([$class: 'InfluxDbPublisher', customData: null, customDataMap: null, customPrefix: null, target: 'default'])
+    withSonarQubeEnv('Sonarqube') {
+      step([$class: 'InfluxDbPublisher', customData: null, customDataMap: null, customPrefix: null, target: 'default'])
+    }
   }
   catch (e)
   {
