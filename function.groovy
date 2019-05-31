@@ -282,10 +282,6 @@ def build_comafi_digital()
   echo 'Building..'
   devops.set_scripts_comafi_digital()
   sh """
-    if [ -e "scripts" ] ; then
-      echo "set CARPETASCRIPT=scripts"
-      CARPETASCRIPT="scripts"
-    fi
     chmod 755 ${CARPETASCRIPT}/build.sh
     cd ${CARPETASCRIPT}
     ./build.sh
