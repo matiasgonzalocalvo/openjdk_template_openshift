@@ -31,6 +31,7 @@ def setenv(def cuenta="null")
       env.DOMAIN='comafidigital.com'
       env.CERT_ARN='arn:aws:acm:us-east-1:367760667466:certificate/3490adf8-e2f8-4c80-8083-9c6f2f123006'
       env.STACK_NAME='CMF-DIGITAL-PORTAL'
+      return true
     }
     else
     {
