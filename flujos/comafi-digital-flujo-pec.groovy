@@ -21,7 +21,7 @@ def flujo()
       /*stage('test') 
       {
         devops.test_npm_comafi_digital()
-      }*/
+      }
       stage('SonarQube analysis') 
       {
         devops.sonar_js("${sonar_projectKey}", "${sonar_exclusions}", "${sonar_javascript_lcov_reportPaths}")
@@ -30,7 +30,7 @@ def flujo()
       {
         sh "echo sonar "
         //devops.wait_sonar()
-      }
+      }*/
       for (cuenta in cuentas)
       {
         if ( loadvar.setenv(cuenta) ) 
