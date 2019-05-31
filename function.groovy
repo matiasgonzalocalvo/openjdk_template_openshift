@@ -344,7 +344,11 @@ def reporting()
     }
     echo "currentBuild.result == ${currentBuild.result} |currentBuild.currentResult == ${currentBuild.currentResult}|"
     withSonarQubeEnv('Sonarqube') {
-      step([$class: 'InfluxDbPublisher', customData: null, customDataMap: null, customPrefix: null, target: 'default'])
+      step([$class: 'InfluxDbPublisher',
+      customData: null, 
+      customDataMap: null, 
+      customPrefix: null, 
+      target: 'default'])
     }
   }
   catch (e)
