@@ -24,6 +24,14 @@ def setenv(def cuenta="null")
       env.CERT_ARN='arn:aws:acm:us-east-1:367760667466:certificate/3490adf8-e2f8-4c80-8083-9c6f2f123006'
       return true
     }
+    else if ( cuenta == "AWS_Alternative" ) 
+    {
+      env.ENV='prod'
+      env.COST_CENTER='comafi_digital_prod'
+      env.DOMAIN='comafidigital.com'
+      env.CERT_ARN='arn:aws:acm:us-east-1:367760667466:certificate/3490adf8-e2f8-4c80-8083-9c6f2f123006'
+      env.STACK_NAME='CMF-DIGITAL-PORTAL'
+    }
     else
     {
       return false
