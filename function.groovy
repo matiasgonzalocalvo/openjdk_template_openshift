@@ -188,6 +188,16 @@ def test_npm()
 }
 def test_npm_comafi_digital()
 {
+  try
+  {
+    sh 'npm install typescript'
+  }
+  catch (e)
+  {
+    echo e.getMessage()
+    echo 'Error al intentar instalar typescript  : ' + e.toString()
+    echo "FALLO el reporte!!!!!"
+  }
   sh """
     if ! [ -d "/mnt/efs/cache/" ] ; then
       mkdir -p /mnt/efs/cache/
