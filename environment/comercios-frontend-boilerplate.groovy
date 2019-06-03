@@ -14,7 +14,7 @@ def setenv(def cuenta="null")
   {
     sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
     env.COST_CENTER='comafi_digital_prod'
-    env.tag="true"
+    //env.tag="true"
     if ( cuenta == "_srv_jenkins_pec" )
     {
       devops.aws_config("_srv_jenkins_pec")
@@ -31,6 +31,7 @@ def setenv(def cuenta="null")
       env.DOMAIN='comafidigital.com'
       env.CERT_ARN='arn:aws:acm:us-east-1:367760667466:certificate/3490adf8-e2f8-4c80-8083-9c6f2f123006'
       env.STACK_NAME='CMF-DIGITAL-PORTAL'
+      return true
     }
     else
     {
