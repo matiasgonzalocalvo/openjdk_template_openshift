@@ -462,7 +462,6 @@ def set_npm_nexus()
     npm config set email "${devops_email}"
     npm config set always-auth true
     npm config set _auth "${auth_nexus}"
-    //cat .npmrc 
     pwd 
     cp /home/jenkins/.npmrc .npmrc
   """
