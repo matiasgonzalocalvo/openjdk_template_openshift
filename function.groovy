@@ -364,4 +364,68 @@ def reporting()
     echo "FALLO el reporte!!!!!"
   }
 }
+def npm_install()
+{
+  try
+  {
+    sh """
+      npm install
+    """
+  }
+  catch (e)
+  {
+    echo e.getMessage()
+    echo 'Error en npm install : ' + e.toString()
+    echo "FALLO npm install!!!!!"
+    fail()
+  }
+}
+def npm_install_comafi_common()
+{
+  try
+  {
+    sh """
+      npm install comafi-common --no-save --registry http://nexus.developmentcomafi.com/content/repositories/front/
+    """
+  }
+  catch (e)
+  {
+    echo e.getMessage()
+    echo 'Error en npm install comafi-common --no-save --registry  : ' + e.toString()
+    echo "FALLO npm install comafi-common --no-save --registry!!!!!"
+    fail()
+  }
+}
+def npm_run_build_env()
+{
+  try
+  {
+    sh """
+      npm run build-$ENV
+    """
+  }
+  catch (e)
+  {
+    echo e.getMessage()
+    echo 'Error en npm run build-$ENV : ' + e.toString()
+    echo "FALLO npm run build-$ENV !!!!!"
+    fail()
+  }
+}
+def upload-s3()
+{
+  try
+  {
+    sh """
+      aws s3 cp "dist/es/**" s3://$ENV-$BUCKET_ID --recursive --storage-class STANDAR
+    """
+  }
+  catch (e)
+  {
+    echo e.getMessage()
+    echo 'Error en upload s3 : ' + e.toString()
+    echo "FALLO  !!!!!"
+    fail()
+  }
+}
 return this
