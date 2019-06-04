@@ -1,4 +1,4 @@
-def aws_config(credential_id) {
+de  f aws_config(credential_id) {
     /*
         Funcion recibe por parametro el credential_id y setea el key_id y access_key como variable de entorno y configura el aws cli.
     */
@@ -412,7 +412,7 @@ def npm_run_build_env()
     fail()
   }
 }
-/*def upload-s3()
+def upload_s3()
 {
   try
   {
@@ -427,5 +427,41 @@ def npm_run_build_env()
     echo "FALLO  !!!!!"
     fail()
   }
-}*/
+}
+def npm_install_nexus()
+{
+  try
+  {
+    sh """
+      npm install
+    """
+  }
+  catch (e)
+  {
+    echo e.getMessage()
+    echo 'Error en npm install : ' + e.toString()
+    echo "FALLO npm install!!!!!"
+    fail()
+  }
+}
+def set_npm_nexus()
+{
+  if ( fileExists(".npmrc") )
+  {
+    echo "elimino el .npmrc"
+    sh "rm .npmrc"
+  }
+  devops.credentials_to_variable("nexus-registry","nexus-registry")
+  devops.credentials_to_variable("nexus_npm_group","nexus_npm_group")
+  devops.credentials_to_variable("devops_email","devops_email")
+  devops.credentials_to_variable("auth_nexus","auth_nexus")
+  sh """
+    echo "nexus registry == ${nexus-registry}/${nexus_npm_group}"
+    echo "devops email  == ${devops_email}"
+    npm config set registry "${nexus-registry}/${nexus_npm_group}"
+    npm config set email "${devops_email}"
+    npm config set always-auth true
+    npm config set _auth "${auth_nexus}"
+  """
+}
 return this
