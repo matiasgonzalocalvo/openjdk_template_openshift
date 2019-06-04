@@ -325,7 +325,7 @@ def fail()
   devops.send_slack("failure",":squirrel:")
   //currentBuild.result = 'ABORTED'
   currentBuild.result = 'FAILURE'
-  error('Revizar Ejecucion')
+  error('Revisar Ejecucion')
 }
 def reporting()
 {
@@ -462,6 +462,8 @@ def set_npm_nexus()
     npm config set email "${devops_email}"
     npm config set always-auth true
     npm config set _auth "${auth_nexus}"
+    find / -iname .npmrc 
+    cat .npmrc 
   """
 }
 return this
