@@ -1,4 +1,4 @@
-de  f aws_config(credential_id) {
+def aws_config(credential_id) {
     /*
         Funcion recibe por parametro el credential_id y setea el key_id y access_key como variable de entorno y configura el aws cli.
     */
@@ -444,7 +444,7 @@ def npm_install_nexus()
     fail()
   }
 }
-/*def set_npm_nexus()
+def set_npm_nexus()
 {
   if ( fileExists(".npmrc") )
   {
@@ -463,5 +463,5 @@ def npm_install_nexus()
     npm config set always-auth true
     npm config set _auth "${auth_nexus}"
   """
-}*/
+}
 return this
