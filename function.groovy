@@ -412,7 +412,7 @@ def npm_run_build_env()
     fail()
   }
 }
-def upload-s3()
+/*def upload-s3()
 {
   try
   {
@@ -427,5 +427,5 @@ def upload-s3()
     echo "FALLO  !!!!!"
     fail()
   }
-}
+}*/
 return this
