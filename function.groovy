@@ -401,6 +401,7 @@ def npm_run_build_env()
   try
   {
     sh """
+      export 
       npm run build-$ENV
     """
   }
