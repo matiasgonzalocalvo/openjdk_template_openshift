@@ -451,14 +451,14 @@ def set_npm_nexus()
     echo "elimino el .npmrc"
     sh "rm .npmrc"
   }
-  devops.credentials_to_variable("nexus-registry","nexus-registry")
+  devops.credentials_to_variable("nexus_registry","nexus_registry")
   devops.credentials_to_variable("nexus_npm_group","nexus_npm_group")
   devops.credentials_to_variable("devops_email","devops_email")
   devops.credentials_to_variable("auth_nexus","auth_nexus")
   sh """
-    echo "nexus registry == ${nexus-registry}/${nexus_npm_group}"
+    echo "nexus registry == ${nexus_registry}/${nexus_npm_group}"
     echo "devops email  == ${devops_email}"
-    npm config set registry "${nexus-registry}/${nexus_npm_group}"
+    npm config set registry "${nexus_registry}/${nexus_npm_group}"
     npm config set email "${devops_email}"
     npm config set always-auth true
     npm config set _auth "${auth_nexus}"
