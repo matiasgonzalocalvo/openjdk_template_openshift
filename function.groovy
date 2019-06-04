@@ -462,6 +462,7 @@ def set_npm_nexus()
     npm config set always-auth true
     npm config set _auth "${auth_nexus}"
     cp /home/jenkins/.npmrc .npmrc
+    npm install -g @angular/cli
   """
 }
 return this
