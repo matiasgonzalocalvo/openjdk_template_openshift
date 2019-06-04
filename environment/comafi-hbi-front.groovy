@@ -31,6 +31,7 @@ def setenv(def cuenta="null")
   {
     sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
     env.ENV="sandbox"
+    set_npm_nexus()
   }
   else
   {
