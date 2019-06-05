@@ -20,15 +20,15 @@ def setenv(def cuenta="null")
   {
     sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
     echo "echo probando parameters  "
-    parameters { choice(name: 'ENV', choices: ['qa', 'qa2', 'glqa'], description: 'ELEGI EL AMBIENTE ') }
-    parameters { choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: '') }
-    def deployOptions = 'no\nyes'
+    //parameters { choice(name: 'ENV', choices: ['qa', 'qa2', 'glqa'], description: 'ELEGI EL AMBIENTE ') }
+    //parameters { choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: '') }
+    def deployOptions = 'qa\nqa2\nglqa'
     def userInput = input(
-      id: 'userInput', message: 'Are you prepared to deploy?', parameters: [
-        [$class: 'ChoiceParameterDefinition', choices: deployOptions, description: 'Approve/Disallow deployment', name: 'deploy-check']
+      id: 'ENV', message: 'En que ambiente deployo????', parameters: [
+        [$class: 'ChoiceParameterDefinition', choices: deployOptions, description: 'Eleccion de ambiete QA!!', name: 'ambiente']
       ]
     )
-    //echo "you selected: ${userInput}"
+    echo "you selected: ${ENV}"
   }
   else if (env.BRANCH_NAME == "develop" || env.BRANCH_NAME == "developjenkinsfile" )
   {
