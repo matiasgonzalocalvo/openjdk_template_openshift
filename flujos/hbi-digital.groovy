@@ -8,6 +8,7 @@ def flujo()
       //def cuentas=["AWS_DESA_CMF", "AWS_DESA","_srv_jenkins_pec"]
       stage('set env')
       {
+        loadvar.set_env_global()
         loadvar.setenv()
         devops.set_npm_nexus()
       }
