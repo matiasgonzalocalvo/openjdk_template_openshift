@@ -26,6 +26,7 @@ def setenv(def cuenta="null")
     }
     else if ( cuenta == "AWS_Alternative" ) 
     {
+      devops.aws_config("AWS_Alternative")
       env.ENV='prod'
       env.COST_CENTER='comafi_digital_prod'
       env.DOMAIN='comafidigital.com'
