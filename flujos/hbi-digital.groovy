@@ -39,7 +39,7 @@ def flujo()
       }
       stage("Deploy S3")
       {
-        devops.npm_run_build_env()
+        devops.upload_s3()
       }
     }
     catch (e) 
