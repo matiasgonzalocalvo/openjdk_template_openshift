@@ -23,11 +23,21 @@ def setenv(def cuenta="null")
     //parameters { choice(name: 'ENV', choices: ['qa', 'qa2', 'glqa'], description: 'ELEGI EL AMBIENTE ') }
     //parameters { choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: '') }
     def deployOptions = 'qa\nqa2\nglqa'
-    def userInput = input(
-      id: 'ENV', message: 'En que ambiente deployo????', parameters: [
-        [$class: 'ChoiceParameterDefinition', choices: deployOptions, description: 'Eleccion de ambiete QA!!', name: 'ambiente']
+    def ENV = input(
+      id: 'ENV', 
+      message: 'En que ambiente deployo????', 
+      parameters: 
+      [
+        [
+          $class: 'ChoiceParameterDefinition', 
+          choices: deployOptions, 
+          description: 'Eleccion de ambiete QA!!', 
+          name: 'ambiente'
+        ]
       ]
     )
+    env.ENV="${ENV}"
+    //sh "export"
     echo "you selected: ${ENV}"
   }
   else if (env.BRANCH_NAME == "develop" || env.BRANCH_NAME == "developjenkinsfile" )
