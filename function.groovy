@@ -418,7 +418,7 @@ def upload_s3()
   try
   {
     sh """
-      aws s3 cp "dist/es/**" s3://${ENV}-${BUCKET_ID} --recursive --storage-class STANDAR
+      aws s3 cp "dist/es/" s3://${ENV}-${BUCKET_ID} --recursive --storage-class STANDARD
     """
   }
   catch (e)
