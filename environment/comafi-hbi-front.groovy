@@ -7,7 +7,7 @@ def set_env_global()
   env.sonar_exclusions=""
   env.sonar_javascript_lcov_reportPaths=""
   env.AWS_DEFAULT_REGION='us-east-1'
-  env.BUCKET_ID=hbi-front-comafi
+  env.BUCKET_ID="hbi-front-comafi"
 }
 def setenv(def cuenta="null")
 {
