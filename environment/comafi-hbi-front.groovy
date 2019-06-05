@@ -28,7 +28,7 @@ def setenv(def cuenta="null")
         [$class: 'ChoiceParameterDefinition', choices: deployOptions, description: 'Approve/Disallow deployment', name: 'deploy-check']
       ]
     )
-    echo "you selected: ${userInput}"
+    //echo "you selected: ${userInput}"
   }
   else if (env.BRANCH_NAME == "develop" || env.BRANCH_NAME == "developjenkinsfile" )
   {
