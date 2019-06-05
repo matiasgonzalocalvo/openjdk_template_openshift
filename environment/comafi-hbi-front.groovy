@@ -22,20 +22,13 @@ def setenv(def cuenta="null")
     echo "echo probando parameters  "
     parameters { choice(name: 'ENV', choices: ['qa', 'qa2', 'glqa'], description: 'ELEGI EL AMBIENTE ') }
     parameters { choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: '') }
-    parameters {
-            choice(
-                name: 'Nodes',
-                choices:"Linux\nMac",
-                description: "Choose Node!")
-            choice(
-                name: 'Versions',
-                choices:"3.4\n4.4",
-                description: "Build for which version?" )
-            string(
-                name: 'Path',
-                defaultValue:"/home/pencillr/builds/",
-                description: "Where to put the build!")
-    }
+    def deployOptions = 'no\nyes'
+    def userInput = input(
+      id: 'userInput', message: 'Are you prepared to deploy?', parameters: [
+        [$class: 'ChoiceParameterDefinition', choices: deployOptions, description: 'Approve/Disallow deployment', name: 'deploy-check']
+      ]
+    )
+    echo "you selected: ${userInput}"
   }
   else if (env.BRANCH_NAME == "develop" || env.BRANCH_NAME == "developjenkinsfile" )
   {
