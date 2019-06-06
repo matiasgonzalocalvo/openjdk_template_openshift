@@ -6,7 +6,7 @@ def flujo()
     try 
     {
       //def cuentas=["AWS_DESA_CMF", "AWS_DESA","_srv_jenkins_pec"]
-      def cuentas=["AWS_DESA_CMF", "AWS_DESA", "AWS_Alternative"]
+      def cuentas=["AWS_DESA", "AWS_DESA_CMF", "AWS_Alternative"]
       stage('set env')
       {
         try
