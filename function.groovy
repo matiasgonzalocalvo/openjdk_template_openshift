@@ -147,7 +147,7 @@ def jenkins_docker_build(def url_repo="null", def name="null",def tag="null",def
     sh "echo ejecutando docker usando plugin de jenkins"
     app = docker.build("${url_repo}/${name}:${tag}")
 }
-def docker_tag(def url_repo="null",def name="null",def tag="null",def tag2="null",def url_docker_tcp="null")
+def docker_tag(url_repo, name, tag, tag2, url_docker_tcp)
 {
     sh """ 
         docker -H "${url_docker_tcp}" tag  ${url_repo}/${name}:${tag} ${url_repo}/${name}:${tag2}
@@ -463,6 +463,37 @@ def set_npm_nexus()
     npm config set _auth "${auth_nexus}"
     cp /home/jenkins/.npmrc .npmrc
     npm install -g @angular/cli
+  """
+}
+def redis_start()
+{
+  sh """
+    sudo /etc/init.d/redis-server start
+  """
+}
+def ecs_update_service(ecs_update_service_cluster, ecs_update_service_service, ecs_update_service_task_definition)
+{
+  //aws ecs update-service --cluster ${ENVNAME}-cluster --service ${ENVNAME}-${APPNAME}-service --task-definition ${ENVNAME}-${APPNAME}-task --force-new-deployment
+  sh """
+    aws ecs update-service --cluster ${ecs_update_service_cluster} --service ${ecs_update_service_service} --task-definition ${ecs_update_service_task_definition} --force-new-deployment
+  """
+}
+def new_circuit_engine()
+{
+  sh """
+    echo 'Uploading circuits-engine lib to S3'
+    aws s3 cp libs/circuits-engine.zip s3://$FILES_BUCKET/circuits-engine.zip --profile $AWS_PROFILE
+    for functions in functions/*
+    do
+      echo 'Building ' $functions
+      cd $functions     
+      rm -Rf node_modules
+      yarn install --prod
+      cd -
+    done
+    echo 'Building SAM package and uploading cloudformation'
+    sam package --profile $AWS_PROFILE  --template-file template.yaml     --output-template-file "packaged$UUID.yaml"     --s3-bucket $BUCKET
+    sam deploy --profile $AWS_PROFILE  --template-file "$SOURCE/packaged$UUID.yaml" --stack-name $STACK --tags Project=$PROJECT --capabilities CAPABILITY_NAMED_IAM --parameter-overrides Environment=$ENV DeployBucket=$BUCKET StackName=$STACK
   """
 }
 return this
