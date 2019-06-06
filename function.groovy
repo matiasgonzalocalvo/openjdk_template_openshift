@@ -478,7 +478,7 @@ def ecs_update_service(ecs_update_service_cluster, ecs_update_service_service, e
     aws ecs update-service --cluster ${ecs_update_service_cluster} --service ${ecs_update_service_service} --task-definition ${ecs_update_service_task_definition} --force-new-deployment
   """
 }
-def new_circuit_engine()
+def new_process_sam()
 {
   sh """
     echo 'Uploading circuits-engine lib to S3'

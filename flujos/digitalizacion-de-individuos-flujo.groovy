@@ -12,7 +12,7 @@ def flujo()
       }
       stage("Build New Circuit Engine")
       {
-        new_circuit_engine()
+        new_process_sam()
       }
     }
     catch (e) 
