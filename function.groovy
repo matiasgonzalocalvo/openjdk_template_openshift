@@ -486,6 +486,7 @@ def new_process_sam()
   sh "subfolders=`ls -d functions/*`"
   sh "echo despues"
   sh """
+    export 
     subfolders="`ls -d functions/*`"
     echo "muestro subfolders == ${subfolders}"
     for functions in ${subfolders} ; do
