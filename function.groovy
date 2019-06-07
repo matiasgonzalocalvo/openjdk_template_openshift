@@ -487,6 +487,7 @@ def new_process_sam()
   sh "echo despues"
   sh """
     subfolders="`ls -d functions/*`"
+    echo "muestro subfolders == ${subfolders}"
     for functions in ${subfolders} ; do
       echo "Building ${functions}"
       cd ${functions}
