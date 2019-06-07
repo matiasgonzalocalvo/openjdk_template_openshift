@@ -493,7 +493,8 @@ def new_process_sam()
   }
   dirsl*/
   def subfolders = sh(returnStdout: true, script: 'ls -d functions/*').trim().split(System.getProperty("line.separator"))
-  sh """
+  echo "${subfolders}"
+  /*sh """
     for functions in ${subfolders} ; do
       echo "Building ${functions}"
       cd ${functions}
@@ -501,7 +502,7 @@ def new_process_sam()
       yarn install --prod
       cd -
     done
-  """
+  """*/
   sh "echo 'Building SAM package and uploading cloudformation'"
   sh """
     sam package --template-file template.yaml     --output-template-file "packaged$UUID.yaml" --s3-bucket $BUCKET
