@@ -519,7 +519,6 @@ def new_process_sam()
       cd -
 
 
-    done
   '''
   sh "echo 'Building SAM package and uploading cloudformation'"
   sh """
