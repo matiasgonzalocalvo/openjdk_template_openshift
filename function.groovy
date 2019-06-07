@@ -480,9 +480,9 @@ def ecs_update_service(ecs_update_service_cluster, ecs_update_service_service, e
 }
 def new_process_sam()
 {
+  sh "echo 'Uploading circuits-engine lib to S3'"
+  sh "aws s3 cp libs/circuits-engine.zip s3://$FILES_BUCKET/circuits-engine.zip"
   sh """
-    echo 'Uploading circuits-engine lib to S3'
-    aws s3 cp libs/circuits-engine.zip s3://$FILES_BUCKET/circuits-engine.zip
     for functions in functions/*
     do
       echo 'Building ' $functions
@@ -491,8 +491,12 @@ def new_process_sam()
       yarn install --prod
       cd -
     done
-    echo 'Building SAM package and uploading cloudformation'
-    sam package --template-file template.yaml     --output-template-file "packaged$UUID.yaml"     --s3-bucket $BUCKET
+  """
+  sh "echo 'Building SAM package and uploading cloudformation'"
+  sh """
+    sam package --template-file template.yaml     --output-template-file "packaged$UUID.yaml" --s3-bucket $BUCKET
+  """
+  sh """
     sam deploy --template-file "$SOURCE/packaged$UUID.yaml" --stack-name $STACK --tags Project=$PROJECT --capabilities CAPABILITY_NAMED_IAM --parameter-overrides Environment=$ENV DeployBucket=$BUCKET StackName=$STACK
   """
 }
