@@ -22,6 +22,10 @@ def setenv(def cuenta="null")
       env.STACK_NAME='CmfComerciosPortal'
       env.DOMAIN='comafidigital.com'
       env.CERT_ARN='arn:aws:acm:us-east-1:367760667466:certificate/3490adf8-e2f8-4c80-8083-9c6f2f123006'
+      devops.credentials_to_variable("URL_CISAT_PROD","URL_CISAT_PROD")
+      devops.credentials_to_variable("SUBNET1_COMAFI_PROD","SUBNET1_COMAFI_PROD")
+      devops.credentials_to_variable("SUBNET2_COMAFI_PROD","SUBNET1_COMAFI_PROD")
+      devops.credentials_to_variable("SECURITY_GROUP_COMAFI_PROD","SECURITY_GROUP_COMAFI_PROD")
       return true
     }
     else if ( cuenta == "AWS_Alternative" ) 
@@ -32,6 +36,10 @@ def setenv(def cuenta="null")
       env.DOMAIN='comafidigital.com'
       env.CERT_ARN='arn:aws:acm:us-east-1:367760667466:certificate/3490adf8-e2f8-4c80-8083-9c6f2f123006'
       env.STACK_NAME='CMF-DIGITAL-PORTAL'
+devops.credentials_to_variable("URL_CISAT_PROD","URL_CISAT_PROD")
+      devops.credentials_to_variable("SUBNET1_COMAFI_PROD","SUBNET1_COMAFI_PROD")
+      devops.credentials_to_variable("SUBNET2_COMAFI_PROD","SUBNET1_COMAFI_PROD")
+      devops.credentials_to_variable("SECURITY_GROUP_COMAFI_PROD","SECURITY_GROUP_COMAFI_PROD")
       return true
     }
     else
@@ -51,6 +59,10 @@ def setenv(def cuenta="null")
       env.STACK_NAME='CmfComerciosPortal'
       env.DOMAIN='desa-comafidigital.com'
       env.CERT_ARN='arn:aws:acm:us-east-1:780666439417:certificate/6c9bb0c4-55d1-4026-afb2-3a3e72b9632c'
+      devops.credentials_to_variable("URL_CISAT_QA","URL_CISAT_QA")
+      devops.credentials_to_variable("SUBNET1_COMAFI_QA1","SUBNET1_COMAFI_QA1")
+      devops.credentials_to_variable("SUBNET1_COMAFI_QA2","SUBNET1_COMAFI_QA2")
+      devops.credentials_to_variable("SECURITY_GROUP_COMAFI_QA","SECURITY_GROUP_COMAFI_QA")
       return true
     }
     else if ( cuenta == "AWS_DESA" )
@@ -60,6 +72,10 @@ def setenv(def cuenta="null")
       env.STACK_NAME='COMERCIOS-PORTAL'
       env.DOMAIN='comercios.co'
       env.CERT_ARN='arn:aws:acm:us-east-1:104455529394:certificate/a35d91f8-2b7f-4833-8af6-e2f5f5e54c23'
+      devops.credentials_to_variable("URL_CISAT_QA","URL_CISAT_QA")
+      devops.credentials_to_variable("SUBNET1_COMAFI_QA1","SUBNET1_COMAFI_QA1")
+      devops.credentials_to_variable("SUBNET1_COMAFI_QA2","SUBNET1_COMAFI_QA2")
+      devops.credentials_to_variable("SECURITY_GROUP_COMAFI_QA","SECURITY_GROUP_COMAFI_QA")
       return true
     }
     else
@@ -78,6 +94,10 @@ def setenv(def cuenta="null")
       env.STACK_NAME='CmfComerciosPortal'
       env.DOMAIN='desa-comafidigital.com'
       env.CERT_ARN='arn:aws:acm:us-east-1:780666439417:certificate/6c9bb0c4-55d1-4026-afb2-3a3e72b9632c'
+      devops.credentials_to_variable("URL_CISAT_DEV","URL_CISAT_DEV")
+      devops.credentials_to_variable("SUBNET1_COMAFI_DEV1","SUBNET1_COMAFI_DEV1")
+      devops.credentials_to_variable("SUBNET1_COMAFI_DEV2","SUBNET1_COMAFI_DEV2")
+      devops.credentials_to_variable("SECURITY_GROUP_COMAFI_DEV","SECURITY_GROUP_COMAFI_DEV")
       return true
     }
     else if ( cuenta == "AWS_DESA" )
@@ -87,6 +107,10 @@ def setenv(def cuenta="null")
       env.STACK_NAME='COMERCIOS-PORTAL'
       env.DOMAIN='comercios.co'
       env.CERT_ARN='arn:aws:acm:us-east-1:104455529394:certificate/a35d91f8-2b7f-4833-8af6-e2f5f5e54c23'
+      devops.credentials_to_variable("URL_CISAT_DEV","URL_CISAT_DEV")
+      devops.credentials_to_variable("SUBNET1_COMAFI_DEV1","SUBNET1_COMAFI_DEV1")
+      devops.credentials_to_variable("SUBNET1_COMAFI_DEV2","SUBNET1_COMAFI_DEV2")
+      devops.credentials_to_variable("SECURITY_GROUP_COMAFI_DEV","SECURITY_GROUP_COMAFI_DEV")
       return true
     }
     else
