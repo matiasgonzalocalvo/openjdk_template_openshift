@@ -522,10 +522,10 @@ def new_process_sam()
   '''
   sh "echo 'Building SAM package and uploading cloudformation'"
   sh """
-    sam package --template-file template.yaml     --output-template-file "packaged$UUID.yaml" --s3-bucket $BUCKET
+    sam package --template-file template.yaml --output-template-file "packaged${random}.yaml" --s3-bucket ${BUCKET}
   """
   sh """
-    sam deploy --template-file "$SOURCE/packaged$UUID.yaml" --stack-name $STACK --tags Project=$PROJECT --capabilities CAPABILITY_NAMED_IAM --parameter-overrides Environment=$ENV DeployBucket=$BUCKET StackName=$STACK
+    sam deploy --template-file "packaged${random}.yaml" --stack-name ${STACK} --tags Project=${PROJECT} --capabilities CAPABILITY_NAMED_IAM --parameter-overrides Environment=${ENV} DeployBucket=${BUCKET} StackName=${STACK}
   """
 }
 return this
