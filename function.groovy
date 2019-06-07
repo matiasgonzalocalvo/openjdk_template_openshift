@@ -482,20 +482,11 @@ def new_process_sam()
 {
   sh "echo 'Uploading circuits-engine lib to S3'"
   sh "aws s3 cp libs/circuits-engine.zip s3://$FILES_BUCKET/circuits-engine.zip"
-  /*def  dirsl = [] 
-  new File("functions").eachDir()
-  {
-    dirs -> println dirs.getName() 
-    if (!dirs.getName().startsWith('.'))
-    {
-      dirsl.add(dirs.getName())
-    }
-  }
-  dirsl*/
-  //def subfolders = sh(returnStdout: true, script: 'ls -d functions/*').trim().split(System.getProperty("line.separator"))
-  //echo "${subfolders}"
+  sh "echo antes"
+  sh "subfolders=`ls -d functions/*`"
+  sh "echo despues"
   sh """
-    subfolders=`ls -d functions/*`
+    subfolders="`ls -d functions/*`"
     for functions in ${subfolders} ; do
       echo "Building ${functions}"
       cd ${functions}
