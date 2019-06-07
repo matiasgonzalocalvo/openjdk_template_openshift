@@ -483,8 +483,7 @@ def new_process_sam()
   sh "echo 'Uploading circuits-engine lib to S3'"
   sh "aws s3 cp libs/circuits-engine.zip s3://$FILES_BUCKET/circuits-engine.zip"
   sh """
-    for functions in functions/*
-    do
+    for functions in $(ls functions/) ; do
       echo 'Building ' $functions
       cd $functions     
       rm -Rf node_modules
