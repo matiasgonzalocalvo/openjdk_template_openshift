@@ -482,7 +482,17 @@ def new_process_sam()
 {
   sh "echo 'Uploading circuits-engine lib to S3'"
   sh "aws s3 cp libs/circuits-engine.zip s3://$FILES_BUCKET/circuits-engine.zip"
-  sh """
+  def  dirsl = [] 
+  new File("functions").eachDir()
+  {
+    dirs -> println dirs.getName() 
+    if (!dirs.getName().startsWith('.'))
+    {
+      dirsl.add(dirs.getName())
+    }
+  }
+  dirsl
+  /*sh """
     for functions in ´ls functions/´ ; do
       echo 'Building ' $functions
       cd $functions     
@@ -490,7 +500,7 @@ def new_process_sam()
       yarn install --prod
       cd -
     done
-  """
+  """*/
   sh "echo 'Building SAM package and uploading cloudformation'"
   sh """
     sam package --template-file template.yaml     --output-template-file "packaged$UUID.yaml" --s3-bucket $BUCKET
