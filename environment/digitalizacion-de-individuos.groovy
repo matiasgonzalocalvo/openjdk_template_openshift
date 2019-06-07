@@ -50,7 +50,9 @@ def setenv(def cuenta="null")
     sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
     env.ENV='predev'
     devops.aws_config("AWS_DESA")
-    env.random=Math.random() * 100
+    //env.random=Math.random() * 100
+    def verCode = UUID.randomUUID().toString()
+    env.random="${verCode}"
     env.BUCKET="comafi-base-deploy"
     env.FILES_BUCKET="dtkpredev-comercios-files-dtkpredev"
     env.STACK="${ENV}-INFRA-DIGITALIZACION-ELECTRONICA-INDIVIDUOS"
