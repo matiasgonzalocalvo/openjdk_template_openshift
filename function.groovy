@@ -486,10 +486,7 @@ def new_process_sam()
   sh "subfolders=`ls -d functions/*`"
   sh "echo despues"
   sh """
-    export 
-    subfolders="`ls -d functions/*`"
-    echo "muestro subfolders == ${subfolders}"
-    for functions in ${subfolders} ; do
+      for functions in "functions/consumerTaskThuban" "functions/thubanGet" "functions/thubanSave" "functions/thubanSendSqs" ; do
       echo "Building ${functions}"
       cd ${functions}
       rm -Rf node_modules
