@@ -7,7 +7,7 @@ def set_env_global()
   env.sonar_exclusions=""
   env.sonar_javascript_lcov_reportPaths=""
   env.AWS_DEFAULT_REGION='us-east-1'
-  env.AWS_PROFILE="default"
+  //env.AWS_PROFILE="default"
 }
 def setenv(def cuenta="null")
 {
