@@ -483,17 +483,47 @@ def new_process_sam()
   sh "echo 'Uploading circuits-engine lib to S3'"
   sh "aws s3 cp libs/circuits-engine.zip s3://$FILES_BUCKET/circuits-engine.zip"
   sh "echo antes"
-  sh "subfolders=`ls -d functions/*`"
+  sh "subfolders=`ls -d functions/*`; echo subfolders==$subfolders"
   sh "echo despues"
-  sh """
-      for functions in "functions/consumerTaskThuban" "functions/thubanGet" "functions/thubanSave" "functions/thubanSendSqs" ; do
-      echo "Building ${functions}"
-      cd ${functions}
-      rm -Rf node_modules
+  sh '''
+      echo "Building functions/consumerTaskThuban"
+      cd functions/consumerTaskThuban
+      if [ -e "node_modules" ] ; then
+        rm -Rf node_modules
+      fi
       yarn install --prod
       cd -
+
+
+      echo "Building functions/thubanGet"
+      cd functions/thubanGet
+      if [ -e "node_modules" ] ; then
+        rm -Rf node_modules
+      fi
+      yarn install --prod
+      cd -
+
+
+      echo "Building functions/thubanSave"
+      cd functions/thubanSave
+      if [ -e "node_modules" ] ; then
+        rm -Rf node_modules
+      fi
+      yarn install --prod
+      cd -
+
+
+      echo "Building functions/thubanSendSqs"
+      cd functions/thubanSendSqs
+      if [ -e "node_modules" ] ; then
+        rm -Rf node_modules
+      fi
+      yarn install --prod
+      cd -
+
+
     done
-  """
+  '''
   sh "echo 'Building SAM package and uploading cloudformation'"
   sh """
     sam package --template-file template.yaml     --output-template-file "packaged$UUID.yaml" --s3-bucket $BUCKET
