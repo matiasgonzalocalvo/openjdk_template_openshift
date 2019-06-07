@@ -17,7 +17,8 @@ def setenv(def cuenta="null")
     devops.aws_config("AWS_Alternative")
     env.ENV='prod'
     devops.aws_config("AWS_DESA")
-    env.random=Math.random() * 100
+    def verCode = UUID.randomUUID().toString()
+    env.random="${verCode}"
     env.BUCKET="comafi-base-deploy"
     env.FILES_BUCKET="dtkpredev-comercios-files-dtkpredev"
     env.STACK="${ENV}-INFRA-DIGITALIZACION-ELECTRONICA-INDIVIDUOS"
@@ -28,7 +29,8 @@ def setenv(def cuenta="null")
     sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
     env.ENV='qa'
     devops.aws_config("AWS_DESA")
-    env.random=Math.random() * 100
+    def verCode = UUID.randomUUID().toString()
+    env.random="${verCode}"
     env.BUCKET="comafi-base-deploy"
     env.FILES_BUCKET="dtkpredev-comercios-files-dtkpredev"
     env.STACK="${ENV}-INFRA-DIGITALIZACION-ELECTRONICA-INDIVIDUOS"
@@ -39,7 +41,8 @@ def setenv(def cuenta="null")
     sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
     env.ENV='dev'
     devops.aws_config("AWS_DESA")
-    env.random=Math.random() * 100
+    def verCode = UUID.randomUUID().toString()
+    env.random="${verCode}"
     env.BUCKET="comafi-base-deploy"
     env.FILES_BUCKET="dtkpredev-comercios-files-dtkpredev"
     env.STACK="${ENV}-INFRA-DIGITALIZACION-ELECTRONICA-INDIVIDUOS"
