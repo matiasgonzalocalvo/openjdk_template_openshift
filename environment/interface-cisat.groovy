@@ -10,8 +10,6 @@ def set_env_global()
   /*env.URL_CISAT='http://localhost:5002'
   env.CANAL='AC'
   env.PERFIL='AC1'*/
-  env.REDIS_URL='clusterusersessiontokens.zlslo8.ng.0001.use2.cache.amazonaws.com'
-  env.REDIS_PORT=6379
 }
 def setenv(def cuenta="null")
 {
