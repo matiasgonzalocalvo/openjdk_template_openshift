@@ -31,7 +31,7 @@ def setenv(def cuenta="null")
       devops.credentials_to_variable("SECURITY_GROUP","SECURITY_GROUP_COMAFI_PROD")
       devops.credentials_to_variable("SUBNET1","SUBNET1_COMAFI_PROD")
       devops.credentials_to_variable("SUBNET2","SUBNET2_COMAFI_PROD")*/
-      return true
+      return false
     }
     else if ( cuenta == "AWS_Alternative" ) 
     {
@@ -68,7 +68,7 @@ def setenv(def cuenta="null")
       devops.credentials_to_variable("SECURITY_GROUP","SECURITY_GROUP_COMAFI_QA")
       devops.credentials_to_variable("SUBNET1","SUBNET_COMAFI_QA1")
       devops.credentials_to_variable("SUBNET2","SUBNET_COMAFI_QA2")*/
-      return true
+      return false
     }
     else if ( cuenta == "AWS_DESA" )
     {
@@ -105,7 +105,7 @@ def setenv(def cuenta="null")
       devops.credentials_to_variable("SECURITY_GROUP","SECURITY_GROUP_COMAFI_DEV")
       devops.credentials_to_variable("SUBNET1","SUBNET_COMAFI_DEV1")
       devops.credentials_to_variable("SUBNET2","SUBNET_COMAFI_DEV2")*/
-      return true
+      return false
     }
     else if ( cuenta == "AWS_DESA" )
     {
@@ -142,7 +142,7 @@ def setenv(def cuenta="null")
       devops.credentials_to_variable("SECURITY_GROUP","SECURITY_GROUP_COMAFI_DEV")
       devops.credentials_to_variable("SUBNET1","SUBNET_COMAFI_DEV1")
       devops.credentials_to_variable("SUBNET2","SUBNETD_COMAFI_DEV2")*/
-      return true
+      return false
     }
     else if ( cuenta == "AWS_DESA" )
     {
