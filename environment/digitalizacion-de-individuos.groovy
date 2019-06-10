@@ -18,8 +18,8 @@ def setenv(def cuenta="null")
     env.ENV='prod'
     def verCode = UUID.randomUUID().toString()
     env.random="${verCode}"
-    env.BUCKET="comafi-base-deploy"
-    env.FILES_BUCKET="dtkpredev-comercios-files-dtkpredev"
+    env.BUCKET="${ENV}-comafi-base-deploy"
+    env.FILES_BUCKET="${ENV}-lib-circuit-engine"
     env.STACK="${ENV}-INFRA-DIGITALIZACION-ELECTRONICA-INDIVIDUOS"
     env.PROJECT="DIGITALIZACION-ELECTRONICA-INDIVIDUOS"
   }
@@ -30,8 +30,8 @@ def setenv(def cuenta="null")
     devops.aws_config("AWS_DESA")
     def verCode = UUID.randomUUID().toString()
     env.random="${verCode}"
-    env.BUCKET="comafi-base-deploy"
-    env.FILES_BUCKET="dtkpredev-comercios-files-dtkpredev"
+    env.BUCKET="${ENV}-comafi-base-deploy"
+    env.FILES_BUCKET="${ENV}-lib-circuit-engine"
     env.STACK="${ENV}-INFRA-DIGITALIZACION-ELECTRONICA-INDIVIDUOS"
     env.PROJECT="DIGITALIZACION-ELECTRONICA-INDIVIDUOS"
   }
@@ -42,8 +42,8 @@ def setenv(def cuenta="null")
     devops.aws_config("AWS_DESA")
     def verCode = UUID.randomUUID().toString()
     env.random="${verCode}"
-    env.BUCKET="comafi-base-deploy"
-    env.FILES_BUCKET="dtkpredev-comercios-files-dtkpredev"
+    env.BUCKET="${ENV}-comafi-base-deploy"
+    env.FILES_BUCKET="${ENV}-lib-circuit-engine"
     env.STACK="${ENV}-INFRA-DIGITALIZACION-ELECTRONICA-INDIVIDUOS"
     env.PROJECT="DIGITALIZACION-ELECTRONICA-INDIVIDUOS"
   }
@@ -55,8 +55,8 @@ def setenv(def cuenta="null")
     //env.random=Math.random() * 100
     def verCode = UUID.randomUUID().toString()
     env.random="${verCode}"
-    env.BUCKET="comafi-base-deploy"
-    env.FILES_BUCKET="dtkpredev-comercios-files-dtkpredev"
+    env.BUCKET="${ENV}-comafi-base-deploy"
+    env.FILES_BUCKET="${ENV}-lib-circuit-engine"
     env.STACK="${ENV}-INFRA-DIGITALIZACION-ELECTRONICA-INDIVIDUOS"
     env.PROJECT="DIGITALIZACION-ELECTRONICA-INDIVIDUOS"
   }
