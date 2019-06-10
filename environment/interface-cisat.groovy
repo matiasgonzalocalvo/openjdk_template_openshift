@@ -25,12 +25,12 @@ def setenv(def cuenta="null")
       env.ENV='prod'
       env.COST_CENTER='ComafiDigital'
       env.STACK_NAME='CmfDigitalInterfaceCisat'
-      devops.credentials_to_variable("URL_CISAT","URL_CISAT_PROD")
+      /*devops.credentials_to_variable("URL_CISAT","URL_CISAT_PROD")
       devops.credentials_to_variable("CANAL","CANAL")
       devops.credentials_to_variable("PERFIL","PERFIL")
       devops.credentials_to_variable("SECURITY_GROUP","SECURITY_GROUP_COMAFI_PROD")
       devops.credentials_to_variable("SUBNET1","SUBNET1_COMAFI_PROD")
-      devops.credentials_to_variable("SUBNET2","SUBNET2_COMAFI_PROD")
+      devops.credentials_to_variable("SUBNET2","SUBNET2_COMAFI_PROD")*/
       return true
     }
     else if ( cuenta == "AWS_Alternative" ) 
@@ -62,12 +62,12 @@ def setenv(def cuenta="null")
       env.ENV='qa'
       env.COST_CENTER='ComafiDigital'
       env.STACK_NAME='CmfDigitalInterfaceCisat'
-      devops.credentials_to_variable("URL_CISAT","URL_CISAT_QA")
+      /*devops.credentials_to_variable("URL_CISAT","URL_CISAT_QA")
       devops.credentials_to_variable("CANAL","CANAL")
       devops.credentials_to_variable("PERFIL","PERFIL")
       devops.credentials_to_variable("SECURITY_GROUP","SECURITY_GROUP_COMAFI_QA")
       devops.credentials_to_variable("SUBNET1","SUBNET_COMAFI_QA1")
-      devops.credentials_to_variable("SUBNET2","SUBNET_COMAFI_QA2")
+      devops.credentials_to_variable("SUBNET2","SUBNET_COMAFI_QA2")*/
       return true
     }
     else if ( cuenta == "AWS_DESA" )
@@ -99,12 +99,12 @@ def setenv(def cuenta="null")
       env.ENV='dev'
       env.COST_CENTER='ComafiDigital'
       env.STACK_NAME='CmfDigitalInterfaceCisat'
-      devops.credentials_to_variable("URL_CISAT","URL_CISAT_DEV")
+      /*devops.credentials_to_variable("URL_CISAT","URL_CISAT_DEV")
       devops.credentials_to_variable("CANAL","CANAL")
       devops.credentials_to_variable("PERFIL","PERFIL")
       devops.credentials_to_variable("SECURITY_GROUP","SECURITY_GROUP_COMAFI_DEV")
       devops.credentials_to_variable("SUBNET1","SUBNET_COMAFI_DEV1")
-      devops.credentials_to_variable("SUBNET2","SUBNET_COMAFI_DEV2")
+      devops.credentials_to_variable("SUBNET2","SUBNET_COMAFI_DEV2")*/
       return true
     }
     else if ( cuenta == "AWS_DESA" )
@@ -136,12 +136,12 @@ def setenv(def cuenta="null")
       devops.aws_config("AWS_DESA_CMF")
       env.ENV='predev'
       env.STACK_NAME='CmfDigitalInterfaceCisat'
-      devops.credentials_to_variable("URL_CISAT","URL_CISAT_DEV")
+      /*devops.credentials_to_variable("URL_CISAT","URL_CISAT_DEV")
       devops.credentials_to_variable("CANAL","CANAL")
       devops.credentials_to_variable("PERFIL","PERFIL")
       devops.credentials_to_variable("SECURITY_GROUP","SECURITY_GROUP_COMAFI_DEV")
       devops.credentials_to_variable("SUBNET1","SUBNET_COMAFI_DEV1")
-      devops.credentials_to_variable("SUBNET2","SUBNETD_COMAFI_DEV2")
+      devops.credentials_to_variable("SUBNET2","SUBNETD_COMAFI_DEV2")*/
       return true
     }
     else if ( cuenta == "AWS_DESA" )
