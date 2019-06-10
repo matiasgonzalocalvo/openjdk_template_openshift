@@ -483,42 +483,14 @@ def new_process_sam()
   sh "echo 'Uploading circuits-engine lib to S3'"
   sh "aws s3 cp libs/circuits-engine.zip s3://$FILES_BUCKET/circuits-engine.zip"
   sh '''
-      echo "Building functions/consumerTaskThuban"
-      cd functions/consumerTaskThuban
-      if [ -e "node_modules" ] ; then
-        rm -Rf node_modules
-      fi
+    #!/bin/bash
+    for functions in functions/* ; do
+      echo 'Building ' $functions
+      cd $functions
+      rm -Rf node_modules 
       yarn install --prod
       cd -
-
-
-      echo "Building functions/thubanGet"
-      cd functions/thubanGet
-      if [ -e "node_modules" ] ; then
-        rm -Rf node_modules
-      fi
-      yarn install --prod
-      cd -
-
-
-      echo "Building functions/thubanSave"
-      cd functions/thubanSave
-      if [ -e "node_modules" ] ; then
-        rm -Rf node_modules
-      fi
-      yarn install --prod
-      cd -
-
-
-      echo "Building functions/thubanSendSqs"
-      cd functions/thubanSendSqs
-      if [ -e "node_modules" ] ; then
-        rm -Rf node_modules
-      fi
-      yarn install --prod
-      cd -
-
-
+    done
   '''
   sh "echo 'Building SAM package and uploading cloudformation'"
   sh """
