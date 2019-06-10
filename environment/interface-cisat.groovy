@@ -7,25 +7,30 @@ def set_env_global()
   env.sonar_exclusions=""
   env.sonar_javascript_lcov_reportPaths=""
   env.AWS_DEFAULT_REGION='us-east-1'
+  env.URL_CISAT='http://localhost:5002'
+  env.CANAL='AC'
+  env.PERFIL='AC1'
+  env.REDIS_URL='clusterusersessiontokens.zlslo8.ng.0001.use2.cache.amazonaws.com'
+  env.REDIS_PORT=6379
 }
 def setenv(def cuenta="null")
 {
   if (env.BRANCH_NAME == "master" || env.BRANCH_NAME == "prod")
   {
     sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
-    env.COST_CENTER='comafi_digital_prod'
     //env.tag="true"
     if ( cuenta == "_srv_jenkins_pec" )
     {
       devops.aws_config("_srv_jenkins_pec")
       env.ENV='prod'
-      env.STACK_NAME='CmfComerciosPortal'
-      env.DOMAIN='comafidigital.com'
-      env.CERT_ARN='arn:aws:acm:us-east-1:367760667466:certificate/3490adf8-e2f8-4c80-8083-9c6f2f123006'
-      devops.credentials_to_variable("URL_CISAT_PROD","URL_CISAT_PROD")
-      devops.credentials_to_variable("SUBNET1_COMAFI_PROD","SUBNET1_COMAFI_PROD")
-      devops.credentials_to_variable("SUBNET2_COMAFI_PROD","SUBNET1_COMAFI_PROD")
-      devops.credentials_to_variable("SECURITY_GROUP_COMAFI_PROD","SECURITY_GROUP_COMAFI_PROD")
+      env.COST_CENTER='ComafiDigital'
+      env.STACK_NAME='CmfDigitalInterfaceCisat'
+      env.URL_CISAT=credentials('URL_CISAT')
+      env.CANAL=credentials('CANAL')
+      env.PERFIL=credentials('PERFIL')
+      env.SECURITY_GROUP=credentials('SECURITY_GROUP')
+      env.SUBNET1=credentials('SUBNET1')
+      env.SUBNET2=credentials('SUBNET2')  
       return true
     }
     else if ( cuenta == "AWS_Alternative" ) 
@@ -33,13 +38,13 @@ def setenv(def cuenta="null")
       devops.aws_config("AWS_Alternative")
       env.ENV='prod'
       env.COST_CENTER='comafi_digital_prod'
-      env.DOMAIN='comafidigital.com'
-      env.CERT_ARN='arn:aws:acm:us-east-1:367760667466:certificate/3490adf8-e2f8-4c80-8083-9c6f2f123006'
-      env.STACK_NAME='CMF-DIGITAL-PORTAL'
-devops.credentials_to_variable("URL_CISAT_PROD","URL_CISAT_PROD")
-      devops.credentials_to_variable("SUBNET1_COMAFI_PROD","SUBNET1_COMAFI_PROD")
-      devops.credentials_to_variable("SUBNET2_COMAFI_PROD","SUBNET1_COMAFI_PROD")
-      devops.credentials_to_variable("SECURITY_GROUP_COMAFI_PROD","SECURITY_GROUP_COMAFI_PROD")
+      env.STACK_NAME='CMF-DIGITAL-INTERFACE-CISAT'
+      env.URL_CISAT=credentials('URL_CISAT')
+      env.CANAL=credentials('CANAL')
+      env.PERFIL=credentials('PERFIL')
+      env.SECURITY_GROUP=credentials('SECURITY_GROUP')
+      env.SUBNET1=credentials('SUBNET1')
+      env.SUBNET2=credentials('SUBNET2')
       return true
     }
     else
@@ -47,35 +52,74 @@ devops.credentials_to_variable("URL_CISAT_PROD","URL_CISAT_PROD")
       return false
     }
   }
-  else if (env.BRANCH_NAME == "impleqa" || env.BRANCH_NAME == "qa" || env.BRANCH_NAME =~ "release/*" )
+  else if ( env.BRANCH_NAME == "qa" || env.BRANCH_NAME =~ "release/*" )
   {
     sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
-    env.COST_CENTER='comercios_dev'
     env.tag="true"
     if ( cuenta == "null" || cuenta == "AWS_QA_CMF" )
     {
       devops.aws_config("AWS_QA_CMF")
       env.ENV='qa'
-      env.STACK_NAME='CmfComerciosPortal'
-      env.DOMAIN='desa-comafidigital.com'
-      env.CERT_ARN='arn:aws:acm:us-east-1:780666439417:certificate/6c9bb0c4-55d1-4026-afb2-3a3e72b9632c'
-      devops.credentials_to_variable("URL_CISAT_QA","URL_CISAT_QA")
-      devops.credentials_to_variable("SUBNET1_COMAFI_QA1","SUBNET1_COMAFI_QA1")
-      devops.credentials_to_variable("SUBNET1_COMAFI_QA2","SUBNET1_COMAFI_QA2")
-      devops.credentials_to_variable("SECURITY_GROUP_COMAFI_QA","SECURITY_GROUP_COMAFI_QA")
+      env.COST_CENTER='ComafiDigital'
+      env.STACK_NAME='CmfDigitalInterfaceCisat'
+      env.URL_CISAT=credentials('URL_CISAT')
+      env.CANAL=credentials('CANAL')
+      env.PERFIL=credentials('PERFIL')
+      env.SECURITY_GROUP=credentials('SECURITY_GROUP')
+      env.SUBNET1=credentials('SUBNET1')
+      env.SUBNET2=credentials('SUBNET2')
       return true
     }
     else if ( cuenta == "AWS_DESA" )
     {
       devops.aws_config("AWS_DESA")
       env.ENV='dtkqa'
-      env.STACK_NAME='COMERCIOS-PORTAL'
-      env.DOMAIN='comercios.co'
-      env.CERT_ARN='arn:aws:acm:us-east-1:104455529394:certificate/a35d91f8-2b7f-4833-8af6-e2f5f5e54c23'
-      devops.credentials_to_variable("URL_CISAT_QA","URL_CISAT_QA")
-      devops.credentials_to_variable("SUBNET1_COMAFI_QA1","SUBNET1_COMAFI_QA1")
-      devops.credentials_to_variable("SUBNET1_COMAFI_QA2","SUBNET1_COMAFI_QA2")
-      devops.credentials_to_variable("SECURITY_GROUP_COMAFI_QA","SECURITY_GROUP_COMAFI_QA")
+      env.STACK_NAME='INTERFACE-CISAT'
+      env.AWS_DEFAULT_REGION='us-east-1'
+      env.URL_CISAT=credentials('URL_CISAT')
+      env.CANAL=credentials('CANAL')
+      env.PERFIL=credentials('PERFIL')
+      env.SECURITY_GROUP=credentials('SECURITY_GROUP')
+      env.SUBNET1=credentials('SUBNET1')
+      env.SUBNET2=credentials('SUBNET2')
+      return true
+    }
+    else
+    {
+      return false
+    }    
+  }
+  else if (env.BRANCH_NAME == "impleqa" )
+  {
+    sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
+    env.tag="true"
+    if ( cuenta == "null" || cuenta == "AWS_QA_CMF" )
+    {
+      devops.aws_config("AWS_QA_CMF")
+      env.ENV='qa'
+      env.COST_CENTER='ComafiDigital'
+      env.STACK_NAME='CmfDigitalInterfaceCisat'
+      env.URL_CISAT=credentials('URL_CISAT')
+      env.CANAL=credentials('CANAL')
+      env.PERFIL=credentials('PERFIL')
+      env.SECURITY_GROUP=credentials('SECURITY_GROUP')
+      env.SUBNET1=credentials('SUBNET1')
+      env.SUBNET2=credentials('SUBNET2')
+      return true
+    }
+    else if ( cuenta == "AWS_DESA" )
+    {
+      devops.aws_config("AWS_DESA")
+      env.ENV='qa'
+      env.COST_CENTER='comafi_digital_qa'
+      env.STACK_NAME='PD-INTERFACE-CISAT'
+      env.AWS_DEFAULT_REGION='us-east-1'
+      env.URL_CISAT=credentials('URL_CISAT')
+      env.CANAL=credentials('CANAL')
+      env.PERFIL=credentials('PERFIL')
+      env.SECURITY_GROUP=credentials('SECURITY_GROUP')
+      env.SUBNET1=credentials('SUBNET1')
+      env.SUBNET2=credentials('SUBNET2')
       return true
     }
     else
@@ -90,27 +134,32 @@ devops.credentials_to_variable("URL_CISAT_PROD","URL_CISAT_PROD")
     if ( cuenta == "null" || cuenta == "AWS_DESA_CMF" )
     {
       devops.aws_config("AWS_DESA_CMF")
-      env.ENV="dev"
-      env.STACK_NAME='CmfComerciosPortal'
-      env.DOMAIN='desa-comafidigital.com'
-      env.CERT_ARN='arn:aws:acm:us-east-1:780666439417:certificate/6c9bb0c4-55d1-4026-afb2-3a3e72b9632c'
-      devops.credentials_to_variable("URL_CISAT_DEV","URL_CISAT_DEV")
-      devops.credentials_to_variable("SUBNET1_COMAFI_DEV1","SUBNET1_COMAFI_DEV1")
-      devops.credentials_to_variable("SUBNET1_COMAFI_DEV2","SUBNET1_COMAFI_DEV2")
-      devops.credentials_to_variable("SECURITY_GROUP_COMAFI_DEV","SECURITY_GROUP_COMAFI_DEV")
+      //devops.credentials_to_variable("URL_CISAT_DEV","URL_CISAT_DEV")
+      env.ENV='dev'
+      env.COST_CENTER='ComafiDigital'
+      env.STACK_NAME='CmfDigitalInterfaceCisat'
+      env.URL_CISAT=credentials('URL_CISAT')
+      env.CANAL=credentials('CANAL')
+      env.PERFIL=credentials('PERFIL')
+      env.SECURITY_GROUP=credentials('SECURITY_GROUP')
+      env.SUBNET1=credentials('SUBNET1')
+      env.SUBNET2=credentials('SUBNET2')
       return true
     }
     else if ( cuenta == "AWS_DESA" )
     {
-      env.ENV='dtkdev'
       devops.aws_config("AWS_DESA")
-      env.STACK_NAME='COMERCIOS-PORTAL'
-      env.DOMAIN='comercios.co'
-      env.CERT_ARN='arn:aws:acm:us-east-1:104455529394:certificate/a35d91f8-2b7f-4833-8af6-e2f5f5e54c23'
-      devops.credentials_to_variable("URL_CISAT_DEV","URL_CISAT_DEV")
-      devops.credentials_to_variable("SUBNET1_COMAFI_DEV1","SUBNET1_COMAFI_DEV1")
-      devops.credentials_to_variable("SUBNET1_COMAFI_DEV2","SUBNET1_COMAFI_DEV2")
-      devops.credentials_to_variable("SECURITY_GROUP_COMAFI_DEV","SECURITY_GROUP_COMAFI_DEV")
+      //devops.credentials_to_variable("SECURITY_GROUP_COMAFI_DEV","SECURITY_GROUP_COMAFI_DEV")
+      env.ENV='dtkdev'
+      env.COST_CENTER='comercios_dev'
+      env.STACK_NAME='INTERFACE-CISAT'
+      env.AWS_DEFAULT_REGION='us-east-1'
+      env.URL_CISAT=credentials('URL_CISAT')
+      env.CANAL=credentials('CANAL')
+      env.PERFIL=credentials('PERFIL')
+      env.SECURITY_GROUP=credentials('SECURITY_GROUP')
+      env.SUBNET1=credentials('SUBNET1')
+      env.SUBNET2=credentials('SUBNET2')
       return true
     }
     else
@@ -124,20 +173,30 @@ devops.credentials_to_variable("URL_CISAT_PROD","URL_CISAT_PROD")
     env.COST_CENTER='comercios_dev'
     if ( cuenta == "null" || cuenta == "AWS_DESA_CMF" )
     {
-      env.ENV='predev'
       devops.aws_config("AWS_DESA_CMF")
-      env.STACK_NAME='CmfComerciosPortal'
-      env.DOMAIN='desa-comafidigital.com'
-      env.CERT_ARN='arn:aws:acm:us-east-1:780666439417:certificate/6c9bb0c4-55d1-4026-afb2-3a3e72b9632c'
+      env.ENV='predev'
+      env.COST_CENTER='ComafiDigital'
+      env.STACK_NAME='CmfDigitalInterfaceCisat'
+      env.URL_CISAT=credentials('URL_CISAT')
+      env.CANAL=credentials('CANAL')
+      env.PERFIL=credentials('PERFIL')
+      env.SECURITY_GROUP = credentials('SECURITY_GROUP')
+      env.SUBNET1 = credentials('SUBNET1')
+      env.SUBNET2 = credentials('SUBNET2')
       return true
     }
     else if ( cuenta == "AWS_DESA" )
     {
-      env.ENV='dtkpredev'
       devops.aws_config("AWS_DESA")
-      env.STACK_NAME='COMERCIOS-PORTAL'
-      env.DOMAIN='comercios.co'
-      env.CERT_ARN='arn:aws:acm:us-east-1:104455529394:certificate/a35d91f8-2b7f-4833-8af6-e2f5f5e54c23'
+      env.ENV='dtkpredev'
+      env.COST_CENTER='comercios_dev'
+      env.STACK_NAME='INTERFACE-CISAT'
+      env.URL_CISAT=credentials('URL_CISAT')
+      env.CANAL=credentials('CANAL')
+      env.PERFIL=credentials('PERFIL')
+      env.SECURITY_GROUP = credentials('SECURITY_GROUP')
+      env.SUBNET1 = credentials('SUBNET1')
+      env.SUBNET2 = credentials('SUBNET2')
       return true
     }
     else
