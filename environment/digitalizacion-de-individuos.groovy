@@ -16,7 +16,6 @@ def setenv(def cuenta="null")
     sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
     devops.aws_config("AWS_Alternative")
     env.ENV='prod'
-    devops.aws_config("AWS_DESA")
     def verCode = UUID.randomUUID().toString()
     env.random="${verCode}"
     env.BUCKET="comafi-base-deploy"
