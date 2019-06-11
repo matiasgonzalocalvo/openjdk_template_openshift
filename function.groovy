@@ -481,7 +481,7 @@ def ecs_update_service(ecs_update_service_cluster, ecs_update_service_service, e
 def new_process_sam()
 {
   sh "echo 'Uploading circuits-engine lib to S3'"
-  sh "aws s3 cp libs/circuits-engine.zip s3://$FILES_BUCKET/circuits-engine.zip"
+  //sh "aws s3 cp libs/circuits-engine.zip s3://$FILES_BUCKET/circuits-engine.zip"
   sh '''
     #!/bin/bash
     for functions in functions/* ; do
