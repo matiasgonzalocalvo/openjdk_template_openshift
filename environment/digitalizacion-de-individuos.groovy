@@ -26,7 +26,7 @@ def setenv(def cuenta="null")
   else if (env.BRANCH_NAME == "impleqa" || env.BRANCH_NAME == "qa" || env.BRANCH_NAME =~ "release/*" )
   {
     sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
-    env.ENV='qa'
+    env.ENV='dtkqa'
     devops.aws_config("AWS_DESA")
     def verCode = UUID.randomUUID().toString()
     env.random="${verCode}"
@@ -38,7 +38,7 @@ def setenv(def cuenta="null")
   else if (env.BRANCH_NAME == "develop" || env.BRANCH_NAME == "developjenkinsfile" )
   {
     sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
-    env.ENV='dev'
+    env.ENV='dtkdev'
     devops.aws_config("AWS_DESA")
     def verCode = UUID.randomUUID().toString()
     env.random="${verCode}"
@@ -50,7 +50,7 @@ def setenv(def cuenta="null")
   else if (env.BRANCH_NAME =~ "feature/*" || env.BRANCH_NAME =~ "PR*")
   {
     sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
-    env.ENV='predev'
+    env.ENV='dtkpredev'
     devops.aws_config("AWS_DESA")
     //env.random=Math.random() * 100
     def verCode = UUID.randomUUID().toString()
