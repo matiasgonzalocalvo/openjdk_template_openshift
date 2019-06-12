@@ -303,7 +303,7 @@ def git_tag(def credentials="devops-bitbucket")
   //GIT_URL.split(/\/{2}/) 
   withCredentials([usernamePassword(credentialsId: credentials,
     passwordVariable: 'GIT_PASS', usernameVariable: 'GIT_USER')]) {
-    sh """
+    sh '''
       #!/bin/bash
       tag="$(echo ${BRANCH_NAME} | cut -d '/' -f2).$BUILD_NUMBER"
       echo "tag == ${tag}"
@@ -314,7 +314,7 @@ def git_tag(def credentials="devops-bitbucket")
       git push https://devops-comafi:${GIT_PASS}@$(git remote show origin|grep URL|head -n 1|awk -F"//" '{print $2}'|awk -F"@" '{if ($2 == ""){print $1} else {print $2}}') --tags
       echo "test export git_tag"
       export
-    """
+    '''
   }
 }
 def postfinal()
