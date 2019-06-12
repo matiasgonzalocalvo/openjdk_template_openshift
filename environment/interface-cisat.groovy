@@ -21,7 +21,7 @@ def setenv(def cuenta="null")
     {
       devops.aws_config("_srv_jenkins_pec")
       env.ENV='prod'
-      env.COST_CENTER='ComafiDigital'
+      env.COST_CENTER='ArchComafiDigital'
       env.STACK_NAME='CmfDigitalInterfaceCisat'
       /*devops.credentials_to_variable("URL_CISAT","URL_CISAT_PROD")
       devops.credentials_to_variable("CANAL","CANAL")
@@ -35,7 +35,7 @@ def setenv(def cuenta="null")
     {
       devops.aws_config("AWS_Alternative")
       env.ENV="prod"
-      env.COST_CENTER="comafi_digital_prod"
+      env.COST_CENTER="ArchComafiDigital"
       env.STACK_NAME="InterfaceCisatV2"
       devops.credentials_to_variable("URL_CISAT","URL_CISAT_PROD")
       devops.credentials_to_variable("CANAL","CANAL")
@@ -58,7 +58,7 @@ def setenv(def cuenta="null")
     {
       devops.aws_config("AWS_QA_CMF")
       env.ENV='qa'
-      env.COST_CENTER='ComafiDigital'
+      env.COST_CENTER='ArchComafiDigital'
       env.STACK_NAME='CmfDigitalInterfaceCisat'
       /*devops.credentials_to_variable("URL_CISAT","URL_CISAT_QA")
       devops.credentials_to_variable("CANAL","CANAL")
@@ -73,6 +73,7 @@ def setenv(def cuenta="null")
       devops.aws_config("AWS_DESA")
       env.ENV='qa'
       env.STACK_NAME='InterfaceCisatV2'
+      env.COST_CENTER="ArchComafiDigital"
       devops.credentials_to_variable("URL_CISAT","URL_CISAT_QA")
       devops.credentials_to_variable("CANAL","CANAL")
       devops.credentials_to_variable("PERFIL","PERFIL")
@@ -95,7 +96,7 @@ def setenv(def cuenta="null")
       devops.aws_config("AWS_DESA_CMF")
       //devops.credentials_to_variable("URL_CISAT_DEV","URL_CISAT_DEV")
       env.ENV='dev'
-      env.COST_CENTER='ComafiDigital'
+      env.COST_CENTER='ArchComafiDigital'
       env.STACK_NAME='CmfDigitalInterfaceCisat'
       /*devops.credentials_to_variable("URL_CISAT","URL_CISAT_DEV")
       devops.credentials_to_variable("CANAL","CANAL")
@@ -110,7 +111,7 @@ def setenv(def cuenta="null")
       devops.aws_config("AWS_DESA")
       //devops.credentials_to_variable("SECURITY_GROUP_COMAFI_DEV","SECURITY_GROUP_COMAFI_DEV")
       env.ENV='dtkdev'
-      env.COST_CENTER='comercios_dev'
+      env.COST_CENTER='ArchComafiDigital'
       env.STACK_NAME='InterfaceCisatV2'
       devops.credentials_to_variable("URL_CISAT","URL_CISAT_DEV")
       devops.credentials_to_variable("CANAL","CANAL")
