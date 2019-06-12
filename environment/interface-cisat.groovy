@@ -71,7 +71,7 @@ def setenv(def cuenta="null")
     else if ( cuenta == "AWS_DESA" )
     {
       devops.aws_config("AWS_DESA")
-      env.ENV='dtkqa'
+      env.ENV='qa'
       env.STACK_NAME='InterfaceCisatV2'
       devops.credentials_to_variable("URL_CISAT","URL_CISAT_QA")
       devops.credentials_to_variable("CANAL","CANAL")
