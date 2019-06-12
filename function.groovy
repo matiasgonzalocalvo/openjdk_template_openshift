@@ -304,13 +304,14 @@ def git_tag(def credentials="devops-bitbucket")
   withCredentials([usernamePassword(credentialsId: credentials,
     passwordVariable: 'GIT_PASS', usernameVariable: 'GIT_USER')]) {
     sh """
-      tag="`echo $BRANCH_NAME | cut -d '/' -f2`.$BUILD_NUMBER"
+      #!/bin/bash
+      tag="$(echo ${BRANCH_NAME} | cut -d '/' -f2).$BUILD_NUMBER"
       echo "tag == ${tag}"
-      if [ `git tag|grep ${tag}|wc -l` -gt 0 ] ; then
-        tag="${tag}`date +%s`"
+      if [ $(git tag|grep "${tag}"|wc -l) -gt 0 ] ; then
+        tag="${tag}$(date +%s)"
       fi
       git tag ${tag}
-      git push https://devops-comafi:$GIT_PASS@`echo ${GIT_URL} | sed 's"http://""g'|sed 's"https://""g'` --tags
+      git push https://devops-comafi:${GIT_PASS}@$(git remote show origin|grep URL|head -n 1|awk -F"//" '{print $2}'|awk -F"@" '{if ($2 == ""){print $1} else {print $2}}') --tags
       echo "test export git_tag"
       export
     """
