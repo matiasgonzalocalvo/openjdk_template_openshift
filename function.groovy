@@ -310,7 +310,7 @@ def git_tag(def credentials="devops-bitbucket")
       if [ $(git tag|grep "${tag}"|wc -l) -gt 0 ] ; then
         tag="${tag}$(date +%s)"
       fi
-      git_url="$(cat .git/config | awk -F"//" '{print $2}')"
+      git_url="$(cat .git/config |grep "url"| awk -F"//" '{print $2}')"
       echo "git_url == ${git_url}"
       git tag ${tag}
       git push https://devops-comafi:${GIT_PASS}@${git_url} --tags
