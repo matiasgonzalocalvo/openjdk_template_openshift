@@ -43,13 +43,15 @@ def setenv(def cuenta="null")
   {
     sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
     devops.aws_config("705437fe-118c-4fbc-af26-595cbdc1e752")
-    env.ECR_URL="104455529394.dkr.ecr.us-east-1.amazonaws.com"
-    /*env.ECR_ID="commons/account"
-    env.APPNAME="commons-account"*/
-    env.ENVNAME="dev"
-    env.TAG1="${BUILD_NUMBER}"
-    env.TAG2="sandbox"
-    env.CLOUD_AWS_STACK_AUTO=false
+    aws1_key="705437fe-118c-4fbc-af26-595cbdc1e752"
+    aws2_key="ECSUpdateService"
+    ECR_URL="104455529394.dkr.ecr.us-east-1.amazonaws.com"
+    ECR_ID="commons/dashboard"
+    APPNAME="commons-dashboard"
+    ENVNAME="dev"
+    TAG1="${BUILD_NUMBER}"
+    TAG2="sandbox"
+    CLOUD_AWS_STACK_AUTO="false"
   }
   else
   {

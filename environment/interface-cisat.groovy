@@ -152,7 +152,7 @@ def setenv(def cuenta="null")
       devops.credentials_to_variable("PERFIL","PERFIL")
       devops.credentials_to_variable("SECURITY_GROUP","SECURITY_GROUP_COMAFI_DEV")
       devops.credentials_to_variable("SUBNET1","SUBNET_COMAFI_DEV1")
-      devops.credentials_to_variable("SUBNET2","SUBNETD_COMAFI_DEV2")
+      devops.credentials_to_variable("SUBNET2","SUBNET_COMAFI_DEV2")
       return true
     }
     else

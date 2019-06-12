@@ -3,7 +3,7 @@ def set_env_global()
   /*
     Variables Globales a todos los ambientes
   */
-  env.sonar_projectKey="comercios-frontend-boilerplate"
+  env.sonar_projectKey="hbi-auth-build"
   env.sonar_exclusions=""
   env.sonar_javascript_lcov_reportPaths=""
   env.AWS_DEFAULT_REGION='us-east-1'
@@ -84,29 +84,16 @@ def setenv(def cuenta="null")
   else if (env.BRANCH_NAME =~ "feature/*" || env.BRANCH_NAME =~ "PR*")
   {
     sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
-    env.COST_CENTER='comercios_dev'
-    if ( cuenta == "null" || cuenta == "AWS_DESA_CMF" )
-    {
-      env.ENV='predev'
-      devops.aws_config("AWS_DESA_CMF")
-      env.STACK_NAME='CmfComerciosPortal'
-      env.DOMAIN='desa-comafidigital.com'
-      env.CERT_ARN='arn:aws:acm:us-east-1:780666439417:certificate/6c9bb0c4-55d1-4026-afb2-3a3e72b9632c'
-      return true
-    }
-    else if ( cuenta == "AWS_DESA" )
-    {
-      env.ENV='dtkpredev'
-      devops.aws_config("AWS_DESA")
-      env.STACK_NAME='COMERCIOS-PORTAL'
-      env.DOMAIN='comercios.co'
-      env.CERT_ARN='arn:aws:acm:us-east-1:104455529394:certificate/a35d91f8-2b7f-4833-8af6-e2f5f5e54c23'
-      return true
-    }
-    else
-    {
-      return false
-    }
+    env.ENVNAME="dev"
+    env.aws_key_1="705437fe-118c-4fbc-af26-595cbdc1e752"
+    env.aws_key_2="ECSUpdateService"
+    env.ECR_URL="104455529394.dkr.ecr.us-east-1.amazonaws.com"
+    env.ECR_ID="auth"
+    env.APPNAME="auth"
+    env.TAG1="$BUILD_NUMBER"
+    env.TAG2="latest"
+    env.AWS_DEFAULT_REGION="us-east-1"
+    env.CLOUD_AWS_STACK_AUTO="false"
   }
   else
   {

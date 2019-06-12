@@ -18,17 +18,13 @@ def flujo()
         loadvar.setenv()
         devops.docker_login()
       }
-      stage('Start Redis')
-      {
-        devops.redis_start()
-      }
       stage("maven verify")
       {
         devops.maven_verify("${settings}")
       }
       stage("maven sonar")
       {
-        devops.maven_sonar("${settings}","http://172.19.130.26:9000","694e463e93ba0a27427fb8a46a266abc42c0f542","MatiasCalvo")
+        devops.maven_sonar("${settings}","http://172.19.130.26:9000","694e463e93ba0a27427fb8a46a266abc42c0f542","${APPNAME}")
       }
       stage("maven deploy")
       {
@@ -42,7 +38,7 @@ def flujo()
       {
         devops.docker_push("${ECR_URL}","${ECR_ID}","${TAG1}","tcp://${JENKINS_IP}:2376")
       }
-      stage("Tag image")
+      stage("Tag image to latest")
       {
         devops.docker_tag("${ECR_URL}","${ECR_ID}","${TAG1}","${TAG2}","tcp://${JENKINS_IP}:2376")
       }
@@ -50,7 +46,7 @@ def flujo()
       {
         devops.docker_push("${ECR_URL}","${ECR_ID}","${TAG2}","tcp://${JENKINS_IP}:2376")
       }
-      stage("change aws key")
+      /*stage("change aws key")
       {
         devops.aws_config("${aws_key_2}")
       }
@@ -73,7 +69,7 @@ def flujo()
       stage("Pull Image sandbox")
       {
         devops.docker_pull("${ECR_URL}","${ECR_ID}","sandbox","tcp://${JENKINS_IP}:2376")
-      }
+      }*/
     }
     catch (e) 
     {
