@@ -3,7 +3,7 @@ def set_env_global()
     /*
       Variables Globales a todos los ambientes
     */
-    env.sonar_projectKey="AUTH"
+    env.sonar_projectKey="ARCH-ApiAuthorizer"
     env.sonar_exclusions="test/**,/functions/AUTHORIZER/security_realms/circuit*,functions/AUTHORIZER/test/mocks_azure_ad/mocked_jsonwebtoken.js,functions/AUTHORIZER/cognito*,/test/*/**,test/*,/test/*,/test/*/**,test/*,/test/**/*,/**/test/*,scripts/*,/**/build/*,**/.nyc_output/*,**/node_modules/*.test-reports/*,coverage/**/*,/**/coverage/**/*,/coverage/**/*,.coverage,**/scripts/*"
     env.sonar_javascript_lcov_reportPaths="$WORKSPACE/coverage/AUTHORIZER/lcov.info"
     env.AWS_DEFAULT_REGION='us-east-1'
@@ -12,7 +12,7 @@ def set_env_global()
 }
 def setenv(def cuenta="null")
 {
-    if (env.BRANCH_NAME == "master" || env.BRANCH_NAME == "prod")
+    if (env.BRANCH_NAME == "master")
     {
         sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
         env.tag="true"
@@ -28,7 +28,7 @@ def setenv(def cuenta="null")
           return false
         }
     }
-    else if (env.BRANCH_NAME == "impleqa" || env.BRANCH_NAME == "qa" || env.BRANCH_NAME =~ "release/*" )
+    else if (env.BRANCH_NAME =~ "release/*" || env.BRANCH_NAME =~ "hotfix/*" )
     {
         sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
         env.tag="true"
@@ -74,7 +74,7 @@ def setenv(def cuenta="null")
           return false
         }
     }
-    else if (env.BRANCH_NAME =~ "feature/*" || env.BRANCH_NAME =~ "PR*" )
+    else if (env.BRANCH_NAME =~ "feature/*" || env.BRANCH_NAME =~ "bugfix/*" )
     {
         sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
         if ( cuenta == "null" || cuenta == "AWS_DESA_CMF" )
@@ -121,7 +121,7 @@ def setenv(def cuenta="null")
     }
     else
     {
-        echo "problema no entro a ninguna condicion branch = ${env.BRANCH_NAME}"
+        echo "ERROR: No entro a ninguna condicion de branch = ${env.BRANCH_NAME}"
         devops.fail()
     }
 }
