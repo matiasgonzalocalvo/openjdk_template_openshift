@@ -3,14 +3,14 @@ def set_env_global()
   /*
     Variables Globales a todos los ambientes
   */
-  env.sonar_projectKey="comercios-frontend-boilerplate"
+  env.sonar_projectKey="ComafiDigital-Frontend"
   env.sonar_exclusions=""
   env.sonar_javascript_lcov_reportPaths=""
   env.AWS_DEFAULT_REGION='us-east-1'
 }
 def setenv(def cuenta="null")
 {
-  if (env.BRANCH_NAME == "master" || env.BRANCH_NAME == "prod")
+  if (env.BRANCH_NAME == "master")
   {
     sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
     env.COST_CENTER='comafi_digital_prod'
@@ -39,7 +39,7 @@ def setenv(def cuenta="null")
       return false
     }
   }
-  else if (env.BRANCH_NAME == "impleqa" || env.BRANCH_NAME == "qa" || env.BRANCH_NAME =~ "release/*" )
+  else if (env.BRANCH_NAME =~ "release/*" || env.BRANCH_NAME =~ "hotfix/*" )
   {
     sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
     env.COST_CENTER='comercios_dev'
@@ -94,7 +94,7 @@ def setenv(def cuenta="null")
       return false
     }
   }
-  else if (env.BRANCH_NAME =~ "feature/*" || env.BRANCH_NAME =~ "PR*")
+  else if (env.BRANCH_NAME =~ "feature/*" || env.BRANCH_NAME =~ "bugfix/*")
   {
     sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
     env.COST_CENTER='comercios_dev'
@@ -123,7 +123,7 @@ def setenv(def cuenta="null")
   }
   else
   {
-    echo "problema no entro a ninguna condicion branch = ${env.BRANCH_NAME}"
+    echo "ERROR: No entro a ninguna condicion de branch = ${env.BRANCH_NAME}"
     devops.fail()
   }
 }
