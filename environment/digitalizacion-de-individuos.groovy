@@ -26,7 +26,7 @@ def setenv(def cuenta="null")
   else if (env.BRANCH_NAME == "impleqa" || env.BRANCH_NAME == "qa" || env.BRANCH_NAME =~ "release/*" )
   {
     sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
-    env.ENV='dtkqa'
+    env.ENV='qa'
     devops.aws_config("AWS_DESA")
     def verCode = UUID.randomUUID().toString()
     env.random="${verCode}"
