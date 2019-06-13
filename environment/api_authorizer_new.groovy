@@ -41,8 +41,8 @@ def setenv(def cuenta="null")
         }
         else if ( cuenta == "AWS_DESA" )
         {
-          env.ENV='dtkqa'
-          env.STACK_NAME='AUTHORIZER'
+          env.ENV='qa'
+          env.STACK_NAME='AUTHORIZERv2'
           devops.aws_config("AWS_DESA")
           return true
         }
@@ -64,8 +64,8 @@ def setenv(def cuenta="null")
         }
         else if ( cuenta == "AWS_DESA" )
         {
-          env.ENV='dtkdev'
-          env.STACK_NAME='AUTHORIZER'
+          env.ENV='dev'
+          env.STACK_NAME='AUTHORIZERv2'
           devops.aws_config("AWS_DESA")
           return true
         }
@@ -86,8 +86,8 @@ def setenv(def cuenta="null")
         }
         else if ( cuenta == "AWS_DESA" )
         {
-          env.ENV='dtkpredev'
-          env.STACK_NAME='AUTHORIZER'
+          env.ENV='predev'
+          env.STACK_NAME='AUTHORIZERv2'
           devops.aws_config("AWS_DESA")
           return true
         }
