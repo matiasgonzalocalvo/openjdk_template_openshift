@@ -63,8 +63,8 @@ def setenv(def cuenta="null")
         }
         else if ( cuenta == "AWS_DESA" )
         {
-          env.ENV='dtkqa'
-          env.STACK_NAME='CIRCUITS-ENGINE'
+          env.ENV='qa'
+          env.STACK_NAME='CIRCUITS-ENGINEv2'
           devops.aws_config("AWS_DESA")
           return true
         }
@@ -98,8 +98,8 @@ def setenv(def cuenta="null")
         }
         else if ( cuenta == "AWS_DESA" )
         {
-          env.ENV='dtkdev'
-          env.STACK_NAME='CIRCUITS-ENGINE'
+          env.ENV='dev'
+          env.STACK_NAME='CIRCUITS-ENGINEv2'
           devops.aws_config("AWS_DESA")
           return true
         }
@@ -134,9 +134,9 @@ def setenv(def cuenta="null")
         }
         else if ( cuenta == "AWS_DESA" )
         {
-          env.ENV='dtkpredev'
+          env.ENV='predev'
           devops.aws_config("AWS_DESA")
-          env.STACK_NAME='CIRCUITS-ENGINE'
+          env.STACK_NAME='CIRCUITS-ENGINEv2'
           return true
         }
         else
