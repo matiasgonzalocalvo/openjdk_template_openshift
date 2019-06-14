@@ -38,6 +38,7 @@ def setenv(def cuenta="null")
 		env.ENV='dev'
         env.STACK_NAME='EventHub'
         devops.aws_config("AWS_DESA")
+        env.DEPLOY_BUCKETNAME='tesla-prius-deploy'
         return true
     }
     else if (env.BRANCH_NAME =~ "feature/*" || env.BRANCH_NAME =~ "bugfix/*" )
@@ -47,6 +48,7 @@ def setenv(def cuenta="null")
 		env.ENV='predev'
         env.STACK_NAME='EventHub'
         devops.aws_config("AWS_DESA")
+        env.DEPLOY_BUCKETNAME='tesla-prius-deploy'
         return true
     }
     else if ( env.BRANCH_NAME =~ "test-flow" )
