@@ -70,7 +70,7 @@ def setenv(def cuenta="null")
     else if ( cuenta == "AWS_DESA" )
     {
       env.ENV='dev'
-      env.DEPLOY_BUCKETNAME='tesla-prius-new-deploy'
+      env.DEPLOY_BUCKETNAME='tesla-prius-deploy'
       devops.aws_config("AWS_DESA")
       env.STACK_NAME='AUTHORIZER-COMAFI-APIv2'
       return true
@@ -89,6 +89,7 @@ def setenv(def cuenta="null")
     {
       env.ENV='predev'
       devops.aws_config("AWS_DESA_CMF")
+      env.DEPLOY_BUCKETNAME='tesla-prius-new-deploy'
       env.STACK_NAME='AuthorizerComafiApi'
       return true
     }
@@ -96,6 +97,7 @@ def setenv(def cuenta="null")
     {
       env.ENV='predev'
       devops.aws_config("AWS_DESA")
+      env.DEPLOY_BUCKETNAME='tesla-prius-deploy'
       env.STACK_NAME='AUTHORIZER-COMAFI-APIv2'
       return true
     }
