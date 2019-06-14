@@ -40,7 +40,7 @@ def setenv(def cuenta="null")
     {
       env.ENV='qa'
       devops.aws_config("AWS_DESA_CMF")
-      env.STACK_NAME='CircuitCreator'
+      env.STACK_NAME='CircuitCreator'      
       return true
     }
     else if ( cuenta == "AWS_DESA" )
@@ -66,12 +66,14 @@ def setenv(def cuenta="null")
       env.ENV='dev'
       devops.aws_config("AWS_DESA_CMF")
       env.STACK_NAME='CircuitCreator'
+      env.DEPLOY_BUCKETNAME='tesla-prius-new-deploy'
       return true
     }
     else if ( cuenta == "AWS_DESA" )
     {
       env.ENV='dev'
       devops.aws_config("AWS_DESA")
+      env.DEPLOY_BUCKETNAME='tesla-prius-deploy'
       env.STACK_NAME='CIRCUIT-CREATOR-v2'
       return true
     }
@@ -90,6 +92,7 @@ def setenv(def cuenta="null")
     {
       env.ENV='predev'
       devops.aws_config("AWS_DESA_CMF")
+      env.DEPLOY_BUCKETNAME='tesla-prius-new-deploy'
       env.STACK_NAME='CircuitCreator'
       return true
     }
@@ -97,6 +100,7 @@ def setenv(def cuenta="null")
     {
       env.ENV='predev'
       devops.aws_config("AWS_DESA")
+      env.DEPLOY_BUCKETNAME='tesla-prius-deploy'
       env.STACK_NAME='CIRCUIT-CREATOR-v2'
       return true
     }
