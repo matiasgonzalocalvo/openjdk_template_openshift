@@ -80,33 +80,12 @@ def setenv(def cuenta="null")
         env.ENV='dev'
         env.COST_CENTER='comercios_dev'
         env.FILES_BUCKET='cmf-comercios-files'
-        if ( cuenta == "null" || cuenta == "AWS_DESA_CMF" )
-        {
-          env.ENV='dev'
-          devops.aws_config("AWS_DESA_CMF")
-          env.STACK_NAME='CircuitEngine'
-          devops.credentials_to_variable("WHITELIST_BUCKET","BUCKET_WHITELIST_DEV")
-          devops.credentials_to_variable("TASKS_QUEUE_URL","SQS_URL_DEV")
-          devops.credentials_to_variable("SECURITY_GROUP","SECURITY_GROUP_DEV")
-          devops.credentials_to_variable("SECURITY_GROUP_PRIV","SECURITY_GROUP_PRIV_DEV")
-          devops.credentials_to_variable("SUBNET1","SUBNETDEV1")
-          devops.credentials_to_variable("SUBNET2","SUBNETDEV2")
-          devops.credentials_to_variable("SUBNETPRIV1","SUBNETPRIVDEV1")
-          devops.credentials_to_variable("ELASTICSEARCH_NAME","ELASTICSEARCH_NAME")
-          devops.credentials_to_variable("ELASTICSEARCH_URL","ELASTICSEARCH_URL_DEV")
-          return true
-        }
-        else if ( cuenta == "AWS_DESA" )
-        {
-          env.ENV='dev'
+
+          env.DEPLOY_BUCKETNAME='tesla-prius-deploy'
           env.STACK_NAME='CIRCUITS-ENGINEv2'
           devops.aws_config("AWS_DESA")
           return true
-        }
-        else
-        {
-          return false
-        }
+
     }
     else if (env.BRANCH_NAME =~ "feature/*" || env.BRANCH_NAME =~ "bugfix/*")
     {
@@ -115,11 +94,8 @@ def setenv(def cuenta="null")
         env.ENV='predev'
         env.COST_CENTER='comercios_dev'
         env.FILES_BUCKET='cmf-comercios-files'
-        if ( cuenta == "null" || cuenta == "AWS_DESA_CMF" )
-        {
+
           env.ENV='predev'
-          devops.aws_config("AWS_DESA_CMF")
-          env.STACK_NAME='CircuitEngine'
           devops.credentials_to_variable("WHITELIST_BUCKET","BUCKET_WHITELIST_PREDEV")
           devops.credentials_to_variable("TASKS_QUEUE_URL","SQS_URL_PREDEV")
           devops.credentials_to_variable("SECURITY_GROUP","SECURITY_GROUP_DEV")
@@ -129,20 +105,10 @@ def setenv(def cuenta="null")
           devops.credentials_to_variable("SUBNETPRIV1","SUBNETPRIVDEV1")
           devops.credentials_to_variable("ELASTICSEARCH_NAME","ELASTICSEARCH_NAME")
           devops.credentials_to_variable("ELASTICSEARCH_URL","ELASTICSEARCH_URL_PREDEV")
-
-          return true
-        }
-        else if ( cuenta == "AWS_DESA" )
-        {
           env.ENV='predev'
           devops.aws_config("AWS_DESA")
           env.STACK_NAME='CIRCUITS-ENGINEv2'
-          return true
-        }
-        else
-        {
-          return false
-        }
+          env.DEPLOY_BUCKETNAME='tesla-prius-deploy'
     }
     else if (env.BRANCH_NAME == "test-flow1")
     {
