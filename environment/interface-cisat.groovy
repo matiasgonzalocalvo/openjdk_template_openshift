@@ -91,23 +91,7 @@ def setenv(def cuenta="null")
   {
     sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
     env.COST_CENTER='comercios_dev'
-    if ( cuenta == "null" || cuenta == "AWS_DESA_CMF" )
-    {
-      devops.aws_config("AWS_DESA_CMF")
-      //devops.credentials_to_variable("URL_CISAT_DEV","URL_CISAT_DEV")
-      env.ENV='dev'
-      env.COST_CENTER='ArchComafiDigital'
-      env.STACK_NAME='CmfDigitalInterfaceCisat'
-      /*devops.credentials_to_variable("URL_CISAT","URL_CISAT_DEV")
-      devops.credentials_to_variable("CANAL","CANAL")
-      devops.credentials_to_variable("PERFIL","PERFIL")
-      devops.credentials_to_variable("SECURITY_GROUP","SECURITY_GROUP_COMAFI_DEV")
-      devops.credentials_to_variable("SUBNET1","SUBNET_COMAFI_DEV1")
-      devops.credentials_to_variable("SUBNET2","SUBNET_COMAFI_DEV2")*/
-      return false
-    }
-    else if ( cuenta == "AWS_DESA" )
-    {
+    
       devops.aws_config("AWS_DESA")
       //devops.credentials_to_variable("SECURITY_GROUP_COMAFI_DEV","SECURITY_GROUP_COMAFI_DEV")
       env.ENV='dev'
@@ -119,32 +103,14 @@ def setenv(def cuenta="null")
       devops.credentials_to_variable("SECURITY_GROUP","SECURITY_GROUP_COMAFI_DEV")
       devops.credentials_to_variable("SUBNET1","SUBNET_COMAFI_DEV1")
       devops.credentials_to_variable("SUBNET2","SUBNET_COMAFI_DEV2")
-      return true
-    }
-    else
-    {
-      return false
-    }
+      env.DEPLOY_BUCKETNAME='tesla-prius-deploy'
+    
   }
   else if (env.BRANCH_NAME =~ "feature/*" || env.BRANCH_NAME =~ "PR*"  || env.BRANCH_NAME =~ "bugfix/*")
   {
     sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
     env.COST_CENTER='comercios_dev'
-    if ( cuenta == "null" || cuenta == "AWS_DESA_CMF" )
-    {
-      devops.aws_config("AWS_DESA_CMF")
-      env.ENV='predev'
-      env.STACK_NAME='CmfDigitalInterfaceCisat'
-      /*devops.credentials_to_variable("URL_CISAT","URL_CISAT_DEV")
-      devops.credentials_to_variable("CANAL","CANAL")
-      devops.credentials_to_variable("PERFIL","PERFIL")
-      devops.credentials_to_variable("SECURITY_GROUP","SECURITY_GROUP_COMAFI_DEV")
-      devops.credentials_to_variable("SUBNET1","SUBNET_COMAFI_DEV1")
-      devops.credentials_to_variable("SUBNET2","SUBNETD_COMAFI_DEV2")*/
-      return false
-    }
-    else if ( cuenta == "AWS_DESA" )
-    {
+    
       devops.aws_config("AWS_DESA")
       env.ENV='predev'
 		  env.STACK_NAME='InterfaceCisatV3'
@@ -154,12 +120,7 @@ def setenv(def cuenta="null")
       devops.credentials_to_variable("SECURITY_GROUP","SECURITY_GROUP_COMAFI_DEV")
       devops.credentials_to_variable("SUBNET1","SUBNET_COMAFI_DEV1")
       devops.credentials_to_variable("SUBNET2","SUBNET_COMAFI_DEV2")
-      return true
-    }
-    else
-    {
-      return false
-    }
+      env.DEPLOY_BUCKETNAME='tesla-prius-deploy'
   }
   else
   {
