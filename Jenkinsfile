@@ -9,6 +9,7 @@ node ("master")
     branch = "master"
     url_git = "https://github.com/matiasgonzalocalvo/FrameworkJenkins"
     env.folder = "devops"
+    framework = "framework.groovy"
     sh "mkdir -p ${folder}"
     dir ("${folder}")
     {
@@ -17,7 +18,7 @@ node ("master")
         branch: "${branch}"
       )
     }
-    devops = load "devops/framework.groovy"
+    devops = load "${folder}/${framework}"
     devops.main()
   }
 }
