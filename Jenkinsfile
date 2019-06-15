@@ -9,7 +9,7 @@ node ("master")
     branch = "master"
     url_git = "https://github.com/matiasgonzalocalvo/testjenkinsframework"
     credentialsId = "matiasgonzalocalvo_github"
-    folder = "devops"
+    env.folder = "devops"
     sh "mkdir -p devops"
     dir ("${folder}")
     {
