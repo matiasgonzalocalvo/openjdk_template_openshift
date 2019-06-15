@@ -22,6 +22,7 @@ def setenv(def cuenta="null")
     env.FILES_BUCKET="${ENV}-lib-circuit-engine"
     env.STACK="${ENV}-INFRA-DIGITALIZACION-ELECTRONICA-INDIVIDUOS"
     env.PROJECT="DIGITALIZACION-ELECTRONICA-INDIVIDUOS"
+    env.DEFAULT_BUCKET="${ENV}-comercios-files-${ENV}"
   }
   else if (env.BRANCH_NAME == "impleqa" || env.BRANCH_NAME == "qa" || env.BRANCH_NAME =~ "release/*" )
   {
@@ -34,6 +35,7 @@ def setenv(def cuenta="null")
     env.FILES_BUCKET="${ENV}-lib-circuit-engine"
     env.STACK="${ENV}-INFRA-DIGITALIZACION-ELECTRONICA-INDIVIDUOS"
     env.PROJECT="DIGITALIZACION-ELECTRONICA-INDIVIDUOS"
+    env.DEFAULT_BUCKET="${ENV}-comercios-files-${ENV}"
   }
   else if (env.BRANCH_NAME == "develop" || env.BRANCH_NAME == "developjenkinsfile" )
   {
@@ -46,7 +48,7 @@ def setenv(def cuenta="null")
     env.FILES_BUCKET="${ENV}-lib-circuit-engine"
     env.STACK="${ENV}-INFRA-DIGITALIZACION-ELECTRONICA-INDIVIDUOS"
     env.PROJECT="DIGITALIZACION-ELECTRONICA-INDIVIDUOS"
-    env.DEFAULT_BUCKET="dtkdev-comercios-files-dtkdev"
+    env.DEFAULT_BUCKET="${ENV}-comercios-files-${ENV}"
   }
   else if (env.BRANCH_NAME =~ "feature/*" || env.BRANCH_NAME =~ "PR*")
   {
@@ -60,7 +62,7 @@ def setenv(def cuenta="null")
     env.FILES_BUCKET="${ENV}-lib-circuit-engine"
     env.STACK="${ENV}-INFRA-DIGITALIZACION-ELECTRONICA-INDIVIDUOS"
     env.PROJECT="DIGITALIZACION-ELECTRONICA-INDIVIDUOS"
-    env.DEFAULT_BUCKET="dtkpredev-comercios-files-dtkpredev"
+    env.DEFAULT_BUCKET="${ENV}-comercios-files-${ENV}"
   }
   else
   {
