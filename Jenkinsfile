@@ -13,8 +13,7 @@ node ("master")
     sh "mkdir -p ${folder}"
     dir ("${folder}")
     {
-      git
-      (
+      git(
         url: "${url_git}",
         credentialsId: "${credentialsId}",
         branch: "${branch}"
