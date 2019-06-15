@@ -46,6 +46,7 @@ def setenv(def cuenta="null")
     env.FILES_BUCKET="${ENV}-lib-circuit-engine"
     env.STACK="${ENV}-INFRA-DIGITALIZACION-ELECTRONICA-INDIVIDUOS"
     env.PROJECT="DIGITALIZACION-ELECTRONICA-INDIVIDUOS"
+    env.DEFAULT_BUCKET="dtkdev-comercios-files-dtkdev"
   }
   else if (env.BRANCH_NAME =~ "feature/*" || env.BRANCH_NAME =~ "PR*")
   {
@@ -59,6 +60,7 @@ def setenv(def cuenta="null")
     env.FILES_BUCKET="${ENV}-lib-circuit-engine"
     env.STACK="${ENV}-INFRA-DIGITALIZACION-ELECTRONICA-INDIVIDUOS"
     env.PROJECT="DIGITALIZACION-ELECTRONICA-INDIVIDUOS"
+    env.DEFAULT_BUCKET="dtkpredev-comercios-files-dtkpredev"
   }
   else
   {
