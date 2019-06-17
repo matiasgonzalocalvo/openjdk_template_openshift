@@ -16,6 +16,7 @@ node ("master")
     {
       git(
         url: "${url_git}",
+        credentialsId: "${credentialsId}",
         branch: "${branch}"
       )
     }
