@@ -7,6 +7,7 @@ node ("master")
   stage ("load framework.groovy")
   {
     branch = "master"
+    credentialsId = "matiasgonzalocalvo_github"
     //url_git = "https://github.com/matiasgonzalocalvo/FrameworkJenkins"
     url_git = "https://github.com/matiasgonzalocalvo/testjenkinsframework"
     env.folder = "devops"
