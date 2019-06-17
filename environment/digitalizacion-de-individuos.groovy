@@ -22,9 +22,9 @@ def setenv(def cuenta="null")
     env.FILES_BUCKET="${ENV}-lib-circuit-engine"
     env.STACK="${ENV}-INFRA-DIGITALIZACION-ELECTRONICA-INDIVIDUOS"
     env.PROJECT="DIGITALIZACION-ELECTRONICA-INDIVIDUOS"
-    env.DEFAULT_BUCKET="${ENV}-comercios-files-${ENV}"
+    env.DEFAULT_BUCKET="${ENV}-${ENV}-comercios-files-${ENV}"
     env.ThubanHost="http://thuban-1886992369.us-east-1.elb.amazonaws.com"
-    env.ThubanPassword="Thuban\$2018"
+    env.ThubanPassword="Thuban\$\2018"
     env.ThubanUser="DEI_USR"
   }
   else if (env.BRANCH_NAME == "impleqa" || env.BRANCH_NAME == "qa" || env.BRANCH_NAME =~ "release/*" )
