@@ -20,6 +20,7 @@ def setenv(def cuenta="null")
         {
           env.ENV='prod'
           env.STACK_NAME='AUTHORIZER'
+          env.DEPLOY_BUCKETNAME='tesla-prius-new-deploy'          
           devops.aws_config("_srv_jenkins_pec")
           return true
         }
@@ -36,6 +37,7 @@ def setenv(def cuenta="null")
         {
           env.ENV='qa'
           env.STACK_NAME='Authorizer'
+          env.DEPLOY_BUCKETNAME='tesla-prius-new-deploy'          
           devops.aws_config("AWS_DESA_CMF")
           return true
         }
@@ -43,6 +45,7 @@ def setenv(def cuenta="null")
         {
           env.ENV='qa'
           env.STACK_NAME='Authorizer'
+          env.DEPLOY_BUCKETNAME='tesla-prius-new-deploy'          
           devops.aws_config("AWS_DESA")
           return true
         }
@@ -59,6 +62,7 @@ def setenv(def cuenta="null")
         {
           env.ENV='dev'
           env.STACK_NAME='Authorizer'
+          env.DEPLOY_BUCKETNAME='tesla-prius-new-deploy'          
           devops.aws_config("AWS_DESA_CMF")
           return true
         }
@@ -66,6 +70,7 @@ def setenv(def cuenta="null")
         {
           env.ENV='dev'
           env.STACK_NAME='Authorizer'
+          env.DEPLOY_BUCKETNAME='tesla-prius-new-deploy'          
           devops.aws_config("AWS_DESA")
           return true
         }
@@ -81,6 +86,7 @@ def setenv(def cuenta="null")
         {
           env.ENV='predev'
           env.STACK_NAME='Authorizer'
+          env.DEPLOY_BUCKETNAME='tesla-prius-new-deploy'          
           devops.aws_config("AWS_DESA_CMF")
           return true
         }
@@ -88,6 +94,7 @@ def setenv(def cuenta="null")
         {
           env.ENV='predev'
           env.STACK_NAME='Authorizer'
+          env.DEPLOY_BUCKETNAME='tesla-prius-new-deploy'
           devops.aws_config("AWS_DESA")
           return true
         }
