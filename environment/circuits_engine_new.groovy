@@ -61,13 +61,14 @@ def setenv(def cuenta="null")
           devops.credentials_to_variable("ELASTICSEARCH_URL","ELASTICSEARCH_URL_QA")
           return true
         }
+        /* 
         else if ( cuenta == "AWS_DESA" )
         {
           env.ENV='qa'
           env.STACK_NAME='CIRCUITS-ENGINEv2'
           devops.aws_config("AWS_DESA")
           return true
-        }
+        } */
         else
         {
           return false
@@ -87,13 +88,13 @@ def setenv(def cuenta="null")
           devops.aws_config("AWS_DESA")
           return true
         }
-        else if ( cuenta == "AWS_DESA" )
+        /* else if ( cuenta == "AWS_DESA" )
         {
         env.DEPLOY_BUCKETNAME='tesla-prius-deploy'
           env.STACK_NAME='CIRCUITS-ENGINEv2'
           devops.aws_config("AWS_DESA")
           return true
-        }
+        } */
         else
         {
           return false
@@ -123,7 +124,7 @@ def setenv(def cuenta="null")
           env.DEPLOY_BUCKETNAME='tesla-prius-new-deploy'
           return true
         }
-        else if ( cuenta == "AWS_DESA" )
+        /* else if ( cuenta == "AWS_DESA" )
         {
         
           devops.credentials_to_variable("WHITELIST_BUCKET","BUCKET_WHITELIST_PREDEV")
@@ -140,7 +141,7 @@ def setenv(def cuenta="null")
           env.STACK_NAME='CIRCUITS-ENGINEv2'
           env.DEPLOY_BUCKETNAME='tesla-prius-deploy'
           return true
-          }
+          }*/
         else
         {
           return false
@@ -175,7 +176,7 @@ def setenv(def cuenta="null")
           devops.aws_config("AWS_DESA")
           env.STACK_NAME='CIRCUITS-ENGINE'
           devops.credentials_to_variable("SECURITY_GROUP","SECURITY_GROUP_DEV")
-          devops.credentials_to_variable("SECURITY_GROUP_PRIV","SECURITY_GROUP_PRIV_DEV")
+          devops.credentials_to_variable("SECURcd ..ITY_GROUP_PRIV","SECURITY_GROUP_PRIV_DEV")
           devops.credentials_to_variable("SUBNET1","SUBNETDEV1")
           devops.credentials_to_variable("SUBNET2","SUBNETDEV2")
           devops.credentials_to_variable("SUBNETPRIV1","SUBNETPRIVDEV1")
