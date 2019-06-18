@@ -18,7 +18,8 @@ def setenv(def cuenta="null")
        env.tag="true"
        
 	   env.ENV='prod'
-       env.STACK_NAME='EventHub'
+       env.STACK_NAME='ArchEventHub'
+       env.DEPLOY_BUCKETNAME='tesla-prius-deploy'
        devops.aws_config("_srv_jenkins_pec")
        return true
     }
@@ -27,8 +28,9 @@ def setenv(def cuenta="null")
       sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
         
 		env.ENV='qa'
-        env.STACK_NAME='EventHub'
+        env.STACK_NAME='ArchEventHub'
         devops.aws_config("AWS_DESA")
+        env.DEPLOY_BUCKETNAME='tesla-prius-deploy'
         return true
     }
     else if (env.BRANCH_NAME == "develop" || env.BRANCH_NAME == "developjenkinsfile")
@@ -36,7 +38,7 @@ def setenv(def cuenta="null")
         sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
         
 		env.ENV='dev'
-        env.STACK_NAME='EventHub'
+        env.STACK_NAME='ArchEventHub'
         devops.aws_config("AWS_DESA")
         env.DEPLOY_BUCKETNAME='tesla-prius-deploy'
         return true
@@ -46,7 +48,7 @@ def setenv(def cuenta="null")
         sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
         
 		env.ENV='predev'
-        env.STACK_NAME='EventHub'
+        env.STACK_NAME='ArchEventHub'
         devops.aws_config("AWS_DESA")
         env.DEPLOY_BUCKETNAME='tesla-prius-deploy'
         return true
