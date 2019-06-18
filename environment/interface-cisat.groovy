@@ -100,6 +100,7 @@ def setenv(def cuenta="null")
       devops.credentials_to_variable("SUBNET1","SUBNET_COMAFI_DEV1")
       devops.credentials_to_variable("SUBNET2","SUBNET_COMAFI_DEV2")
       env.DEPLOY_BUCKETNAME='tesla-prius-deploy'
+      return true
     
   }
   else if (env.BRANCH_NAME =~ "feature/*" || env.BRANCH_NAME =~ "PR*"  || env.BRANCH_NAME =~ "bugfix/*")
@@ -117,6 +118,8 @@ def setenv(def cuenta="null")
       devops.credentials_to_variable("SUBNET1","SUBNET_COMAFI_DEV1")
       devops.credentials_to_variable("SUBNET2","SUBNET_COMAFI_DEV2")
       env.DEPLOY_BUCKETNAME='tesla-prius-deploy'
+      return true
+
   }
   else
   {
