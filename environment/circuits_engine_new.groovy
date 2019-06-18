@@ -79,7 +79,7 @@ def setenv(def cuenta="null")
         devops.aws_config("AWS_DESA_CMF")
         env.ENV='dev'
         env.COST_CENTER='comercios_dev'
-        env.FILES_BUCKET='cmf-comercios-files'
+        env.FILES_BUCKET='dev-comercios-files'
         if ( cuenta == "null" || cuenta == "AWS_DESA_CMF" ) 
         {
           env.DEPLOY_BUCKETNAME='tesla-prius-new-deploy'
@@ -104,7 +104,7 @@ def setenv(def cuenta="null")
         sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'        
         env.ENV='predev'
         env.COST_CENTER='comercios_dev'
-        env.FILES_BUCKET='cmf-comercios-files'
+        env.FILES_BUCKET='predev-comercios-files'
         if ( cuenta == "null" || cuenta == "AWS_DESA_CMF" ) 
         {
           
