@@ -488,6 +488,7 @@ def new_process_sam()
       cd $functions
       rm -Rf node_modules 
       yarn install --prod
+      chmod -R +x *
       cd -
     done
   '''
