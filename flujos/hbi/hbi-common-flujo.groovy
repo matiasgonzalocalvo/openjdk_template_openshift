@@ -8,6 +8,10 @@ def flujo()
     {
       try 
       {
+        stage('Checkout SCM')
+        {
+          checkout scm
+        }
         stage('set env')
         {
           try
