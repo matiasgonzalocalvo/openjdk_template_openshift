@@ -500,4 +500,18 @@ def new_process_sam()
     /home/jenkins/.local/bin/sam deploy --template-file "packaged${random}.yaml" --stack-name ${STACK} --tags Project=${PROJECT} --capabilities CAPABILITY_NAMED_IAM --parameter-overrides FilesBucket=${FILES_BUCKET} Environment=${ENV} DeployBucket=${BUCKET} StackName=${STACK} DefaultFiles=${DEFAULT_BUCKET} ThubanHost=${ThubanHost} ThubanPassword=${ThubanPassword} ThubanUser=${ThubanUser} --region ${AWS_DEFAULT_REGION} --debug
   """
 }
+def config_file_provider(fileid, def settings="null")
+{
+  if ( settings == "null" )
+  {
+    settings = "settings.xml"
+  }
+  configFileProvider(
+    [ configFile(fileId: fileid, variable: 'MAVEN_SETTINGS')]) 
+    {
+      sh "cp ${MAVEN_SETTINGS} ${WORKSPACE}/${settings}"
+      env.settings="${WORKSPACE}/${settings}"
+      sh "cat ${WORKSPACE}/${settings}"
+    }
+}
 return this
