@@ -42,6 +42,7 @@ def setenv(def cuenta="null")
   else if (env.BRANCH_NAME =~ "feature/*" || env.BRANCH_NAME =~ "PR*")
   {
     sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
+    sh "ls -altrhR"
     devops.aws_config("705437fe-118c-4fbc-af26-595cbdc1e752")
     env.ECR_URL="104455529394.dkr.ecr.us-east-1.amazonaws.com"
     /*env.ECR_ID="commons/account"
