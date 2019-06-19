@@ -7,7 +7,7 @@ def set_env_global()
   env.ECR_ID="commons/account"
   env.APPNAME="commons-account"
   env.AWS_DEFAULT_REGION='us-east-1'
-  config_file_provider("9bca46b5-370c-4e9c-97bf-447123727106")
+  devops.config_file_provider("9bca46b5-370c-4e9c-97bf-447123727106")
 }
 def setenv(def cuenta="null")
 {
