@@ -1,7 +1,8 @@
 #!groovy
 def flujo() 
 {
-  node ("jenkins-slave-comafi-maven3.3.9")
+  //node ("jenkins-slave-comafi-maven3.3.9")
+  node ("jenkins-slave-comafi-maven3.3.9-redis")
   {
     pipeline 
     {
