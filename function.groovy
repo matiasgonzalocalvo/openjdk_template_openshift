@@ -563,10 +563,11 @@ def config_file_provider(fileid, def settings="null")
 def reltag()
 {
   env.TAG1 = sh(script: ''' git tag | xargs -I@ git log --format=format:"%ai @%n" -1 @ | sort | awk '{print $4}' | tail -n1 ''', returnStdout: true).trim()
-  sh """
+  sh '''
+    #!/bin/bash
     RELTAG=$(git tag | xargs -I@ git log --format=format:"%ai @%n" -1 @ | sort | awk '{print $4}' | tail -n1)
     echo "TAG1=$RELTAG" > promotag
     git checkout $RELTAG
-  """
+  '''
 }
 return this
