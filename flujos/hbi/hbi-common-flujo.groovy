@@ -1,6 +1,18 @@
 #!groovy
 def flujo() 
 {
+  def variables_flujo=["maven_redis", "maven_cobertura", "maven_verify", "maven_sonar", "maven_deploy", "maven_release_prepare", "maven_release_perform", "reltag", "docker_build_push_tag1", "docker_tag", "docker_tag_latest_push", "docker_pull", "docker_push_prod", "update_esc"]
+  for (variable_flujo in variables_flujo)
+  {
+    try
+    {
+      print variable_flujo
+    }
+    catch (e)
+    {
+      evaluate "env.${variable_flujo}='null'" 
+    }
+  }
   try
   {
     print node_docker 
