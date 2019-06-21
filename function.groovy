@@ -191,7 +191,7 @@ def jenkins_docker_build(def url_repo="null", def name="null",def tag="null",def
 }
 def docker_tag(url_repo, name, tag, tag2, url_docker_tcp, def url_repo2="null")
 {
-  if ( url_repo2 = "null" )
+  if ( url_repo2 == "null" )
   {
     url_repo2="${url_repo}"
   }
