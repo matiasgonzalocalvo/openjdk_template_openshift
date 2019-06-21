@@ -33,63 +33,63 @@ def flujo()
           loadvar.setenv()
           devops.docker_login()
         }
-        if ( maven_redis == "true" )
+        if ( "${maven_redis}" == "true" )
         {
           stage('Start Redis')
           {
             devops.redis_start()
           }
         }
-        if ( maven_cobertura == "true" )
+        if ( "${maven_cobertura}" == "true" )
         {
           stage("maven cobertura")
           {
             devops.maven_cobertura("${settings}")
           }
         }
-        if ( maven_verify == "true" )
+        if ( "${maven_verify}" == "true" )
         {
           stage("maven verify")
           {
             devops.maven_verify("${settings}")
           }
         }
-        if ( maven_sonar == "true" )
+        if ( "${maven_sonar}" == "true" )
         {
           stage("maven sonar")
           {
             devops.maven_sonar("${settings}","http://172.19.130.26:9000","694e463e93ba0a27427fb8a46a266abc42c0f542","${APPNAME}")
           }
         }
-        if ( maven_deploy == "true" )
+        if ( "${maven_deploy}" == "true" )
         {
           stage("maven deploy")
           {
             devops.maven_deploy("${settings}")
           }
         }
-        if ( maven_release_prepare == "true" )
+        if ( "${maven_release_prepare}" == "true" )
         {
           stage("maven release prepare")
           {
             devops.maven_release_prepare("${settings}")
           }
         }
-        if ( maven_release_perform == "true" )
+        if ( "${maven_release_perform}" == "true" )
         {
           stage("maven release perform")
           {
             devops.maven_release_perform("${settings}")
           }
         }
-        if ( reltag == "true" )
+        if ( "${reltag}" == "true" )
         {
           stage("reltag")
           {
             devops.reltag()
           }
         }
-        if ( docker_build_push_tag1 == "true" )
+        if ( "${docker_build_push_tag1}" == "true" )
         {
           stage("Docker build image")
           {
@@ -100,35 +100,35 @@ def flujo()
             devops.docker_push("${ECR_URL}","${ECR_ID}","${TAG1}","tcp://${JENKINS_IP}:2376")
           }
         }
-        if ( docker_tag == "true" )
+        if ( "${docker_tag}" == "true" )
         {
           stage("Tag image")
           {
             devops.docker_tag("${ECR_URL}","${ECR_ID}","${TAG1}","${TAG2}","tcp://${JENKINS_IP}:2376")
           }
         }
-        if ( docker_tag_latest_push == "true" )
+        if ( "${docker_tag_latest_push}" == "true" )
         { 
           stage("Push image 2 ")
           {
             devops.docker_push("${ECR_URL}","${ECR_ID}","${TAG2}","tcp://${JENKINS_IP}:2376")
           }
         }
-        if ( docker_pull == "true" )
+        if ( "${docker_pull}" == "true" )
         {
           stage("Push pull ")
           {
             devops.docker_pull("${ECR_URL}","${ECR_ID}","${TAG1}","tcp://${JENKINS_IP}:2376")
           }
         }
-        if ( docker_push_prod == "true" )
+        if ( "${docker_push_prod}" == "true" )
         {
           stage("Push image prod ")
           {
             devops.docker_push("${ECR_URL2}","${ECR_ID}","${TAG2}","tcp://${JENKINS_IP}:2376")
           }
         }
-        if ( update_esc == "true" ) 
+        if ( "${update_esc}" == "true" ) 
         {
           stage("change aws key")
           {
