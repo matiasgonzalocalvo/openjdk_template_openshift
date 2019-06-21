@@ -3,17 +3,12 @@ def flujo()
 {
   try
   {
-    if ( node_docker == "null" )
-    {
-      node_docker="jenkins-slave-comafi-maven3.3.9-redis"
-    }
+    print node_docker 
   }
   catch (e)
   {
-    echo e.getMessage()
-    echo 'Err: No pude setear el node: ' + e.toString()
-    echo "FALLO !!!!! revisar la salida contactar a devops"
-    devops.fail()
+    echo "node_docker no existe seteo jenkins-slave-comafi-maven3.3.9-redis"
+    node_docker="jenkins-slave-comafi-maven3.3.9-redis"
   }
   node ("${node_docker}")
   {
