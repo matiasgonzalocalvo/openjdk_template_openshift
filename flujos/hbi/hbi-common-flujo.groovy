@@ -38,14 +38,14 @@ def flujo()
           loadvar.setenv()
           devops.docker_login()
         }
-        if (env.maven_redis)
+        if ( "${maven_redis}" == "true" )
         {
           stage('Start Redis')
           {
             devops.redis_start()
           }
         }
-        if (env.maven_cobertura)
+        if ( "${maven_cobertura}" == "true" )
         {
           stage("maven cobertura")
           {
