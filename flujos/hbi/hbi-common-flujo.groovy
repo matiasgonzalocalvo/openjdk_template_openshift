@@ -10,6 +10,7 @@ def flujo()
     }
     catch (e)
     {
+      echo "no existe variable_flujo la seteo a null"
       evaluate "env.${variable_flujo}='null'" 
     }
   }
