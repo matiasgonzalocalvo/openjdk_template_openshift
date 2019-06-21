@@ -77,6 +77,7 @@ def setenv(def cuenta="null")
       devops.credentials_to_variable("SECURITY_GROUP","SECURITY_GROUP_COMAFI_QA")
       devops.credentials_to_variable("SUBNET1","SUBNET_COMAFI_QA1")
       devops.credentials_to_variable("SUBNET2","SUBNET_COMAFI_QA2")
+      env.DEPLOY_BUCKETNAME='tesla-prius-deploy'
       return true
     }
     else
