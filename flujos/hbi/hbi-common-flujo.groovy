@@ -3,7 +3,7 @@ def flujo()
 {
   try
   {
-    if ( node_docker = "null" )
+    if ( node_docker == "null" )
     {
       node_docker="jenkins-slave-comafi-maven3.3.9-redis"
     }
