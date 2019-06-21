@@ -3,13 +3,9 @@ def flujo()
 {
   try
   {
-    if ( node_docker != "null" )
+    if ( node_docker = "null" )
     {
-      node ("${node_docker}")
-    }
-    else
-    {
-      nose ("jenkins-slave-comafi-maven3.3.9-redis")
+      node_docker="jenkins-slave-comafi-maven3.3.9-redis"
     }
   }
   catch (e)
@@ -19,6 +15,7 @@ def flujo()
     echo "FALLO !!!!! revisar la salida contactar a devops"
     devops.fail()
   }
+  node ("${node_docker}")
   {
     pipeline 
     {
