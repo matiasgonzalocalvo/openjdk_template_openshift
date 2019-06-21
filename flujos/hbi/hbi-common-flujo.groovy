@@ -11,6 +11,7 @@ def flujo()
     catch (e)
     {
       print e
+      sh "export"
       echo "no existe variable_flujo la seteo a null ${variable_flujo}"
       evaluate "${variable_flujo}='null'" 
     }
