@@ -69,6 +69,20 @@ def update_aws_credentials(UPDATE_SERVICE_KEY_ID,UPDATE_SERVICE_SECRET_KEY)
     env.AWS_ACCESS_KEY_ID = "${UPDATE_SERVICE_KEY_ID}"
     env.AWS_SECRET_ACCESS_KEY = "${UPDATE_SERVICE_SECRET_KEY}"    
 }
+def maven_cobertura(def settings="null")
+{
+    /*
+        Funcion que ejecuta maven verify recibe el archivo settings.xml de fomar opcional si no se pasa se ejecuta sin el parametro -s.
+    */
+    if ( settings == "null" )
+    {
+        sh "mvn cobertura:cobertura -DskipTests -X"
+    }
+    else
+    {
+        sh "mvn cobertura:cobertura -DskipTests -s ${settings} -X"
+    }
+}
 def maven_verify(def settings="null")
 {
     /*
@@ -129,6 +143,34 @@ def maven_deploy(def settings="null")
     {
         sh "mvn deploy -DskipTests -s ${settings} -X"
     }
+}
+def maven_release_prepare(def settings="null")
+{
+  /*
+    Funcion ejecuta deploy
+  */
+  if ( settings == "null" )
+  {   
+    sh "mvn release:prepare -DskipTests -X"
+  }
+  else
+  {
+    sh "mvn release:prepare -DskipTests -s ${settings} -X"
+  }
+}
+def maven_release_perform(def settings="null")
+{
+  /*
+    Funcion ejecuta deploy
+  */
+  if ( settings == "null" )
+  {  
+    sh "mvn release:perform -DskipTests -X -B"
+  }
+  else
+  {
+    sh "mvn release:perform -DskipTests -s ${settings} -X -B"
+  }
 }
 def docker_build(def url_repo="null", def name="null",def tag="null",def url_docker_tcp="null")
 {
@@ -513,5 +555,14 @@ def config_file_provider(fileid, def settings="null")
       env.settings="${WORKSPACE}/${settings}"
       sh "cat ${WORKSPACE}/${settings}"
     }
+}
+def reltag()
+{
+  env.TAG1 = sh(script: ''' git tag | xargs -I@ git log --format=format:"%ai @%n" -1 @ | sort | awk '{print $4}' | tail -n1 ''', returnStdout: true).trim()
+  sh """
+    RELTAG=$(git tag | xargs -I@ git log --format=format:"%ai @%n" -1 @ | sort | awk '{print $4}' | tail -n1)
+    echo "TAG1=$RELTAG" > promotag
+    git checkout $RELTAG
+  """
 }
 return this

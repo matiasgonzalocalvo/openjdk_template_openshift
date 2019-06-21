@@ -25,58 +25,88 @@ def flujo()
           loadvar.setenv()
           devops.docker_login()
         }
-        stage("maven verify")
+        if ( maven_cobertura == "true" )
         {
-          devops.maven_verify("${settings}")
+          stage("maven cobertura")
+          {
+            devops.maven_cobertura("${settings}")
+          }
         }
-        stage("maven sonar")
+        if ( maven_verify == "true" )
         {
-          devops.maven_sonar("${settings}","http://172.19.130.26:9000","694e463e93ba0a27427fb8a46a266abc42c0f542","${APPNAME}")
+          stage("maven verify")
+          {
+            devops.maven_verify("${settings}")
+          }
         }
-        stage("maven deploy")
+        if ( maven_sonar == "true" )
         {
-          devops.maven_deploy("${settings}")
+          stage("maven sonar")
+          {
+            devops.maven_sonar("${settings}","http://172.19.130.26:9000","694e463e93ba0a27427fb8a46a266abc42c0f542","${APPNAME}")
+          }
         }
-        stage("Docker build image")
+        if ( maven_deploy == "true" )
         {
-          devops.docker_build("${ECR_URL}","${ECR_ID}","${TAG1}","tcp://${JENKINS_IP}:2376")
+          stage("maven deploy")
+          {
+            devops.maven_deploy("${settings}")
+          }
         }
-        stage("Push image")
+        if ( maven_release_prepare == "true" )
         {
-          devops.docker_push("${ECR_URL}","${ECR_ID}","${TAG1}","tcp://${JENKINS_IP}:2376")
+          stage("maven release prepare")
+          {
+            devops.maven_release_prepare("${settings}")
+          }
         }
-        stage("Tag image to latest")
+        if ( maven_release_perform == "true" )
         {
-          devops.docker_tag("${ECR_URL}","${ECR_ID}","${TAG1}","${TAG2}","tcp://${JENKINS_IP}:2376")
+          stage("maven release perform")
+          {
+            devops.maven_release_perform("${settings}")
+          }
         }
-        stage("Push image 2 ")
+        if ( reltag == "true" )
         {
-          devops.docker_push("${ECR_URL}","${ECR_ID}","${TAG2}","tcp://${JENKINS_IP}:2376")
+          stage("reltag")
+          {
+            devops.reltag()
+          }
         }
-        /*stage("change aws key")
+        if ( docker_build_push_tag1 == "true" )
         {
-          devops.aws_config("${aws_key_2}")
+          stage("Docker build image")
+          {
+            devops.docker_build("${ECR_URL}","${ECR_ID}","${TAG1}","tcp://${JENKINS_IP}:2376")
+          }
+          stage("Push image")
+          {
+            devops.docker_push("${ECR_URL}","${ECR_ID}","${TAG1}","tcp://${JENKINS_IP}:2376")
+          }
         }
-        stage("Update ecs service")
-        {
-          deploy.ecs_update_service("${ENVNAME}-cluster", "${ENVNAME}-${APPNAME}-service", "${ENVNAME}-${APPNAME}-task")
+        if ( docker_build_push_tag1 == "true" )
+        { 
+          stage("Tag image to latest")
+          {
+            devops.docker_tag("${ECR_URL}","${ECR_ID}","${TAG1}","${TAG2}","tcp://${JENKINS_IP}:2376")
+          }
+          stage("Push image 2 ")
+          {
+            devops.docker_push("${ECR_URL}","${ECR_ID}","${TAG2}","tcp://${JENKINS_IP}:2376")
+          }
         }
-        stage("Tag Image to sandbox ")
+        if ( update_esc == "true" ) 
         {
-          devops.docker_tag("${ECR_URL}","${ECR_ID}","${TAG1}","sandbox","tcp://${JENKINS_IP}:2376")
+          stage("change aws key")
+          {
+            devops.aws_config("${aws_key_2}")
+          }
+          stage("Update ecs service")
+          {
+            deploy.ecs_update_service("${ENVNAME}-cluster", "${ENVNAME}-${APPNAME}-service", "${ENVNAME}-${APPNAME}-task")
+          }
         }
-        stage("Push image sandbox")
-        {
-          devops.docker_push("${ECR_URL}","${ECR_ID}","sandbox","tcp://${JENKINS_IP}:2376")
-        }
-        stage("Update ecs service 2")
-        {
-          deploy.ecs_update_service("sandbox-cluster", "sandbox-${APPNAME}-service", "sandbox-${APPNAME}-task")
-        }
-        stage("Pull Image sandbox")
-        {
-          devops.docker_pull("${ECR_URL}","${ECR_ID}","sandbox","tcp://${JENKINS_IP}:2376")
-        }*/
       }
       catch (e) 
       {

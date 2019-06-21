@@ -51,7 +51,8 @@ def setenv(def cuenta="null")
     env.ENVNAME="dev"
     env.TAG1="${BUILD_NUMBER}"
     env.TAG2="sandbox"
-    env.CLOUD_AWS_STACK_AUTO=false
+    env.CLOUD_AWS_STACK_AUTO="false"
+    env.aws_key_2="ECSUpdateService"
   }
   else
   {
