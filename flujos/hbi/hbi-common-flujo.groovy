@@ -6,12 +6,12 @@ def flujo()
   {
     try
     {
-      print variable_flujo
+      evaluate "print ${variable_flujo}"
     }
     catch (e)
     {
       echo "no existe variable_flujo la seteo a null"
-      evaluate "env.${variable_flujo}='null'" 
+      evaluate "${variable_flujo}='null'" 
     }
   }
   try
