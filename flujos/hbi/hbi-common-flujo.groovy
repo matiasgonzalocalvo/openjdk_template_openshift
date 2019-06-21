@@ -4,17 +4,7 @@ def flujo()
   def variables_flujo=["maven_redis", "maven_cobertura", "maven_verify", "maven_sonar", "maven_deploy", "maven_release_prepare", "maven_release_perform", "reltag", "docker_build_push_tag1", "docker_tag", "docker_tag_latest_push", "docker_pull", "docker_push_prod", "update_esc"]
   for (variable_flujo in variables_flujo)
   {
-    try
-    {
-      evaluate "print ${variable_flujo}"
-    }
-    catch (e)
-    {
-      print e
-      sh "export"
-      echo "no existe variable_flujo la seteo a null ${variable_flujo}"
-      evaluate "${variable_flujo}='null'" 
-    }
+    evaluate "env.${variable_flujo}='null'" 
   }
   try
   {
