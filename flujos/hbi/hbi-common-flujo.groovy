@@ -108,21 +108,28 @@ def flujo()
             devops.docker_push("${ECR_URL}","${ECR_ID}","${TAG1}","tcp://${JENKINS_IP}:2376")
           }
         }
-        if ( env.docker_tag_latest_push == "true" )
+        if ( docker_tag == "true" )
+        {
+          stage("Tag image")
+          {
+            devops.docker_tag("${ECR_URL}","${ECR_ID}","${TAG1}","${TAG2}","tcp://${JENKINS_IP}:2376")
+          }
+        }
+        if ( docker_tag_latest_push == "true" )
         { 
           stage("Push image 2 ")
           {
             devops.docker_push("${ECR_URL}","${ECR_ID}","${TAG2}","tcp://${JENKINS_IP}:2376")
           }
         }
-        if ( env.docker_pull == "true" )
+        if ( docker_pull == "true" )
         {
           stage("Push pull ")
           {
             devops.docker_pull("${ECR_URL}","${ECR_ID}","${TAG1}","tcp://${JENKINS_IP}:2376")
           }
         }
-        if ( env.docker_push_prod == "true" )
+        if ( docker_push_prod == "true" )
         {
           stage("Push image prod ")
           {
