@@ -1,8 +1,24 @@
 #!groovy
 def flujo() 
 {
-  //node ("jenkins-slave-comafi-maven3.3.9")
-  node ("jenkins-slave-comafi-maven3.3.9-redis")
+  try
+  {
+    if ( node_docker != "null" )
+    {
+      node ("${node_docker}")
+    }
+    else
+    {
+      nose ("jenkins-slave-comafi-maven3.3.9-redis")
+    }
+  }
+  catch (e)
+  {
+    echo e.getMessage()
+    echo 'Err: No pude setear el node: ' + e.toString()
+    echo "FALLO !!!!! revisar la salida contactar a devops"
+    devops.fail()
+  }
   {
     pipeline 
     {
@@ -24,6 +40,13 @@ def flujo()
           }
           loadvar.setenv()
           devops.docker_login()
+        }
+        if ( maven_redis == "true" )
+        {
+          stage('Start Redis')
+          {
+            devops.redis_start()
+          }
         }
         if ( maven_cobertura == "true" )
         {
@@ -85,15 +108,25 @@ def flujo()
             devops.docker_push("${ECR_URL}","${ECR_ID}","${TAG1}","tcp://${JENKINS_IP}:2376")
           }
         }
-        if ( docker_build_push_tag1 == "true" )
+        if ( env.docker_tag_latest_push == "true" )
         { 
-          stage("Tag image to latest")
-          {
-            devops.docker_tag("${ECR_URL}","${ECR_ID}","${TAG1}","${TAG2}","tcp://${JENKINS_IP}:2376")
-          }
           stage("Push image 2 ")
           {
             devops.docker_push("${ECR_URL}","${ECR_ID}","${TAG2}","tcp://${JENKINS_IP}:2376")
+          }
+        }
+        if ( env.docker_pull == "true" )
+        {
+          stage("Push pull ")
+          {
+            devops.docker_pull("${ECR_URL}","${ECR_ID}","${TAG1}","tcp://${JENKINS_IP}:2376")
+          }
+        }
+        if ( env.docker_push_prod == "true" )
+        {
+          stage("Push image prod ")
+          {
+            devops.docker_push("${ECR_URL2}","${ECR_ID}","${TAG2}","tcp://${JENKINS_IP}:2376")
           }
         }
         if ( update_esc == "true" ) 

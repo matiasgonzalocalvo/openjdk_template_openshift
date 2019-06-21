@@ -189,11 +189,15 @@ def jenkins_docker_build(def url_repo="null", def name="null",def tag="null",def
     sh "echo ejecutando docker usando plugin de jenkins"
     app = docker.build("${url_repo}/${name}:${tag}")
 }
-def docker_tag(url_repo, name, tag, tag2, url_docker_tcp)
+def docker_tag(url_repo, name, tag, tag2, url_docker_tcp, def url_repo2="null")
 {
-    sh """ 
-        docker -H "${url_docker_tcp}" tag  ${url_repo}/${name}:${tag} ${url_repo}/${name}:${tag2}
-    """
+  if ( url_repo2 = "null" )
+  {
+    url_repo2="${url_repo}"
+  }
+  sh """ 
+    docker -H "${url_docker_tcp}" tag  ${url_repo}/${name}:${tag} ${url_repo2}/${name}:${tag2}
+  """
 }
 def docker_pull(def url_repo="null",def name="null",def tag="null",def url_docker_tcp="null")
 {
