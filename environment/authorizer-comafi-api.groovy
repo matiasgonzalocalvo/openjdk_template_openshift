@@ -39,7 +39,8 @@ def setenv(def cuenta="null")
       env.ENV='qa'
       devops.aws_config("AWS_DESA_CMF")
       env.STACK_NAME='AuthorizerComafiApi'
-      return true
+      /*falta definir cuenta QA Comafi DIGITAL*/
+      return false
     }
     else if ( cuenta == "AWS_DESA" )
     {
