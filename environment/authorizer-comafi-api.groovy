@@ -46,7 +46,7 @@ def setenv(def cuenta="null")
     {
       env.ENV='qa'
       devops.aws_config("AWS_DESA")
-      env.STACK_NAME='AuthorizerComafiApi'
+      env.STACK_NAME='AUTHORIZER-COMAFI-API'
       return true
     }
     else
