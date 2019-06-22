@@ -38,8 +38,10 @@ def setenv(def cuenta="null")
           env.ENV='qa'
           env.STACK_NAME='Authorizer'
           env.DEPLOY_BUCKETNAME='tesla-prius-new-deploy'          
-          devops.aws_config("AWS_DESA_CMF")
-          return true
+          /* devops.aws_config("AWS_DESA_CMF")
+          Falta configurar cuenta QA*/
+
+          return false
         }
         else if ( cuenta == "AWS_DESA" )
         {
