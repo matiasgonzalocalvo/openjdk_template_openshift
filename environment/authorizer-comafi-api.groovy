@@ -39,13 +39,15 @@ def setenv(def cuenta="null")
       env.ENV='qa'
       devops.aws_config("AWS_DESA_CMF")
       env.STACK_NAME='AuthorizerComafiApi'
-      return true
+      /*falta definir cuenta QA Comafi DIGITAL*/
+      return false
     }
     else if ( cuenta == "AWS_DESA" )
     {
       env.ENV='qa'
       devops.aws_config("AWS_DESA")
-      env.STACK_NAME='AuthorizerComafiApi'
+      env.STACK_NAME='AUTHORIZER-COMAFI-API'
+      env.DEPLOY_BUCKETNAME='tesla-prius-deploy'
       return true
     }
     else
