@@ -48,7 +48,8 @@ def setenv(def cuenta="null")
       env.ENV='qa'
       devops.aws_config("AWS_DESA")
       env.STACK_NAME='CIRCUIT-CREATOR'
-      return true
+      /* solo debe desplegar en comafi digital */
+      return false
     }
     else
     {
@@ -75,7 +76,8 @@ def setenv(def cuenta="null")
       devops.aws_config("AWS_DESA")
       env.DEPLOY_BUCKETNAME='tesla-prius-deploy'
       env.STACK_NAME='CIRCUIT-CREATOR-v2'
-      return true
+      /* solo debe desplegar en comafi digital */
+      return false
     }
     else
     {
@@ -102,7 +104,8 @@ def setenv(def cuenta="null")
       devops.aws_config("AWS_DESA")
       env.DEPLOY_BUCKETNAME='tesla-prius-deploy'
       env.STACK_NAME='CIRCUIT-CREATOR-v2'
-      return true
+      /* solo debe desplegar en comafi digital */
+      return false
     }
     else
     {
