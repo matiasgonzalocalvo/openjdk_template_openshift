@@ -20,7 +20,7 @@ def setenv(def cuenta="null")
           devops.aws_config("_srv_jenkins_pec")
           env.ENV='prod'
           env.COST_CENTER='comafi_digital_prod'
-          env.FILES_BUCKET='prod-comercios-deploy'
+          env.FILES_BUCKET='prod-ce-deploy'
           env.STACK_NAME='CircuitEngine'
           devops.credentials_to_variable("WHITELIST_BUCKET","BUCKET_WHITELIST_PROD")
           devops.credentials_to_variable("TASKS_QUEUE_URL","SQS_URL_PROD")
@@ -44,7 +44,7 @@ def setenv(def cuenta="null")
         devops.aws_config("AWS_DESA_CMF")
         env.tag="true"
         env.COST_CENTER='comafi_digital_qa'
-        env.FILES_BUCKET='qa-comercios-deploy'
+        env.FILES_BUCKET='qa-ce-deploy'
         if ( cuenta == "null" || cuenta == "AWS_DESA_CMF" )
         {
           env.ENV='qa'
@@ -79,13 +79,23 @@ def setenv(def cuenta="null")
         sh 'echo "$(date) : Seteando var  iables - BRANCH = ${BRANCH_NAME}"'
         devops.aws_config("AWS_DESA_CMF")
         env.ENV='dev'
-        env.COST_CENTER='comercios_dev'
-        env.FILES_BUCKET='dev-comercios-files'
+        env.COST_CENTER='comafi_digital_dev'
+        env.FILES_BUCKET='dev-ce-deploy'
         if ( cuenta == "null" || cuenta == "AWS_DESA_CMF" ) 
         {
-          env.DEPLOY_BUCKETNAME='tesla-prius-new-deploy'
+          devops.credentials_to_variable("WHITELIST_BUCKET","BUCKET_WHITELIST_DEV")
+          devops.credentials_to_variable("TASKS_QUEUE_URL","SQS_URL_DEV")
+          devops.credentials_to_variable("SECURITY_GROUP","SECURITY_GROUP_DEV")
+          devops.credentials_to_variable("SECURITY_GROUP_PRIV","SECURITY_GROUP_PRIV_DEV")
+          devops.credentials_to_variable("SUBNET1","SUBNETDEV1")
+          devops.credentials_to_variable("SUBNET2","SUBNETDEV2")
+          devops.credentials_to_variable("SUBNETPRIV1","SUBNETPRIVDEV1")
+          devops.credentials_to_variable("ELASTICSEARCH_NAME","ELASTICSEARCH_NAME")
+          devops.credentials_to_variable("ELASTICSEARCH_URL","ELASTICSEARCH_URL_DEV")
+          env.ENV='predev'
+          devops.aws_config("AWS_DESA_CMF")
           env.STACK_NAME='CircuitEngine'
-          devops.aws_config("AWS_DESA")
+          env.DEPLOY_BUCKETNAME='tesla-prius-new-deploy'
           return true
         }
         /* else if ( cuenta == "AWS_DESA" )
@@ -104,11 +114,10 @@ def setenv(def cuenta="null")
     {
         sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'        
         env.ENV='predev'
-        env.COST_CENTER='comercios_dev'
-        env.FILES_BUCKET='predev-comercios-files'
+        env.COST_CENTER='comafi_digital_dev'
+        env.FILES_BUCKET='predev-ce-deploy'
         if ( cuenta == "null" || cuenta == "AWS_DESA_CMF" ) 
-        {
-          
+        {          
           devops.credentials_to_variable("WHITELIST_BUCKET","BUCKET_WHITELIST_PREDEV")
           devops.credentials_to_variable("TASKS_QUEUE_URL","SQS_URL_PREDEV")
           devops.credentials_to_variable("SECURITY_GROUP","SECURITY_GROUP_DEV")
