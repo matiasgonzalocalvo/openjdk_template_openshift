@@ -141,7 +141,7 @@ def flujo()
           }
           stage("Update ecs service")
           {
-            deploy.ecs_update_service("${ENVNAME}-cluster", "${ENVNAME}-${APPNAME}-service", "${ENVNAME}-${APPNAME}-task")
+            devops.ecs_update_service("${ENVNAME}-cluster", "${ENVNAME}-${APPNAME}-service", "${ENVNAME}-${APPNAME}-task")
           }
         }
       }
