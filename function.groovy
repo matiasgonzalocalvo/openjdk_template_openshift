@@ -559,12 +559,29 @@ def yarn_install_funcctions()
     done
   '''
 }
-def sam_deploy()
+def sam_package()
 {
   sh '''
     /home/jenkins/.local/bin/sam package --template-file template.yaml --output-template-file "packaged${random}.yaml" --s3-bucket ${BUCKET} --region ${AWS_DEFAULT_REGION}
   '''
 }
+
+def sam_deploy( def overrides="null" )
+{
+  if ( overrides == "null" ) 
+  {
+    sh '''
+    /home/jenkins/.local/bin/sam deploy --template-file "packaged${random}.yaml" --stack-name ${STACK} --tags Project=${PROJECT} --capabilities CAPABILITY_NAMED_IAM --parameter-overrides ${parameter-overrides} --region ${AWS_DEFAULT_REGION} --debug
+    '''
+  }
+  else
+  {
+    sh '''
+    /home/jenkins/.local/bin/sam deploy --template-file "packaged${random}.yaml" --stack-name ${STACK} --tags Project=${PROJECT} --capabilities CAPABILITY_NAMED_IAM --parameter-overrides ${overrides} --region ${AWS_DEFAULT_REGION} --debug
+    '''
+  }
+}
+
 def config_file_provider(fileid, def settings="null")
 {
   if ( settings == "null" )
