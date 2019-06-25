@@ -92,7 +92,7 @@ def setenv(def cuenta="null")
           devops.credentials_to_variable("SUBNETPRIV1","SUBNETPRIVDEV1")
           devops.credentials_to_variable("ELASTICSEARCH_NAME","ELASTICSEARCH_NAME")
           devops.credentials_to_variable("ELASTICSEARCH_URL","ELASTICSEARCH_URL_DEV")
-          env.ENV='predev'
+          env.ENV='dev'
           devops.aws_config("AWS_DESA_CMF")
           env.STACK_NAME='CircuitEngine'
           env.DEPLOY_BUCKETNAME='tesla-prius-new-deploy'
