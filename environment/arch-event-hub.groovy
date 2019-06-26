@@ -28,8 +28,8 @@ def setenv(def cuenta="null")
       sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
         
 		env.ENV='qa'
-        env.STACK_NAME='ArchEventHub'
         devops.aws_config("AWS_DESA")
+        env.STACK_NAME='ArchEventHub'
         env.DEPLOY_BUCKETNAME='tesla-prius-deploy'
         return true
     }
@@ -38,8 +38,8 @@ def setenv(def cuenta="null")
         sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
         
 		env.ENV='dev'
-        env.STACK_NAME='ArchEventHub'
         devops.aws_config("AWS_DESA")
+        env.STACK_NAME='ArchEventHub'
         env.DEPLOY_BUCKETNAME='tesla-prius-deploy'
         return true
     }
@@ -48,8 +48,8 @@ def setenv(def cuenta="null")
         sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
         
 		env.ENV='predev'
-        env.STACK_NAME='ArchEventHub'
         devops.aws_config("AWS_DESA")
+        env.STACK_NAME='ArchEventHub'
         env.DEPLOY_BUCKETNAME='tesla-prius-deploy'
         return true
     }
