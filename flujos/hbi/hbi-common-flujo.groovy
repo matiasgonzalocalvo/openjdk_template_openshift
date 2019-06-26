@@ -102,6 +102,7 @@ def flujo()
           }
         }
         if ( "${docker_push_tag1}" == "true" )
+        {
           stage("Push image ${TAG1}")
           {
             devops.docker_push("${ECR_URL}","${ECR_ID}","${TAG1}","tcp://${JENKINS_IP}:2376")
