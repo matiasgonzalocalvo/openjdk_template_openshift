@@ -152,9 +152,9 @@ def flujo()
       }
       catch (e) 
       {
-        echo e.getMessage()
-        echo 'Err: Build failed with Error: ' + e.toString()
-        echo "FALLO !!!!!"
+        print e.getMessage()
+        print 'Err: Build failed with Error: ' + e.toString()
+        print "FALLO !!!!!"
         devops.fail()
       }
       finally 
