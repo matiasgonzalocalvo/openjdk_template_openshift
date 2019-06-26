@@ -7,8 +7,8 @@ def set_env_global()
   env.sonar_exclusions=""
   env.sonar_javascript_lcov_reportPaths=""
   env.AWS_DEFAULT_REGION='us-east-1'
-  env.ECR_ID=hb-common-utils
-  env.APPNAME=hb-common-utils
+  env.ECR_ID="hb-common-utils"
+  env.APPNAME="hb-common-utils"
 }
 def setenv(def cuenta="null")
 {
