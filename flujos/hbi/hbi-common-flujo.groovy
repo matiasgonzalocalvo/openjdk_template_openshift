@@ -94,27 +94,29 @@ def flujo()
             devops.reltag()
           }
         }
-        if ( "${docker_build_push_tag1}" == "true" )
+        if ( "${docker_build_tag1}" == "true" )
         {
-          stage("Docker build image")
+          stage("Docker build image ${TAG1}")
           {
             devops.docker_build("${ECR_URL}","${ECR_ID}","${TAG1}","tcp://${JENKINS_IP}:2376")
           }
-          stage("Push image")
+        }
+        if ( "${docker_push_tag1}" == "true" )
+          stage("Push image ${TAG1}")
           {
             devops.docker_push("${ECR_URL}","${ECR_ID}","${TAG1}","tcp://${JENKINS_IP}:2376")
           }
         }
-        if ( "${docker_tag}" == "true" )
+        if ( "${docker_tag1_tag2}" == "true" )
         {
-          stage("Tag image")
+          stage("Tag image ${TAG1} to ${TAG2}")
           {
             devops.docker_tag("${ECR_URL}","${ECR_ID}","${TAG1}","${TAG2}","tcp://${JENKINS_IP}:2376")
           }
         }
-        if ( "${docker_tag_latest_push}" == "true" )
+        if ( "${docker_push_tag2}" == "true" )
         { 
-          stage("Push image 2 ")
+          stage("Push image ${TAG2}")
           {
             devops.docker_push("${ECR_URL}","${ECR_ID}","${TAG2}","tcp://${JENKINS_IP}:2376")
           }
@@ -133,12 +135,15 @@ def flujo()
             devops.docker_push("${ECR_URL2}","${ECR_ID}","${TAG2}","tcp://${JENKINS_IP}:2376")
           }
         }
-        if ( "${update_esc}" == "true" ) 
+        if ( "${change_aws_key}" == "true" ) 
         {
           stage("change aws key")
           {
             devops.aws_config("${aws_key_2}")
           }
+        }
+        if ( "${update_esc}" == "true" )
+        {
           stage("Update ecs service")
           {
             devops.ecs_update_service("${ENVNAME}-cluster", "${ENVNAME}-${APPNAME}-service", "${ENVNAME}-${APPNAME}-task")

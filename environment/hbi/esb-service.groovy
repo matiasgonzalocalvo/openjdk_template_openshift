@@ -3,7 +3,7 @@ def set_env_global()
   /*
     Variables Globales a todos los ambientes
   */
-  env.sonar_projectKey="auth-service"
+  env.sonar_projectKey="esb-service"
   env.sonar_exclusions=""
   env.sonar_javascript_lcov_reportPaths=""
   env.AWS_DEFAULT_REGION='us-east-1'
@@ -15,8 +15,8 @@ def setenv(def cuenta="null")
     sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
     env.ECR_URL="104455529394.dkr.ecr.us-east-1.amazonaws.com"
     env.ECR_URL2="367760667466.dkr.ecr.us-east-1.amazonaws.com"
-    env.ECR_ID="auth"
-    env.APPNAME="auth"
+    env.ECR_ID="esb-service"
+    env.APPNAME="esb-service"
     env.ENVNAME="prod"
     env.TAG1="qa"
     env.TAG2="prod"
@@ -30,11 +30,11 @@ def setenv(def cuenta="null")
     sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
     devops.aws_config("705437fe-118c-4fbc-af26-595cbdc1e752")
     devops.config_file_provider("9bca46b5-370c-4e9c-97bf-447123727106")
-    env.ECR_URL=104455529394.dkr.ecr.us-east-1.amazonaws.com
-    env.ECR_ID=auth
-    env.APPNAME=auth
-    env.ENVNAME=glqa
-    env.TAG2=glqa
+    env.ECR_URL="104455529394.dkr.ecr.us-east-1.amazonaws.com"
+    env.ECR_ID="esb-service"
+    env.APPNAME="esb-service"
+    env.ENVNAME="glqa"
+    env.TAG2="glqa"
     env.maven_redis="true"
     env.maven_cobertura="true"
     env.maven_sonar="true"
@@ -54,8 +54,8 @@ def setenv(def cuenta="null")
     env.aws_key_1="705437fe-118c-4fbc-af26-595cbdc1e752"
     env.aws_key_2="ECSUpdateService"
     env.ECR_URL="104455529394.dkr.ecr.us-east-1.amazonaws.com"
-    env.ECR_ID="auth"
-    env.APPNAME="auth"
+    env.ECR_ID="esb-service"
+    env.APPNAME="esb-service"
     env.TAG1="$BUILD_NUMBER"
     env.TAG2="latest"
     env.CLOUD_AWS_STACK_AUTO="false"
@@ -80,8 +80,8 @@ def setenv(def cuenta="null")
     env.aws_key_1="705437fe-118c-4fbc-af26-595cbdc1e752"
     env.aws_key_2="ECSUpdateService"
     env.ECR_URL="104455529394.dkr.ecr.us-east-1.amazonaws.com"
-    env.ECR_ID="auth"
-    env.APPNAME="auth"
+    env.ECR_ID="esb-service"
+    env.APPNAME="esb-service"
     env.TAG1="$BUILD_NUMBER"
     env.TAG2="sandbox"
     env.CLOUD_AWS_STACK_AUTO="false"
