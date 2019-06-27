@@ -3,12 +3,12 @@ def set_env_global()
   /*
     Variables Globales a todos los ambientes
   */
-  env.sonar_projectKey="comafi-common-canales-dashboard-service"
+  env.sonar_projectKey="comafi-hbe-coexistence-service"
   env.sonar_exclusions=""
   env.sonar_javascript_lcov_reportPaths=""
   env.AWS_DEFAULT_REGION='us-east-1'
-  env.ECR_ID="commons/dashboard"
-  env.APPNAME="commons-dashboard"
+  env.ECR_ID="commons/coexistence"
+  env.APPNAME="commons-coexistence"
   env.node_docker="jenkins-slave-comafi-maven3.3.9"
 }
 def setenv(def cuenta="null")
