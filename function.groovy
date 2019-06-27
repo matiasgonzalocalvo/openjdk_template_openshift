@@ -574,12 +574,15 @@ def sam_deploy( def overrides="null" )
 {
   if ( overrides == "null" ) 
   {
+    echo "if"
+    sh "export"
     sh '''
     /home/jenkins/.local/bin/sam deploy --template-file "packaged${random}.yaml" --stack-name ${STACK} --tags Project=${PROJECT} --capabilities CAPABILITY_NAMED_IAM --parameter-overrides ${parameter_overrides} --region ${AWS_DEFAULT_REGION} --debug
     '''
   }
   else
   {
+    echo "else"
     sh '''
     /home/jenkins/.local/bin/sam deploy --template-file "packaged${random}.yaml" --stack-name ${STACK} --tags Project=${PROJECT} --capabilities CAPABILITY_NAMED_IAM --parameter-overrides ${overrides} --region ${AWS_DEFAULT_REGION} --debug
     '''

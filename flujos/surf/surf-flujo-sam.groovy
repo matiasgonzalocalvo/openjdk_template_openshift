@@ -45,7 +45,7 @@ def flujo()
         stage("Deploy SURF SAM Project")
         {
           sh "export"
-          devops.sam_deploy("${PARAMETER_OVERRIDES}")
+          devops.sam_deploy()
         }
       }
       catch (e) 

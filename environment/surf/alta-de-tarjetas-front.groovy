@@ -66,7 +66,7 @@ def setenv(def cuenta="null")
     env.PROJECT="ALTA-DE-TARJETAS"
     env.DEFAULT_BUCKET="${ENV}-${ENV}-comercios-deploy-${ENV}"
     env.CERT_ARN="arn:aws:acm:us-east-1:104455529394:certificate/a35d91f8-2b7f-4833-8af6-e2f5f5e54c23"
-    env.PARAMETER_OVERRIDES="Environment=${ENV} DeployBucket=${BUCKET} HostedZoneName=${DOMAIN} CertArn=$CERT_ARN StackName=${STACK}"
+    env.parameter_overrides="Environment=${ENV} DeployBucket=${BUCKET} HostedZoneName=${DOMAIN} CertArn=$CERT_ARN StackName=${STACK}"
   }
   else
   {
