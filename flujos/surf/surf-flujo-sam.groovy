@@ -38,7 +38,8 @@ def flujo()
         }
         stage("Build SURF SAM Project")
         {
-          devops.sam_package("${PARAMETER_OVERRIDE}")
+          //sh "export"
+          devops.sam_package()
         }
         stage("Deploy SURF SAM Project")
         {
