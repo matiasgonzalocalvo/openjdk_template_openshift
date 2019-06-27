@@ -8,6 +8,7 @@ def flujo()
   }
   try
   {
+    loadvar.set_env_global()
     print node_docker 
   }
   catch (e)
