@@ -16,6 +16,7 @@ def setenv(def cuenta="null")
     sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
     devops.aws_config("AWS_Alternative")
     env.ENV='prod'
+    env.DOMAIN=""
     def verCode = UUID.randomUUID().toString()
     env.random="${verCode}"
     env.BUCKET="${ENV}-comafi-base-deploy"    
@@ -29,6 +30,7 @@ def setenv(def cuenta="null")
     sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
     devops.aws_config("AWS_Alternative")
     env.ENV='qa'
+    env.DOMAIN=""
     def verCode = UUID.randomUUID().toString()
     env.random="${verCode}"
     env.BUCKET="${ENV}-comafi-base-deploy"    
@@ -42,6 +44,7 @@ def setenv(def cuenta="null")
     sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
     devops.aws_config("AWS_Alternative")
     env.ENV='dev'
+    env.DOMAIN=""
     def verCode = UUID.randomUUID().toString()
     env.random="${verCode}"
     env.BUCKET="${ENV}-comafi-base-deploy"    
@@ -57,11 +60,13 @@ def setenv(def cuenta="null")
     env.ENV='dtkpredev'
     def verCode = UUID.randomUUID().toString()
     env.random="${verCode}"
+    env.DOMAIN='comercios.co'
     env.BUCKET="${ENV}-comafi-base-deploy"    
     env.STACK="${ENV}-INFRA-ADTC-FRONT"
     env.PROJECT="ALTA-DE-TARJETAS"
     env.DEFAULT_BUCKET="${ENV}-${ENV}-comercios-deploy-${ENV}"
     env.CERT_ARN="arn:aws:acm:us-east-1:104455529394:certificate/a35d91f8-2b7f-4833-8af6-e2f5f5e54c23"
+    env.PARAMETER-OVERRIDES="Environment=${ENV} DeployBucket=${BUCKET} HostedZoneName=${DOMAIN} CertArn=$CERT_ARN StackName=${STACK}"
   }
   else
   {
