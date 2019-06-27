@@ -320,7 +320,9 @@ def set_scripts_comafi_digital()
   }
   else
   {
-    echo "exit 3 no se en que carpeta estan los scripts"
+    echo "no existe scripts ni _sscripts"
+    //env.CARPETASCRIPT="null"
+    env.CARPETASCRIPT="."
   }
 }
 def build_comafi_digital()
@@ -561,8 +563,10 @@ def yarn_install_funcctions()
 }
 def sam_package()
 {
+  // seteo la variable carpetascript que voy a usar abajo
+  devops.set_scripts_comafi_digital()
   sh '''
-    /home/jenkins/.local/bin/sam package --template-file template.yaml --output-template-file "packaged${random}.yaml" --s3-bucket ${BUCKET} --region ${AWS_DEFAULT_REGION}
+    /home/jenkins/.local/bin/sam package --template-file ${CARPETASCRIPT}/template.yaml --output-template-file "packaged${random}.yaml" --s3-bucket ${BUCKET} --region ${AWS_DEFAULT_REGION}
   '''
 }
 

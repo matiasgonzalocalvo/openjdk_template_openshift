@@ -34,6 +34,7 @@ def flujo()
             echo 'No existen variables Globales ' + e.toString()
           }
           loadvar.setenv()
+          //devops.set_scripts_comafi_digital()
           //devops.docker_login()
         }
         stage("Build SURF SAM Project")
