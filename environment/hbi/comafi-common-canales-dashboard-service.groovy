@@ -7,8 +7,9 @@ def set_env_global()
   env.sonar_exclusions=""
   env.sonar_javascript_lcov_reportPaths=""
   env.AWS_DEFAULT_REGION='us-east-1'
-  env.ECR_ID=commons/dashboard
-  env.APPNAME=commons-dashboard
+  env.ECR_ID="commons/dashboard"
+  env.APPNAME="commons-dashboard"
+  env.node_docker="jenkins-slave-comafi-maven3.3.9"
 }
 def setenv(def cuenta="null")
 {
