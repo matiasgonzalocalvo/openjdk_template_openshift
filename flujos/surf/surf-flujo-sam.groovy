@@ -38,11 +38,11 @@ def flujo()
         }
         stage("Build SURF SAM Project")
         {
-          devops.sam_package($PARAMETER_OVERRIDE)
+          devops.sam_package("${PARAMETER_OVERRIDE}")
         }
         stage("Deploy SURF SAM Project")
         {
-          devops.sam_deploy($PARAMETER_OVERRIDE)
+          devops.sam_deploy("${PARAMETER_OVERRIDE}")
         }
       }
       catch (e) 
