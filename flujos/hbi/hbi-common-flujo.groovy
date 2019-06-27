@@ -14,7 +14,7 @@ def flujo()
   catch (e)
   {
     print e.getMessage()
-    print 'Err: Build failed with Error: ' + e.toString()
+    print 'Err:  ' + e.toString()
     echo "node_docker no existe seteo jenkins-slave-comafi-maven3.3.9-redis"
     node_docker="jenkins-slave-comafi-maven3.3.9-redis"
   }
