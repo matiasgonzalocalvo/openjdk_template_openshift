@@ -10,7 +10,7 @@ def flujo()
         loadvar.set_env_global() 
         loadvar.setenv()
       }
-      stage("Build New Circuit Engine")
+      stage("Build DEI")
       {
         devops.new_process_sam()
       }
