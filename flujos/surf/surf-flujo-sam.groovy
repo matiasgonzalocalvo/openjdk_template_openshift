@@ -34,7 +34,7 @@ def flujo()
             echo 'No existen variables Globales ' + e.toString()
           }
           loadvar.setenv()
-          devops.docker_login()
+          //devops.docker_login()
         }
         stage("Build SURF SAM Project")
         {
