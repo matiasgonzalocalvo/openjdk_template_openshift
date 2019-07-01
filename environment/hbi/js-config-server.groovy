@@ -3,12 +3,12 @@ def set_env_global()
   /*
     Variables Globales a todos los ambientes
   */
-  env.sonar_projectKey="comafi-hbe-adhesion-service"
+  env.sonar_projectKey="js-config-server"
   env.sonar_exclusions=""
   env.sonar_javascript_lcov_reportPaths=""
   env.AWS_DEFAULT_REGION='us-east-1'
-  env.ECR_ID="commons/adhesion"
-  env.APPNAME="commons-adhesion"
+  env.ECR_ID="config-server"
+  env.APPNAME="config-server"
   env.node_docker="jenkins-slave-comafi-maven3.3.9"
 }
 def setenv(def cuenta="null")
