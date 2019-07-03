@@ -290,6 +290,33 @@ def sonar_js(sonar_projectKey, def sonar_exclusions="null", def sonar_javascript
       sh "${scannerHome}/bin/sonar-scanner ${sonar}"
     }
 }
+def lambda_sonar(sonar_projectKey, def sonar_exclusions="null", def sonar_javascript_lcov_reportPaths="null")
+{
+  sonar_login="694e463e93ba0a27427fb8a46a266abc42c0f542"
+  sonar="-Dsonar.projectKey=${sonar_projectKey} -Dsonar.projectVersion=${BUILD_NUMBER} -Dsonar.projectBaseDir=${WORKSPACE} -Dsonar.sources=. -Dsonar.language=js -Dsonar.login=${sonar_login} -X"
+  def scannerHome = tool 'SonarQube Scanner';
+    withSonarQubeEnv('Sonarqube') {
+      if( sonar_exclusions != "null" && sonar_exclusions != "" )
+      {
+        echo "seteando sonar.exclusions=|${sonar_exclusions}|"
+        sonar="${sonar} -Dsonar.exclusions=${sonar_exclusions}"
+      }
+      if( sonar_javascript_lcov_reportPaths != "null" && sonar_javascript_lcov_reportPaths != "" )
+      {
+        echo "seteando -Dsonar.javascript.lcov.reportPaths=|${sonar_javascript_lcov_reportPaths}|"
+        sonar="${sonar} -Dsonar.javascript.lcov.reportPaths=${sonar_javascript_lcov_reportPaths}"
+      }
+      sh '''
+        #!/bin/bash
+        for functions in functions/* ; do
+          echo 'Test In ' $functions
+          cd $functions
+          ${scannerHome}/bin/sonar-scanner ${sonar}
+          cd -
+        done
+      '''
+    }
+}
 def wait_sonar()
 {
     timeout(time: 1, unit: 'HOURS')
@@ -548,18 +575,40 @@ def new_process_sam()
     /home/jenkins/.local/bin/sam deploy --template-file "packaged${random}.yaml" --stack-name ${STACK} --tags Project=${PROJECT} --capabilities CAPABILITY_NAMED_IAM --parameter-overrides FilesBucket=${FILES_BUCKET} Environment=${ENV} DeployBucket=${BUCKET} StackName=${STACK} DefaultFiles=${DEFAULT_BUCKET} ThubanHost=${ThubanHost} ThubanPassword=${ThubanPassword} ThubanUser=${ThubanUser} --region ${AWS_DEFAULT_REGION} --debug
   """
 }
-def yarn_install_funcctions()
+def yarn_install_functions()
 {
   sh '''
     #!/bin/bash
     for functions in functions/* ; do
       echo 'Building ' $functions
       cd $functions
-      rm -Rf node_modules 
+      if [ -e node_modules ] ; then
+        rm -Rf node_modules 
+      fi
       yarn install --prod
       cd -
     done
   '''
+}
+def lambda_yarn_test()
+{
+  sh '''
+    #!/bin/bash
+    for functions in functions/* ; do
+      echo 'Test In ' $functions
+      cd $functions
+      if [ -e node_modules ] ; then
+        rm -Rf node_modules 
+      fi
+      yarn test
+      cd -
+    done
+  '''
+}
+def swagger_cp_s3()
+{
+  echo 'Uploading swagger to S3'
+  aws s3 cp "${SOURCE_cloudformation}/swagger.yaml" s3://$BUCKET/$ENV-swagger-{random}.yaml
 }
 def sam_package()
 {

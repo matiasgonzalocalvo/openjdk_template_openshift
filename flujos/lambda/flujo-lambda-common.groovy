@@ -1,6 +1,7 @@
 #!groovy
 def flujo() 
 {
+  node_docker="jenkins-slave-comafi-nodejsdtk"
   try
   {
     loadvar.set_env_global()
@@ -10,8 +11,7 @@ def flujo()
   {
     print e.getMessage()
     print 'Err:  ' + e.toString()
-    echo "node_docker no existe seteo jenkins-slave-comafi-nodejsdtk"
-    node_docker="jenkins-slave-comafi-nodejsdtk"
+    echo "no existe set_env_global"
   }
   node ("${node_docker}")
   {
@@ -34,18 +34,32 @@ def flujo()
             echo 'No existen variables Globales ' + e.toString()
           }
           loadvar.setenv()
-          //devops.set_scripts_comafi_digital()
-          //devops.docker_login()
         }
-        stage("Build SURF SAM Project")
+        stage('Lambda Yarn Test')
         {
-          //sh "export"
-          //devops.sam_package()
-          devops.new_process_sam()
+          devops.lambda_yarn_test()
         }
-        stage("Deploy SURF SAM Project")
+        stage('Lambda Yarn Install')
         {
-          sh "export"
+          devops.yarn_install_functions()
+        }
+        stage('Lambda Sonar')
+        {
+          devops.lambda_sonar()
+        }
+        if ( fileExists("${SOURCE_cloudformation}/swagger.yaml") )
+        {
+          stage('Lambda cp to S3')
+          {
+            devops.swagger_cp_s3()
+          }
+        }
+        stage('Lambda sam package')
+        {
+          devops.sam_package()
+        }
+        stage('Lambda sam deploy')
+        {
           devops.sam_deploy()
         }
       }
@@ -58,11 +72,8 @@ def flujo()
       }
       finally 
       {
-        stage('Reportes')
-        {
-          devops.reporting()
-          devops.postfinal()
-        }
+        devops.reporting()
+        devops.postfinal()
       }
     }
   }
