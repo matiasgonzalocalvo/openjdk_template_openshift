@@ -38,7 +38,6 @@ def setenv(def cuenta="null")
       ]
     )
     env.ENV="${ENV}"
-    //sh "export"
     echo "you selected: ${ENV}"
     devops.aws_config("AWS_DESA")
   }

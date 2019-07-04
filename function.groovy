@@ -44,7 +44,6 @@ def credentials_to_variable(env_variable, env_credentials)
     echo "env_variable = ${env_variable} | variable = ${variable} | env_credentials = ${env_credentials}"
     evaluate "env.${env_variable}=\"${variable}\""
   }
-  //sh "export | base64"
 }
 def send_slack(def estado=null,def emoji="ghost",def channel="#jenkins",def text="Job $JOB_NAME Build number $BUILD_NUMBER for branch $BRANCH_NAME ${RUN_DISPLAY_URL} |",def slackurl="https://hooks.slack.com/services/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") 
 {
@@ -321,7 +320,6 @@ def wait_sonar()
 {
     timeout(time: 1, unit: 'HOURS')
     {
-      sh "export"
       // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
       // true = set pipeline to UNSTABLE, false = don't
       // Requires SonarQube Scanner for Jenkins 2.7+
@@ -403,7 +401,6 @@ def fail()
 }
 def reporting()
 {
-  sh "export"
   try 
   {
     if (currentBuild.currentResult == 'UNSTABLE')
@@ -475,7 +472,6 @@ def npm_run_build_env()
   try
   {
     sh """
-      export 
       npm run build-$ENV
     """
   }
@@ -624,7 +620,6 @@ def sam_deploy( def overrides="null" )
   if ( overrides == "null" ) 
   {
     echo "if"
-    sh "export"
     sh '''
     /home/jenkins/.local/bin/sam deploy --template-file "packaged${random}.yaml" --stack-name ${STACK} --tags Project=${PROJECT} --capabilities CAPABILITY_NAMED_IAM --parameter-overrides ${parameter_overrides} --region ${AWS_DEFAULT_REGION} --debug
     '''

@@ -37,13 +37,7 @@ def flujo()
         {
           stage("Build Comafi Digital ${cuenta}")
           {
-            sh ''' echo "################################"'''
-            sh "export"
-            sh  ''' echo "##############" '''
             devops.build_comafi_digital()
-            sh ''' echo "################################"'''
-            sh "export"
-            sh  ''' echo "##############" '''
           }
           stage("Deploy Comafi Digital ${cuenta}")
           {

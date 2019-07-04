@@ -39,13 +39,10 @@ def flujo()
         }
         stage("Build SURF SAM Project")
         {
-          //sh "export"
-          //devops.sam_package()
           devops.new_process_sam()
         }
         stage("Deploy SURF SAM Project")
         {
-          sh "export"
           devops.sam_deploy()
         }
       }
