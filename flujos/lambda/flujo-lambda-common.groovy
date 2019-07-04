@@ -1,6 +1,20 @@
 #!groovy
 def flujo() 
 {
+  /*
+    Genero Variables Globales que se van a utilizar
+  */
+  env.SOURCE_cloudformation="cloudformations"
+  env.SOURCE_functions="functions"
+  env.SOURCE_scripts="scripts"
+  /* 
+    Generando un numero ramdon que se va a utilizar en el environment y en la ejecucion del sam
+  */
+  def verCode = UUID.randomUUID().toString()
+  env.random="${verCode}"
+  /*
+    genero node_docker default
+  */
   node_docker="jenkins-slave-comafi-nodejsdtk"
   try
   {

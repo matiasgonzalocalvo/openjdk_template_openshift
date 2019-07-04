@@ -586,11 +586,28 @@ def yarn_install_functions()
     done
   '''
 }
+
+def lambda_yarn_install()
+{
+  sh '''
+    #!/bin/bash
+    for functions in ${SOURCE_functions}/* ; do
+      echo 'Building ' $functions
+      cd $functions
+      if [ -e node_modules ] ; then
+        rm -Rf node_modules 
+      fi
+      yarn install --prod
+      cd -
+    done
+  '''
+}
+
 def lambda_yarn_test()
 {
   sh '''
     #!/bin/bash
-    for functions in functions/* ; do
+    for functions in ${SOURCE_functions}/* ; do
       echo 'Test In ' $functions
       cd $functions
       if [ -e node_modules ] ; then
@@ -601,17 +618,17 @@ def lambda_yarn_test()
     done
   '''
 }
-/*def swagger_cp_s3()
+def swagger_cp_s3()
 {
   echo 'Uploading swagger to S3'
   aws s3 cp "${SOURCE_cloudformation}/swagger.yaml" s3://$BUCKET/$ENV-swagger-{random}.yaml
-}*/
+}
 def sam_package()
 {
   // seteo la variable carpetascript que voy a usar abajo
   devops.set_scripts_comafi_digital()
   sh '''
-    /home/jenkins/.local/bin/sam package --template-file ${CARPETASCRIPT}/template.yaml --output-template-file "packaged${random}.yaml" --s3-bucket ${BUCKET} --region ${AWS_DEFAULT_REGION}
+    /home/jenkins/.local/bin/sam package --template-file ${SOURCE_functions}/template.yaml --output-template-file "${SOURCE_functions}/packaged${random}.yaml" --s3-bucket ${BUCKET} --region ${AWS_DEFAULT_REGION}
   '''
 }
 
@@ -621,7 +638,7 @@ def sam_deploy( def overrides="null" )
   {
     echo "if"
     sh '''
-    /home/jenkins/.local/bin/sam deploy --template-file "packaged${random}.yaml" --stack-name ${STACK} --tags Project=${PROJECT} --capabilities CAPABILITY_NAMED_IAM --parameter-overrides ${parameter_overrides} --region ${AWS_DEFAULT_REGION} --debug
+    /home/jenkins/.local/bin/sam deploy --template-file "${SOURCE_functions}/packaged${random}.yaml" --stack-name ${STACK} --tags Project=${PROJECT} --capabilities CAPABILITY_NAMED_IAM --parameter-overrides ${parameter_overrides} --region ${AWS_DEFAULT_REGION} --debug
     '''
   }
   else
