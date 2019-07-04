@@ -622,7 +622,7 @@ def swagger_cp_s3()
 {
   echo 'Uploading swagger to S3'
   sh '''
-    aws s3 cp "${SOURCE_cloudformation}/swagger.yaml" s3://$BUCKET/$ENV-swagger-{random}.yaml
+    aws s3 cp "${SOURCE_cloudformation}/swagger.yaml" s3://$BUCKET/$ENV-swagger-${random}.yaml
   '''
 }
 def sam_package()

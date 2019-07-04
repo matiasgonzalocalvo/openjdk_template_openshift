@@ -40,7 +40,8 @@ def setenv(def cuenta="null")
   else if (env.BRANCH_NAME =~ "feature/*" || env.BRANCH_NAME =~ "PR*")
   {
     sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
-    devops.aws_config("AWS_DESA_CMF")
+    //devops.aws_config("AWS_DESA_CMF")
+    devops.aws_config("AWS_DESA")
     env.ENV='predev'
     env.BUCKET="${ENV}-comafi-base-deploy"
     env.STACK="${ENV}-INFRA-OPEN-CE-APJ-API"
