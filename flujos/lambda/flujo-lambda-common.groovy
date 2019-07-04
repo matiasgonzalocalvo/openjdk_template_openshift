@@ -58,10 +58,12 @@ def flujo()
         {
           devops.lambda_yarn_install()
         }
+        /*
         stage('Lambda Sonar')
         {
           devops.lambda_sonar()
         }
+        */
         if ( fileExists("${SOURCE_cloudformation}/swagger.yaml") )
         {
           stage('Lambda cp to S3')
