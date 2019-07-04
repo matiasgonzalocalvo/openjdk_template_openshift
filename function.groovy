@@ -633,6 +633,13 @@ def sam_package()
     /home/jenkins/.local/bin/sam package --template-file ${SOURCE_functions}/template.yaml --output-template-file "${SOURCE_functions}/packaged${random}.yaml" --s3-bucket ${BUCKET} --region ${AWS_DEFAULT_REGION}
   '''
 }
+def lambda_sam_package()
+{
+  // seteo la variable carpetascript que voy a usar abajo
+  sh '''
+    sam package --template-file ${SOURCE_cloudformation}/template.yaml --output-template-file "${SOURCE_cloudformation}/packaged${random}.yaml" --s3-bucket ${BUCKET} --region ${AWS_DEFAULT_REGION}
+  '''
+}
 
 def sam_deploy( def overrides="null" )
 {
@@ -650,6 +657,12 @@ def sam_deploy( def overrides="null" )
     /home/jenkins/.local/bin/sam deploy --template-file "packaged${random}.yaml" --stack-name ${STACK} --tags Project=${PROJECT} --capabilities CAPABILITY_NAMED_IAM --parameter-overrides ${overrides} --region ${AWS_DEFAULT_REGION} --debug
     '''
   }
+}
+def lambda_sam_deploy()
+{
+    sh '''
+    /home/jenkins/.local/bin/sam deploy --template-file "${SOURCE_cloudformation}/packaged${random}.yaml" --stack-name ${STACK} --tags Project=${PROJECT} --capabilities CAPABILITY_NAMED_IAM --parameter-overrides ${parameter_overrides} --region ${AWS_DEFAULT_REGION} --debug
+    '''
 }
 
 def config_file_provider(fileid, def settings="null")

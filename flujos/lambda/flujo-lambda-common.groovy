@@ -73,11 +73,11 @@ def flujo()
         }
         stage('Lambda sam package')
         {
-          devops.sam_package()
+          devops.lambda_sam_package()
         }
         stage('Lambda sam deploy')
         {
-          devops.sam_deploy()
+          devops.lambda_sam_deploy()
         }
       }
       catch (e) 
