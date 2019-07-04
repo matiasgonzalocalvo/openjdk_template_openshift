@@ -49,13 +49,14 @@ def flujo()
           }
           loadvar.setenv()
         }
+        /*
         stage('Lambda Yarn Test')
         {
           devops.lambda_yarn_test()
-        }
+        }*/
         stage('Lambda Yarn Install')
         {
-          devops.yarn_install_functions()
+          devops.lambda_yarn_install()
         }
         stage('Lambda Sonar')
         {
