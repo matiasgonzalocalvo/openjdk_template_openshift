@@ -29,7 +29,7 @@ def setenv(def cuenta="null")
     env.BUCKET="${ENV}-comafi-base-deploy"
     env.STACK="${ENV}-INFRA-OPEN-CE-APJ-API"
     env.PROJECT="OPEN-CE-APJ-API"
-    # VARIABLES ESPECIFICAS SEGUN EL MICROSERVICIO
+    //VARIABLES ESPECIFICAS SEGUN EL MICROSERVICIO
     env.SECURITY_GROUP_ID_1="sg-07d08c61cd167f619"
     env.SUBNET_ID_1="subnet-0a51d13e6bb796d09"
     env.SUBNET_ID_2="subnet-0d87fb44935717d2e"
