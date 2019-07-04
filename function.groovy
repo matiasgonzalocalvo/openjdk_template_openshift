@@ -605,11 +605,11 @@ def lambda_yarn_test()
     done
   '''
 }
-def swagger_cp_s3()
+/*def swagger_cp_s3()
 {
   echo 'Uploading swagger to S3'
   aws s3 cp "${SOURCE_cloudformation}/swagger.yaml" s3://$BUCKET/$ENV-swagger-{random}.yaml
-}
+}*/
 def sam_package()
 {
   // seteo la variable carpetascript que voy a usar abajo
