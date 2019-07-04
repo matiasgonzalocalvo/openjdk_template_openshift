@@ -661,7 +661,7 @@ def sam_deploy( def overrides="null" )
 def lambda_sam_deploy()
 {
     sh '''
-    /home/jenkins/.local/bin/sam deploy --template-file "${SOURCE_cloudformation}/packaged${random}.yaml" --stack-name ${STACK} --tags Project=${PROJECT} --capabilities CAPABILITY_NAMED_IAM --parameter-overrides ${parameter_overrides} --region ${AWS_DEFAULT_REGION} --debug
+      /home/jenkins/.local/bin/sam deploy --template-file "${SOURCE_cloudformation}/packaged${random}.yaml" --stack-name ${STACK} --tags Project=${PROJECT} --capabilities CAPABILITY_NAMED_IAM --parameter-overrides ${parameter_overrides} --region ${AWS_DEFAULT_REGION} --debug
     '''
 }
 

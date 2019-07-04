@@ -73,10 +73,12 @@ def flujo()
         }
         stage('Lambda sam package')
         {
+          print "Lambda sam package"
           devops.lambda_sam_package()
         }
         stage('Lambda sam deploy')
         {
+          print "Lambda sam deploy"
           devops.lambda_sam_deploy()
         }
       }
