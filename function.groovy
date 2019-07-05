@@ -690,4 +690,31 @@ def reltag()
     git checkout $RELTAG
   '''
 }
+
+
+def ng_build()
+{
+  sh '''
+    #!/bin/bash
+    ng build 
+  '''
+}
+
+
+def ng_test()
+{
+  sh '''
+    #!/bin/bash
+    ng test 
+  '''
+}
+def cloudfront_invalidation()
+{
+  sh '''
+    #!/bin/bash
+    CLOUDFRONT_DISTRIBUTION=$(aws cloudformation describe-stacks --stack-name "${STACK}"  --output text | grep ${ENV}-${Cloudfront_distribution} | awk -F"\t" '{$0=$5}6')
+    aws cloudfront create-invalidation --distribution-id ${CLOUDFRONT_DISTRIBUTION} --path "/*"
+  '''
+}
+
 return this
