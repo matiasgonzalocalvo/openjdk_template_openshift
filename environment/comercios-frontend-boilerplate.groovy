@@ -80,15 +80,6 @@ def setenv(def cuenta="null")
       env.CERT_ARN='arn:aws:acm:us-east-1:780666439417:certificate/6c9bb0c4-55d1-4026-afb2-3a3e72b9632c'
       return true
     }
-    else if ( cuenta == "AWS_DESA" )
-    {
-      env.ENV='dtkdev'
-      devops.aws_config("AWS_DESA")
-      env.STACK_NAME='COMERCIOS-PORTAL'
-      env.DOMAIN='comercios.co'
-      env.CERT_ARN='arn:aws:acm:us-east-1:104455529394:certificate/a35d91f8-2b7f-4833-8af6-e2f5f5e54c23'
-      return true
-    }
     else
     {
       return false
@@ -105,15 +96,6 @@ def setenv(def cuenta="null")
       env.STACK_NAME='CmfComerciosPortal'
       env.DOMAIN='desa-comafidigital.com'
       env.CERT_ARN='arn:aws:acm:us-east-1:780666439417:certificate/6c9bb0c4-55d1-4026-afb2-3a3e72b9632c'
-      return true
-    }
-    else if ( cuenta == "AWS_DESA" )
-    {
-      env.ENV='dtkpredev'
-      devops.aws_config("AWS_DESA")
-      env.STACK_NAME='COMERCIOS-PORTAL'
-      env.DOMAIN='comercios.co'
-      env.CERT_ARN='arn:aws:acm:us-east-1:104455529394:certificate/a35d91f8-2b7f-4833-8af6-e2f5f5e54c23'
       return true
     }
     else
