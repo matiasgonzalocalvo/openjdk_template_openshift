@@ -1,10 +1,6 @@
 #!groovy
 def flujo() 
 {
-  sh '''
-    df -h 
-    du -hsx /*
-  '''
   /*
     Genero Variables Globales que se van a utilizar
   */
