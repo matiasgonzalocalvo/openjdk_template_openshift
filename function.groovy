@@ -597,6 +597,7 @@ def lambda_yarn_install()
       if [ -e node_modules ] ; then
         rm -Rf node_modules 
       fi
+      export
       yarn install --prod
       cd -
     done
