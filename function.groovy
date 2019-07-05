@@ -647,7 +647,7 @@ def lambda_sam_package_security()
   // seteo la variable carpetascript que voy a usar abajo
   sh '''
     #/bin/bash
-    sam package --template-file "${SOURCE_cloudformation}/security.yaml" --output-template-file "security_${random}.yaml" --s3-bucket $BUCKET --debug
+    sam package --template-file "${SOURCE_cloudformation}/security.yaml" --output-template-file "${SOURCE_cloudformation}/security_${random}.yaml" --s3-bucket $BUCKET --debug
   '''
 }
 
