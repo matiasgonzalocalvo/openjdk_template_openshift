@@ -706,6 +706,7 @@ def ng_test()
 {
   sh '''
     #!/bin/bash
+    npm install
     ng test 
   '''
 }
