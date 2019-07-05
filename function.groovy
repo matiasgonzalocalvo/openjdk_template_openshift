@@ -597,7 +597,6 @@ def lambda_yarn_install()
       if [ -e node_modules ] ; then
         rm -Rf node_modules 
       fi
-      export
       yarn install --prod
       cd -
     done
@@ -639,9 +638,6 @@ def lambda_sam_package()
   // seteo la variable carpetascript que voy a usar abajo
   sh '''
     #/bin/bash
-    sam --version
-    nodejs --version
-    aws --version
     sam package --template-file ${SOURCE_cloudformation}/template.yaml --output-template-file "${SOURCE_cloudformation}/packaged${random}.yaml" --s3-bucket ${BUCKET} --region ${AWS_DEFAULT_REGION} --debug
   '''
 }
