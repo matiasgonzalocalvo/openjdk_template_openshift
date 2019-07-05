@@ -642,6 +642,16 @@ def lambda_sam_package()
   '''
 }
 
+def lambda_sam_package_security()
+{
+  // seteo la variable carpetascript que voy a usar abajo
+  sh '''
+    #/bin/bash
+    sam package --template-file "${SOURCE_cloudformation}/security.yaml" --output-template-file "security_${random}.yaml" --s3-bucket $BUCKET --debug
+  '''
+}
+
+
 def sam_deploy( def overrides="null" )
 {
   if ( overrides == "null" ) 
@@ -665,6 +675,14 @@ def lambda_sam_deploy()
       /home/jenkins/.local/bin/sam deploy --template-file "${SOURCE_cloudformation}/packaged${random}.yaml" --stack-name ${STACK} --tags Project=${PROJECT} --capabilities CAPABILITY_NAMED_IAM --parameter-overrides ${parameter_overrides} --region ${AWS_DEFAULT_REGION} --debug
     '''
 }
+
+def lambda_sam_deploy_security()
+{
+    sh '''
+      sam deploy --template-file "${SOURCE_cloudformation}/security_${random}.yaml" --stack-name ${STACK_SECURITY} --tags Project=${PROJECT} --capabilities CAPABILITY_NAMED_IAM --parameter-overrides ${parameter_overrides_security} --region ${AWS_DEFAULT_REGION} --debug
+    '''
+}
+
 
 def config_file_provider(fileid, def settings="null")
 {

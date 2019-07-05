@@ -71,14 +71,20 @@ def flujo()
             devops.swagger_cp_s3()
           }
         }
+        stage('Lambda sam package security')
+        {
+          devops.lambda_sam_package_security()
+        }
+        stage('Lambda sam deploy security')
+        {
+          devops.lambda_sam_deploy_security()
+        }
         stage('Lambda sam package')
         {
-          print "Lambda sam package"
           devops.lambda_sam_package()
         }
         stage('Lambda sam deploy')
         {
-          print "Lambda sam deploy"
           devops.lambda_sam_deploy()
         }
       }

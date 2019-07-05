@@ -29,6 +29,9 @@ def setenv(def cuenta="null")
     env.BUCKET="${ENV}-comafi-base-deploy"
     env.STACK="${ENV}-INFRA-OPEN-CE-APJ-API"
     env.PROJECT="OPEN-CE-APJ-API"
+    env.PROJECT="OPEN-CE-APJ-API"
+    env.STACK="${ENV}-INFRA-${PROJECT}"
+    env.STACK_SECURITY="${ENV}-SECURITY-${PROJECT}"
     //VARIABLES ESPECIFICAS SEGUN EL MICROSERVICIO
     env.SECURITY_GROUP_ID_1="sg-07d08c61cd167f619"
     env.SUBNET_ID_1="subnet-0a51d13e6bb796d09"
@@ -36,6 +39,7 @@ def setenv(def cuenta="null")
     env.CISAT_URL="https://89gzrrzn8k.execute-api.us-east-1.amazonaws.com/dev/interface-cisat"
     env.CISAT_TOKEN="bnmu6WzW619tnH7jnmfsv2tAsm8Ddzikoq4u6876"
     env.parameter_overrides="UUID=${random} Environment=${ENV} DeployBucket=${BUCKET} StackName=${STACK} SecurityGroupId1=${SECURITY_GROUP_ID_1} SubnetId1=${SUBNET_ID_1} SubnetId2=${SUBNET_ID_2} CisatUrl=${CISAT_URL} CisatToken=${CISAT_TOKEN}"
+    env.parameter_overrides_security="Environment=${ENV}"
   }
   else if (env.BRANCH_NAME =~ "feature/*" || env.BRANCH_NAME =~ "PR*")
   {
@@ -45,7 +49,10 @@ def setenv(def cuenta="null")
     env.ENV='predev'
     env.BUCKET="${ENV}-comafi-base-deploy"
     env.STACK="${ENV}-INFRA-OPEN-CE-APJ-API"
+    env.STACK_SECURITY="${ENV}-SECURITY-OPEN-CE-APJ-API"
     env.PROJECT="OPEN-CE-APJ-API"
+    env.STACK="${ENV}-INFRA-${PROJECT}"
+    env.STACK_SECURITY="${ENV}-SECURITY-${PROJECT}"
     // VARIABLES ESPECIFICAS SEGUN EL MICROSERVICIO
     env.SECURITY_GROUP_ID_1="sg-07d08c61cd167f619"
     env.SUBNET_ID_1="subnet-0a51d13e6bb796d09"
@@ -53,6 +60,7 @@ def setenv(def cuenta="null")
     env.CISAT_URL="https://89gzrrzn8k.execute-api.us-east-1.amazonaws.com/dev/interface-cisat"
     env.CISAT_TOKEN="bnmu6WzW619tnH7jnmfsv2tAsm8Ddzikoq4u6876"
     env.parameter_overrides="UUID=${random} Environment=${ENV} DeployBucket=${BUCKET} StackName=${STACK} SecurityGroupId1=${SECURITY_GROUP_ID_1} SubnetId1=${SUBNET_ID_1} SubnetId2=${SUBNET_ID_2} CisatUrl=${CISAT_URL} CisatToken=${CISAT_TOKEN}"
+    env.parameter_overrides_security="Environment=${ENV}"
   }
   else
   {
