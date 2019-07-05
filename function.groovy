@@ -716,5 +716,16 @@ def cloudfront_invalidation()
     aws cloudfront create-invalidation --distribution-id ${CLOUDFRONT_DISTRIBUTION} --path "/*"
   '''
 }
-
+def front_s3_cp()
+{
+  sh '''
+    aws s3 cp dist/comafi/ s3://"${ENV}${SUBDOMINIO}.${DOMAIN}"/  --acl public-read --recursive
+  '''
+}
+def front_s3_cp_index()
+{
+  sh '''
+    aws s3 cp dist/comafi/index.html s3://"${ENV}${SUBDOMINIO}.${DOMAIN}"/  --acl public-read --recursive -cache-control max-age=3600
+  '''
+}
 return this
