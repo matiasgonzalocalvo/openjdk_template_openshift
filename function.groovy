@@ -696,6 +696,7 @@ def ng_build()
 {
   sh '''
     #!/bin/bash
+    npm install
     ng build 
   '''
 }
