@@ -5,7 +5,7 @@ def flujo()
   {
     try 
     {
-      def cuentas=["AWS_DESA_CMF", "AWS_DESA","_srv_jenkins_pec"]
+      def cuentas=["AWS_DESA","AWS_ARQ_DESA","_srv_jenkins_pec"]
       stage('set env')
       {
         try
