@@ -21,7 +21,7 @@ def flujo()
         } 
         stage('Docker Build')
         {
-          devops.devops.docker_build("${ECR_URL}","${ECR_ID}","${TAG1}","tcp://${JENKINS_IP}:2376")()
+          devops.devops.docker_build("${ECR_URL}","${ECR_ID}","${TAG1}","tcp://${JENKINS_IP}:2376")
         }
         stage('Docker Push')
         {
