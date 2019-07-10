@@ -12,11 +12,12 @@ def flujo()
     {
       stage('test docker')
       {
-        sh """
+        sh '''
+          #!/bin/bash
           df -h
           docker rm $(docker ps -a|awk '{print $1}')
           docker rmi $(docker images|awk '{print $3}'|grep -v IMAGE)
-        """
+        '''
       }
     }
   }
