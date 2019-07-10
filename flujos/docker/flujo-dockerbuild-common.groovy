@@ -6,7 +6,7 @@ def flujo()
   */
   //node_docker="master"
   //node_docker="jenkins-slave-comafi-nodejsdtk"
-  node ("master")
+  /*node ("master")
   {
     pipeline
     {
@@ -23,7 +23,7 @@ def flujo()
         '''
       }
     }
-  }
+  }*/
   node_docker="jenkins-slave-comafi-maven3.3.9-redis"
   node ("${node_docker}")
   {
@@ -49,15 +49,15 @@ def flujo()
         } 
         stage('Docker Build')
         {
-          /*
-          sh """
-            aws ecr create-repository --repository-name arch/jenkins-slave-centos  
-          """*/
           devops.docker_build("${ECR_URL}","${ECR_ID}","${TAG1}","tcp://${JENKINS_IP}:2376")
         }
         stage('Docker Push')
         {
           devops.docker_push("${ECR_URL}","${ECR_ID}","${TAG1}","tcp://${JENKINS_IP}:2376")
+        }
+        stage('borrar imagen local')
+        {
+          devops.docker_delete("${ECR_URL}","${ECR_ID}","${TAG1}","tcp://${JENKINS_IP}:2376")
         }
       }
       catch (e) 

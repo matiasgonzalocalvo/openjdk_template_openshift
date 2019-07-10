@@ -183,6 +183,12 @@ def docker_push(def url_repo="null",def name="null",def tag="null",def url_docke
         docker -H "${url_docker_tcp}" push  ${url_repo}/${name}:${tag} 
     """
 }
+def docker_delete(def url_repo="null",def name="null",def tag="null",def url_docker_tcp="null")
+{
+    sh """ 
+        docker -H "${url_docker_tcp}" rmi  ${url_repo}/${name}:${tag} 
+    """
+}
 def jenkins_docker_build(def url_repo="null", def name="null",def tag="null",def url_docker_tcp="null")
 {
     sh "echo ejecutando docker usando plugin de jenkins"
@@ -758,7 +764,7 @@ def create_repository(def repository_name='null')
     export
     aws ecr describe-repositories --repository-names ${repository_name} 2>&1 > /dev/null
     status=$?
-    if [[ ! "${status}" -eq 0 ]]; then
+    if [ ! "${status}" -eq 0 ]; then
       aws ecr create-repository --repository-name ${repository_name}
     else
       echo "El repo ${repository_name} Ya existe"
