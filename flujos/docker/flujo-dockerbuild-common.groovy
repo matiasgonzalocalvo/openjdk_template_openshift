@@ -15,8 +15,9 @@ def flujo()
         sh '''
           #!/bin/bash
           df -h
-          docker rm $(docker ps -a|awk '{print $1}'|grep -v CONTAINER)
-          docker rmi $(docker images|awk '{print $3}'|grep -v IMAGE)
+          docker ps -a 
+          docker rm -f $(docker ps -a|awk '{print $1}'|grep -v CONTAINER)
+          docker rmi -f $(docker images|awk '{print $3}'|grep -v IMAGE)
         '''
       }
     }
