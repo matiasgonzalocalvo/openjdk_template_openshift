@@ -5,7 +5,8 @@ def flujo()
     Genero Variables Globales que se van a utilizar
   */
   //node_docker="master"
-  node_docker="jenkins-slave-comafi-nodejsdtk"
+  //node_docker="jenkins-slave-comafi-nodejsdtk"
+  node_docker="jenkins-slave-comafi-maven3.3.9-redis"
   node ("${node_docker}")
   {
     pipeline 
