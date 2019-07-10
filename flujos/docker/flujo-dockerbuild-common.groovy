@@ -6,11 +6,20 @@ def flujo()
   */
   //node_docker="master"
   //node_docker="jenkins-slave-comafi-nodejsdtk"
-  sh """
-    df -h
-    docker rm $(docker ps -a|awk '{print $1}')
-    docker rmi $(docker images|awk '{print $3}'|grep -v IMAGE)
-  """
+  node ("master")
+  {
+    pipeline
+    {
+      stage('test docker')
+      {
+        sh """
+          df -h
+          docker rm $(docker ps -a|awk '{print $1}')
+          docker rmi $(docker images|awk '{print $3}'|grep -v IMAGE)
+        """
+      }
+    }
+  }
   node_docker="jenkins-slave-comafi-maven3.3.9-redis"
   node ("${node_docker}")
   {
