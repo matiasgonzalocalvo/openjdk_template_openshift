@@ -752,7 +752,7 @@ def front_s3_cp_index()
 }
 def create_repository(def repository_name='null')
 {
-  env.repository_name=${repository_name}
+  env.repository_name="${repository_name}"
   sh '''
     #!/bin/bash
     export
