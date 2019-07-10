@@ -18,6 +18,10 @@ def flujo()
         stage('set env')
         {
           loadvar.setenv()
+        }
+        stage("Docker Login")
+        {
+          devops.docker_login()
         } 
         stage('Docker Build')
         {
