@@ -4,9 +4,6 @@ def flujo()
   /*
     Genero Variables Globales que se van a utilizar
   */
-  env.SOURCE_cloudformation="cloudformations"
-  env.SOURCE_functions="functions"
-  env.SOURCE_scripts="scripts"
   node_docker="master"
   node ("${node_docker}")
   {
@@ -20,14 +17,6 @@ def flujo()
         }
         stage('set env')
         {
-          try
-          {
-            loadvar.set_env_global() 
-          }
-          catch (e)
-          {
-            echo 'No existen variables Globales ' + e.toString()
-          }
           loadvar.setenv()
         } 
         stage('Docker Build')
