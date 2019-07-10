@@ -27,6 +27,9 @@ def flujo()
         } 
         stage('Docker Build')
         {
+          sh """
+            aws ecr create-repository --repository-name arch/jenkins-slave-centos  
+          """
           devops.devops.docker_build("${ECR_URL}","${ECR_ID}","${TAG1}","tcp://${JENKINS_IP}:2376")
         }
         stage('Docker Push')
