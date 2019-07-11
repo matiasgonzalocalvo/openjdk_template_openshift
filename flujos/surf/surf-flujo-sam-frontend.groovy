@@ -11,7 +11,8 @@ def flujo()
     print e.getMessage()
     print 'Err:  ' + e.toString()
     echo "node_docker no existe seteo jenkins-slave-comafi-nodejsdtk"
-    node_docker="jenkins-slave-comafi-nodejsdtk"
+    //node_docker="jenkins-slave-comafi-nodejsdtk"
+    node_docker="arch-jenkins-slave-front"
   }
   node ("${node_docker}")
   {
