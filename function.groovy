@@ -566,11 +566,12 @@ def set_npm_nexus_publish()
     npm config set email "${devops_email}"
     npm config set always-auth true
     npm config set _auth "${auth_nexus}"
+    ls -latrh
     if [ -e "package-common.json" ] ; then
-      mv ./package-common.json ./lib/package.json
+      mv package-common.json lib/package.json
     fi
     fi [ -e ".npmrc-common" ] ; then
-      mv ./.npmrc-common ./lib/.npmrc
+      mv .npmrc-common lib/.npmrc
     fi
     cp /home/jenkins/.npmrc .npmrc
     cp /home/jenkins/.npmrc lib/
