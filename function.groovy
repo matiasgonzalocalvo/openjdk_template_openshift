@@ -759,15 +759,20 @@ def front_s3_cp_index()
 def create_repository(def repository_name='null')
 {
   env.repository_name="${repository_name}"
-  sh '''
-    #!/bin/bash
-    aws ecr describe-repositories --repository-names ${repository_name} 2>&1 > /dev/null
-    status=$?
-    if [ ! "${status}" -eq 0 ]; then
+  try 
+  {
+    sh '''
+      #!/bin/bash
+      aws ecr describe-repositories --repository-names ${repository_name} 2>&1 > /dev/null
+    '''
+  }
+  catch (e)
+  {
+    echo "no existe el repositorio lo creo"
+    sh '''
+      #!/bin/bash
       aws ecr create-repository --repository-name ${repository_name}
-    else
-      echo "El repo ${repository_name} Ya existe"
-    fi
-  '''
+    '''
+  }
 }
 return this
