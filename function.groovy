@@ -644,7 +644,7 @@ def lambda_sam_package()
   // seteo la variable carpetascript que voy a usar abajo
   sh '''
     #/bin/bash
-    ls -atlrh ${SOURCE_cloudformation}/template.yaml
+    ls -atlrhR
     pwd
     sam package --template-file ${SOURCE_cloudformation}/template.yaml --output-template-file "${SOURCE_cloudformation}/packaged${random}.yaml" --s3-bucket ${BUCKET} --region ${AWS_DEFAULT_REGION} --debug
   '''
