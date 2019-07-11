@@ -457,6 +457,13 @@ def npm_install()
     fail()
   }
 }
+def npm_run_build_pkg()
+{
+  sh '''
+    npm run build-pkg
+  '''
+}
+
 def npm_install_comafi_common()
 {
   try
@@ -541,6 +548,31 @@ def set_npm_nexus()
     npm install -g @angular/cli
   """
 }
+
+def set_npm_nexus_publish()
+{
+  if ( fileExists(".npmrc") )
+  { 
+    echo "elimino el .npmrc"
+    sh "rm .npmrc"
+  }
+  devops.credentials_to_variable("nexus_registry","nexus_registry")
+  devops.credentials_to_variable("content_repositories_front","content_repositories_front")
+  devops.credentials_to_variable("devops_email","devops_email")
+  devops.credentials_to_variable("auth_nexus","auth_nexus")
+  sh '''
+    #!/bin/bash
+    npm config set registry "${nexus_registry}/${content_repositories_front}"
+    npm config set email "${devops_email}"
+    npm config set always-auth true
+    npm config set _auth "${auth_nexus}"
+    mv ./package-common.json ./lib/package.json
+    mv ./.npmrc-common ./lib/.npmrc
+    cd lib/
+    npm publish
+  '''
+}
+
 def redis_start()
 {
   sh """
