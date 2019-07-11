@@ -6,7 +6,7 @@ def flujo()
   */
   //node_docker="master"
   //node_docker="jenkins-slave-comafi-nodejsdtk"
-  /*node ("master")
+  node ("master")
   {
     pipeline
     {
@@ -15,15 +15,17 @@ def flujo()
         sh '''
           #!/bin/bash
           df -h
-          docker ps -a 
-          docker rm -f $(docker ps -a|awk '{print $1}'|grep -v CONTAINER)
-          docker rmi -f $(docker images|awk '{print $3}'|grep -v IMAGE)
+          if [ $(docker ps -a | wc -l) -gt 0 ] ; then
+            docker rm -f $(docker ps -a|awk '{print $1}'|grep -v CONTAINER)
+          fi
+          if [ $(docker images | wc -l) -gt 0 ] ; then
+            docker rmi -f $(docker images|awk '{print $3}'|grep -v IMAGE)
+          fi
           df -h 
-          du -hsx /*
         '''
       }
     }
-  }*/
+  }
   node_docker="jenkins-slave-comafi-maven3.3.9-redis"
   //node_docker="arch-jenkins-slave-centos"
   node ("${node_docker}")
