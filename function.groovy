@@ -644,8 +644,6 @@ def lambda_sam_package()
   // seteo la variable carpetascript que voy a usar abajo
   sh '''
     #/bin/bash
-    ls -atlrhR
-    pwd
     sam package --template-file ${SOURCE_cloudformation}/template.yaml --output-template-file "${SOURCE_cloudformation}/packaged${random}.yaml" --s3-bucket ${BUCKET} --region ${AWS_DEFAULT_REGION} --debug
   '''
 }
@@ -664,14 +662,12 @@ def sam_deploy( def overrides="null" )
 {
   if ( overrides == "null" ) 
   {
-    echo "if"
     sh '''
       sam deploy --template-file "${SOURCE_functions}/packaged${random}.yaml" --stack-name ${STACK} --tags Project=${PROJECT} --capabilities CAPABILITY_NAMED_IAM --parameter-overrides ${parameter_overrides} --region ${AWS_DEFAULT_REGION} --debug
     '''
   }
   else
   {
-    echo "else"
     sh '''
       sam deploy --template-file "packaged${random}.yaml" --stack-name ${STACK} --tags Project=${PROJECT} --capabilities CAPABILITY_NAMED_IAM --parameter-overrides ${overrides} --region ${AWS_DEFAULT_REGION} --debug
     '''
