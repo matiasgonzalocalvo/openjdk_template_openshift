@@ -27,7 +27,8 @@ def flujo()
     }
   }
   //node_docker="jenkins-slave-comafi-maven3.3.9-redis"
-  node_docker="arch-jenkins-slave-centos"
+  //node_docker="arch-jenkins-slave-centos"
+  node_docker="arch-jenkins-slave-centos-node10"
   node ("${node_docker}")
   {
     pipeline 
