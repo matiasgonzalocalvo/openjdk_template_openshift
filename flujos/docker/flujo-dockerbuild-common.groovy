@@ -15,10 +15,10 @@ def flujo()
         sh '''
           #!/bin/bash
           df -h
-          if [ $(docker ps -a | wc -l) -gt 0 ] ; then
+          if [ $(docker ps -a -q| wc -l) -gt 0 ] ; then
             docker rm -f $(docker ps -a|awk '{print $1}'|grep -v CONTAINER)
           fi
-          if [ $(docker images | wc -l) -gt 0 ] ; then
+          if [ $(docker images -q | wc -l) -gt 0 ] ; then
             docker rmi -f $(docker images|awk '{print $3}'|grep -v IMAGE)
           fi
           df -h 
