@@ -57,7 +57,7 @@ def setenv(def cuenta="null")
   {
     sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
     devops.aws_config("AWS_DESA_CMF")
-    env.ENV='dtkpredev'
+    env.ENV='predev'
     def verCode = UUID.randomUUID().toString()
     env.random="${verCode}"
     env.DOMAIN='comercios.co'
