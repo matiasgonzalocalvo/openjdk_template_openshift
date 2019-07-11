@@ -5,7 +5,7 @@ def flujo()
     genero node_docker default
   */
   //node_docker="jenkins-slave-comafi-nodejsdtk"
-  node_docker="arch-jenkins-slave-front"
+  //node_docker="arch-jenkins-slave-front"
   try
   {
     loadvar.set_env_global()
@@ -16,6 +16,7 @@ def flujo()
     print e.getMessage()
     print 'Err:  ' + e.toString()
     echo "no existe set_env_global"
+    node_docker="arch-jenkins-slave-front"
   }
   node ("${node_docker}")
   {
