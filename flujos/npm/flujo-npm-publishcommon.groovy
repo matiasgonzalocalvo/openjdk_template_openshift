@@ -44,6 +44,10 @@ def flujo()
         {
           devops.npm_install()
         }
+        stage("npm run build pkg")
+        {
+          devops.npm_run_build_pkg()
+        }
         stage('Npm publish')
         {
           devops.set_npm_nexus_publish()
