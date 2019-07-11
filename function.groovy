@@ -571,10 +571,10 @@ def new_process_sam()
   '''
   sh "echo 'Building SAM package and uploading cloudformation'"
   sh """
-    /home/jenkins/.local/bin/sam package --template-file template.yaml --output-template-file "packaged${random}.yaml" --s3-bucket ${BUCKET} --region ${AWS_DEFAULT_REGION}
+    sam package --template-file template.yaml --output-template-file "packaged${random}.yaml" --s3-bucket ${BUCKET} --region ${AWS_DEFAULT_REGION}
   """
   sh """
-    /home/jenkins/.local/bin/sam deploy --template-file "packaged${random}.yaml" --stack-name ${STACK} --tags Project=${PROJECT} --capabilities CAPABILITY_NAMED_IAM --parameter-overrides FilesBucket=${FILES_BUCKET} Environment=${ENV} DeployBucket=${BUCKET} StackName=${STACK} DefaultFiles=${DEFAULT_BUCKET} ThubanHost=${ThubanHost} ThubanPassword=${ThubanPassword} ThubanUser=${ThubanUser} --region ${AWS_DEFAULT_REGION} --debug
+    sam deploy --template-file "packaged${random}.yaml" --stack-name ${STACK} --tags Project=${PROJECT} --capabilities CAPABILITY_NAMED_IAM --parameter-overrides FilesBucket=${FILES_BUCKET} Environment=${ENV} DeployBucket=${BUCKET} StackName=${STACK} DefaultFiles=${DEFAULT_BUCKET} ThubanHost=${ThubanHost} ThubanPassword=${ThubanPassword} ThubanUser=${ThubanUser} --region ${AWS_DEFAULT_REGION} --debug
   """
 }
 def yarn_install_functions()
@@ -636,7 +636,7 @@ def sam_package()
   // seteo la variable carpetascript que voy a usar abajo
   devops.set_scripts_comafi_digital()
   sh '''
-    /home/jenkins/.local/bin/sam package --template-file ${SOURCE_functions}/template.yaml --output-template-file "${SOURCE_functions}/packaged${random}.yaml" --s3-bucket ${BUCKET} --region ${AWS_DEFAULT_REGION}
+    sam package --template-file ${SOURCE_functions}/template.yaml --output-template-file "${SOURCE_functions}/packaged${random}.yaml" --s3-bucket ${BUCKET} --region ${AWS_DEFAULT_REGION}
   '''
 }
 def lambda_sam_package()
@@ -666,21 +666,21 @@ def sam_deploy( def overrides="null" )
   {
     echo "if"
     sh '''
-    /home/jenkins/.local/bin/sam deploy --template-file "${SOURCE_functions}/packaged${random}.yaml" --stack-name ${STACK} --tags Project=${PROJECT} --capabilities CAPABILITY_NAMED_IAM --parameter-overrides ${parameter_overrides} --region ${AWS_DEFAULT_REGION} --debug
+      sam deploy --template-file "${SOURCE_functions}/packaged${random}.yaml" --stack-name ${STACK} --tags Project=${PROJECT} --capabilities CAPABILITY_NAMED_IAM --parameter-overrides ${parameter_overrides} --region ${AWS_DEFAULT_REGION} --debug
     '''
   }
   else
   {
     echo "else"
     sh '''
-    /home/jenkins/.local/bin/sam deploy --template-file "packaged${random}.yaml" --stack-name ${STACK} --tags Project=${PROJECT} --capabilities CAPABILITY_NAMED_IAM --parameter-overrides ${overrides} --region ${AWS_DEFAULT_REGION} --debug
+      sam deploy --template-file "packaged${random}.yaml" --stack-name ${STACK} --tags Project=${PROJECT} --capabilities CAPABILITY_NAMED_IAM --parameter-overrides ${overrides} --region ${AWS_DEFAULT_REGION} --debug
     '''
   }
 }
 def lambda_sam_deploy()
 {
     sh '''
-      /home/jenkins/.local/bin/sam deploy --template-file "${SOURCE_cloudformation}/packaged${random}.yaml" --stack-name ${STACK} --tags Project=${PROJECT} --capabilities CAPABILITY_NAMED_IAM --parameter-overrides ${parameter_overrides} --region ${AWS_DEFAULT_REGION} --debug
+      sam deploy --template-file "${SOURCE_cloudformation}/packaged${random}.yaml" --stack-name ${STACK} --tags Project=${PROJECT} --capabilities CAPABILITY_NAMED_IAM --parameter-overrides ${parameter_overrides} --region ${AWS_DEFAULT_REGION} --debug
     '''
 }
 
