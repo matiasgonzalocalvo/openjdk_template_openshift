@@ -50,11 +50,11 @@ def flujo()
           }
           loadvar.setenv()
         }
-        
+        /*
         stage('Front ng Test')
         {
           devops.ng_test()
-        }
+        }*/
         stage('Front ng Build')
         {
           devops.ng_build()
