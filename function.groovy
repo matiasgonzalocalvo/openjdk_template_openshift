@@ -761,7 +761,6 @@ def create_repository(def repository_name='null')
   env.repository_name="${repository_name}"
   sh '''
     #!/bin/bash
-    export
     aws ecr describe-repositories --repository-names ${repository_name} 2>&1 > /dev/null
     status=$?
     if [ ! "${status}" -eq 0 ]; then
