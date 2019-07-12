@@ -46,6 +46,7 @@ def setenv(def cuenta="null")
     env.ENV='predev'
     env.BUCKET="${ENV}-comafi-base-deploy"
     env.STACK="${ENV}-INFRA-QUERY-CIRCUIT-SERVICE"
+    env.STACK_SECURITY="${ENV}-SECURITY-QUERY-CIRCUIT-SERVICE"
     env.PROJECT="QUERY-CIRCUIT-SERVICE"
     //VARIABLES ESPECIFICAS SEGUN EL MICROSERVICIO
     env.ES_NODE="https://search-dtkpredev-pec-elasticsearch-3etjrzdcpqpkagnoi6f26m4lrm.us-east-1.es.amazonaws.com"
