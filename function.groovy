@@ -570,7 +570,7 @@ def set_npm_nexus_publish()
     if [ -e "package-common.json" ] ; then
       mv package-common.json lib/package.json
     fi
-    fi [ -e ".npmrc-common" ] ; then
+    if [ -e ".npmrc-common" ] ; then
       mv .npmrc-common lib/.npmrc
     fi
     cp /home/jenkins/.npmrc .npmrc
