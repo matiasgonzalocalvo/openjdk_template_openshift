@@ -26,7 +26,6 @@ def setenv(def cuenta="null")
     sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
     devops.aws_config("AWS_DESA_CMF")
     env.ENV='dev'
-    env.ENV='predev'
     env.BUCKET="${ENV}-comafi-base-deploy"
     env.STACK="${ENV}-INFRA-QUERY-CIRCUIT-SERVICE"
     env.STACK_SECURITY="${ENV}-SECURITY-QUERY-CIRCUIT-SERVICE"
