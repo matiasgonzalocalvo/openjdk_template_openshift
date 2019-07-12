@@ -7,7 +7,7 @@ def set_env_global()
   env.sonar_exclusions=""
   env.sonar_javascript_lcov_reportPaths=""
   env.AWS_DEFAULT_REGION='us-east-1'
-  node_docker="arch-jenkins-slave-front"
+  node_docker="jenkins-slave-comafi-nodejs"
 }
 def setenv(def cuenta="null")
 {
