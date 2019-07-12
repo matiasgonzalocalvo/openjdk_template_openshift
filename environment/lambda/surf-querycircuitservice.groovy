@@ -29,14 +29,15 @@ def setenv(def cuenta="null")
     env.ENV='predev'
     env.BUCKET="${ENV}-comafi-base-deploy"
     env.STACK="${ENV}-INFRA-QUERY-CIRCUIT-SERVICE"
+    env.STACK_SECURITY="${ENV}-SECURITY-QUERY-CIRCUIT-SERVICE"
     env.PROJECT=" QUERY-CIRCUIT-SERVICE"
     //VARIABLES ESPECIFICAS SEGUN EL MICROSERVICIO
     env.ES_NODE="https://search-dtkpredev-pec-elasticsearch-3etjrzdcpqpkagnoi6f26m4lrm.us-east-1.es.amazonaws.com"
     env.TENANT="tenant1"
-    env.FILES_BUCKET="$ENV-comercios-files-$ENV"
+    env.FILES_BUCKET="${ENV}-comercios-files-${ENV}"
     env.ROLE_NAME="QueryCircuitServiceRole"
     env.parameter_overrides="UUID=${random} Environment=${ENV} DeployBucket=${BUCKET} EsNode=${ES_NODE} FilesBucket=${FILES_BUCKET} Tenant=${TENANT} RoleName=${ROLE_NAME}"
-    env.parameter_overrides_security="Environment=${ENV}"
+    env.parameter_overrides_security="Environment=${ENV} RoleName=${ROLE_NAME}"
   }
   else if (env.BRANCH_NAME =~ "feature/*" || env.BRANCH_NAME =~ "PR*")
   {
@@ -51,10 +52,10 @@ def setenv(def cuenta="null")
     //VARIABLES ESPECIFICAS SEGUN EL MICROSERVICIO
     env.ES_NODE="https://search-dtkpredev-pec-elasticsearch-3etjrzdcpqpkagnoi6f26m4lrm.us-east-1.es.amazonaws.com"
     env.TENANT="tenant1"
-    env.FILES_BUCKET="$ENV-comercios-files-$ENV"
+    env.FILES_BUCKET="${ENV}-comercios-files-${ENV}"
     env.ROLE_NAME="QueryCircuitServiceRole"
     env.parameter_overrides="UUID=${random} Environment=${ENV} DeployBucket=${BUCKET} EsNode=${ES_NODE} FilesBucket=${FILES_BUCKET} Tenant=${TENANT} RoleName=${ROLE_NAME}"
-    env.parameter_overrides_security="Environment=${ENV}"
+    env.parameter_overrides_security="Environment=${ENV} RoleName=${ROLE_NAME}"
   }
   else
   {
