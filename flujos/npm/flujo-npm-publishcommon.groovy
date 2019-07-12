@@ -4,7 +4,7 @@ def flujo()
   /*
     genero node_docker default
   */
-  //node_docker="jenkins-slave-comafi-nodejsdtk"
+  node_docker="jenkins-slave-comafi-nodejs"
   //node_docker="arch-jenkins-slave-front"
   try
   {
