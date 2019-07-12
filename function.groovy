@@ -708,7 +708,7 @@ def sam_deploy( def overrides="null" )
   else
   {
     sh '''
-      sam deploy --template-file "packaged${random}.yaml" --stack-name ${STACK} --tags Project=${PROJECT} --capabilities CAPABILITY_NAMED_IAM --parameter-overrides ${overrides} --region ${AWS_DEFAULT_REGION} --debug --no-fail-on-empty-changeset --no-fail-on-empty-changeset 
+      sam deploy --template-file "packaged${random}.yaml" --stack-name ${STACK} --tags Project=${PROJECT} --capabilities CAPABILITY_NAMED_IAM --parameter-overrides ${overrides} --region ${AWS_DEFAULT_REGION} --debug --no-fail-on-empty-changeset 
     '''
   }
 }
