@@ -3,7 +3,7 @@ node ()
   stage ("Checkout devops framework")
   {
     env.JenkinsVersion="1.0"
-    /* Variable remoname la cargo con el nombre del repo. despues voy a cargar el archivo environment con este nombre */
+    /* Variable reponame la cargo con el nombre del repo. despues voy a cargar el archivo environment con este nombre */
     env.repoName = checkout(scm).GIT_URL.tokenize('/').last().split("\\.")[0]
     /* f_funtions es la libreria general que vamos a utilizar*/
     f_funtions="function.groovy"

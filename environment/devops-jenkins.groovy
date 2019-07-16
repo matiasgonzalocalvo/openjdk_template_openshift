@@ -4,6 +4,7 @@ def set_env_global()
     Variables Globales a todos los ambientes
   */
   env.f_flujo="devops-flujo.groovy"
+  env.node_docker="arch-jenkins-slave-front"
   env.AWS_DEFAULT_REGION='us-east-1'
 }
 def setenv(def cuenta="null")
