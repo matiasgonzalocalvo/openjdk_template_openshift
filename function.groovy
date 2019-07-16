@@ -836,7 +836,7 @@ def main()
     if ( "${JenkinsVersion}" == "1.0" )
     {
       echo "\u001B[32m] \u2600 Version de Jenkinsfile OK \u263A"
-      echo "Hello \u001B[32mGreen\u001B[m""
+      echo "Hello \u001B[32mGreen\u001B[m"
     }
   }
   catch (e)
