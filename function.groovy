@@ -821,12 +821,16 @@ def message_check() {
   {
     print "No existe la variable CC_GREP Revisar el environment"
   }
-  env.CC_MSG = "false"
-  result = sh (script: ''' git log -1 | grep "${CC_GREP}" ''', returnStatus: true)
+  result = sh (script: ''' git log -1 | grep "${CC_GREP}"|wc -l ''', returnStatus: true)
   if (result == 0) 
   {
+    env.CC_MSG = "false"
+    echo "${CC_GREP} Not found in git commit message."
+  }
+  else
+  {
     env.CC_MSG = "true"
-    echo "'[#cc]' found in git commit message."
+    echo "${CC_GREP} found in git commit message."
   }
 }
 def main()
