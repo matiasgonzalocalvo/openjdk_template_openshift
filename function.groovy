@@ -829,4 +829,10 @@ def message_check() {
     echo "'[#cc]' found in git commit message."
   }
 }
+def main()
+{
+  echo "main"
+  sh "date"
+}
+main()
 return this

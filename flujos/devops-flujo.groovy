@@ -1,42 +1,53 @@
 #!groovy
 def flujo() 
 {
-  pipeline 
+  try
   {
-    try 
+    print node_docker
+  }
+  catch (e)
+  {
+    node_docker="jenkins-slave-comafi-maven3.3.9-redis"
+  }
+  node ("${node_docker}")
+  {
+    pipeline 
     {
-      stage('set env')
+      try 
       {
-        try
+        stage('set env')
         {
-          loadvar.set_env_global() 
+          try
+          {
+            loadvar.set_env_global() 
+          }
+          catch (e)
+          {
+            loadvar.setenv()
+          }
         }
-        catch (e)
+        stage("test devops flow")
         {
-          loadvar.setenv()
+          echo "probando flow"
+          sh "export"
         }
       }
-      stage("test devops flow")
+      catch (e) 
       {
-        echo "probando flow"
-        sh "export"
+        echo e.getMessage()
+        echo 'Err: Build failed with Error: ' + e.toString()
+        echo "FALLO !!!!!"
+        devops.fail()
       }
-    }
-    catch (e) 
-    {
-      echo e.getMessage()
-      echo 'Err: Build failed with Error: ' + e.toString()
-      echo "FALLO !!!!!"
-      devops.fail()
-    }
-    finally 
-    {
-      stage('Reportes')
+      finally 
       {
-        devops.reporting()
-        devops.postfinal()
+        stage('Reportes')
+        {
+          devops.reporting()
+          devops.postfinal()
+        }
       }
-    }
+    } 
   }
 }
 return this;
