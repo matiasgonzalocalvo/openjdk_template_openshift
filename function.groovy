@@ -790,7 +790,7 @@ def front_s3_cp()
 def front_s3_cp_index()
 {
   sh '''
-    aws s3 cp dist/comafi/index.html s3://"${ENV}${SUBDOMINIO}.${DOMAIN}"/  --acl public-read --recursive -cache-control max-age=3600
+    aws s3 cp dist/comafi/index.html s3://"${ENV}${SUBDOMINIO}.${DOMAIN}"/  --acl public-read --recursive --cache-control max-age=3600
   '''
 }
 def create_repository(def repository_name='null')
