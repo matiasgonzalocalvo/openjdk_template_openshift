@@ -835,13 +835,12 @@ def main()
   {
     if ( "${JenkinsVersion}" == "1.0" )
     {
-      echo "\u001B[32m] \u2600 Version de Jenkinsfile OK \u263A"
-      echo "Hello \u001B[32mGreen\u001B[m"
+      echo "\u2600 Version de Jenkinsfile OK \u263A"
     }
   }
   catch (e)
   {
-    echo "\u001B[31m] \u274C CRITICAL NO ES LA ULTIMA VERSION ACTUALIZAR \u2639 \u2622"
+    echo "\u274C CRITICAL NO ES LA ULTIMA VERSION ACTUALIZAR \u2639 \u2622"
   }
 }
 main()
