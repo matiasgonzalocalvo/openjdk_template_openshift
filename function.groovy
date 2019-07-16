@@ -831,8 +831,17 @@ def message_check() {
 }
 def main()
 {
-  echo "main"
-  sh "date"
+  try
+  {
+    if ( ${JenkinsVersion} == "1.0" )
+    {
+      echo "Version de Jenkinsfile OK"
+    }
+  }
+  catch (e)
+  {
+    echo "\u2600 CRITICAL NO ES LA ULTIMA VERSION ACTUALIZAR"
+  }
 }
 main()
 return this
