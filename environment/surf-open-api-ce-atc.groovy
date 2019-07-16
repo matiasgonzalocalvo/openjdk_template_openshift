@@ -42,8 +42,8 @@ def setenv(def cuenta="null")
     env.STACK="${ENV}-INFRA-OPEN-API-CE-ATC"
     env.STACK_SECURITY="${ENV}-SECURITY-OPEN-API-CE-ATC"
     env.PROJECT="OPEN-API-CE-ATC"
-    # VARIABLES ESPECIFICAS
-    env.URL_API='https://dtkpredev-api.comercios.co/api'
+    //# VARIABLES ESPECIFICAS
+    env.URL_API='https://predev.desa-comafidigital.com/api'
     env.TOKEN_API='pendiente'    
     env.parameter_overrides="UUID=${random} Environment=${ENV} DeployBucket=${BUCKET} StackName=${STACK} UrlApi=${URL_API} TokenApi=${TOKEN_API}"
     env.parameter_overrides_security="Environment=${ENV}"
