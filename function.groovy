@@ -812,4 +812,21 @@ def create_repository(def repository_name='null')
     '''
   }
 }
+def message_check() {
+  try
+  {
+    print "${CC_GREP}"
+  }
+  catch (e)
+  {
+    print "No existe la variable CC_GREP Revisar el environment"
+  }
+  env.CC_MSG = "false"
+  result = sh (script: ''' git log -1 | grep "${CC_GREP}" ''', returnStatus: true)
+  if (result == 0) 
+  {
+    env.CC_MSG = "true"
+    echo "'[#cc]' found in git commit message."
+  }
+}
 return this
