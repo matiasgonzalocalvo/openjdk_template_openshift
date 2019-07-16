@@ -833,7 +833,7 @@ def main()
 {
   try
   {
-    if ( ${JenkinsVersion} == "1.0" )
+    if ( "${JenkinsVersion}" == "1.0" )
     {
       echo "Version de Jenkinsfile OK"
     }
