@@ -566,7 +566,6 @@ def set_npm_nexus_publish()
     npm config set email "${devops_email}"
     npm config set always-auth true
     npm config set _auth "${auth_nexus}"
-    ls -latrh
     if [ -e "package-common.json" ] ; then
       mv package-common.json lib/package.json
     fi
@@ -790,7 +789,6 @@ def front_s3_cp()
 def front_s3_cp_index()
 {
   sh '''
-    ls -atlrh dist/comafi/
     aws s3 cp dist/comafi/index.html s3://"${ENV}${SUBDOMINIO}.${DOMAIN}"/  --acl public-read  --cache-control max-age=3600
   '''
 }
