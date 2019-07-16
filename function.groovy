@@ -790,6 +790,7 @@ def front_s3_cp()
 def front_s3_cp_index()
 {
   sh '''
+    ls -atlrh dist/comafi/
     aws s3 cp dist/comafi/index.html s3://"${ENV}${SUBDOMINIO}.${DOMAIN}"/  --acl public-read --recursive --cache-control max-age=3600
   '''
 }
