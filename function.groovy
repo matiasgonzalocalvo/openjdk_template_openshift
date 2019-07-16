@@ -835,7 +835,7 @@ def main()
   {
     if ( "${JenkinsVersion}" == "1.0" )
     {
-      echo "Version de Jenkinsfile OK"
+      echo "\u2600 Version de Jenkinsfile OK"
     }
   }
   catch (e)
