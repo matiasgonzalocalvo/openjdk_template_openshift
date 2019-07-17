@@ -831,33 +831,51 @@ def circuit_creator(create)
   if ( create == "true") 
   {
     env.url="${url_circuit_tables}"
+    sh '''
+      #!/bin/bash
+      export 
+      data="{
+      \"region\": \"${AWS_DEFAULT_REGION}\",
+      \"environment\": \"${ENV}\",
+      \"repository_owner_account\": \"comafi\",
+      \"circuit_repository_name\": \"${repoName}\",
+      \"target_branch\": \"${BRANCH_NAME}\",
+      \"repo_user\": \"${devops-comafi}\",
+      \"repo_pass\": \"${devops-password}\"
+      }"
+      curl --header "Content-Type: application/json" \
+      --request POST \
+      --data "${data}" \
+      ${url_circuit_tables}
+    '''
   }
   else if ( create == "fill" )
   {
     env.url="${url_fill_circuit_tables}"
+    sh '''
+      #!/bin/bash
+      export 
+      data="{
+      \"region\": \"${AWS_DEFAULT_REGION}\",
+      \"environment\": \"${ENV}\",
+      \"stackname\": \"${STACK}\",
+      \"repository_owner_account\": \"comafi\",
+      \"circuit_repository_name\": \"${repoName}\",
+      \"target_branch\": \"${BRANCH_NAME}\",
+      \"repo_user\": \"${devops-comafi}\",
+      \"repo_pass\": \"${devops-password}\"
+      }"
+      curl --header "Content-Type: application/json" \
+      --request POST \
+      --data "${data}" \
+      ${url_circuit_tables}
+    '''
   }
   else
   {
     echo "CRITICAL no se paso argumento valido"
     fail()
   }
-  sh '''
-    #!/bin/bash
-    data="{
-    \"region\": \"${AWS_DEFAULT_REGION}\",
-    \"environment\": \"${ENV}\",
-    \"stackname\": \"${STACK_NAME}\",
-    \"repository_owner_account\": \"comafi\",
-    \"circuit_repository_name\": \"${circuit_repository_name}\",
-    \"target_branch\": \"${target_branch}\",
-    \"repo_user\": \"${repo_user}\",
-    \"repo_pass\": \"${repo_pass}\"
-    }"
-    curl --header "Content-Type: application/json" \
-    --request POST \
-    --data "${data}" \
-    ${url_circuit_tables}
-  '''
 }
 def main()
 {
