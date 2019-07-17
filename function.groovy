@@ -854,8 +854,8 @@ def circuit_creator(create)
       \"repository_owner_account\": \"comafi\",
       \"circuit_repository_name\": \"${repoName}\",
       \"target_branch\": \"${BRANCH_NAME}\",
-      \"repo_user\": \"${devops-comafi}\",
-      \"repo_pass\": \"${devops-password}\"
+      \"repo_user\": \"${devops_comafi}\",
+      \"repo_pass\": \"${devops_password}\"
       }"
       curl --header "Content-Type: application/json" \
       --request POST \
@@ -876,8 +876,8 @@ def circuit_creator(create)
       \"repository_owner_account\": \"comafi\",
       \"circuit_repository_name\": \"${repoName}\",
       \"target_branch\": \"${BRANCH_NAME}\",
-      \"repo_user\": \"${devops-comafi}\",
-      \"repo_pass\": \"${devops-password}\"
+      \"repo_user\": \"${devops_comafi}\",
+      \"repo_pass\": \"${devops_password}\"
       }"
       curl --header "Content-Type: application/json" \
       --request POST \
