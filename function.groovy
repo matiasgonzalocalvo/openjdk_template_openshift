@@ -811,26 +811,53 @@ def create_repository(def repository_name='null')
     '''
   }
 }
-def message_check() {
-  try
-  {
-    print "${CC_GREP}"
-  }
-  catch (e)
-  {
-    print "No existe la variable CC_GREP Revisar el environment"
-  }
+def check_commit(CC_GREP) 
+{
+  env.CC_GREP="${CC_GREP}"
   result = sh (script: ''' git log -1 | grep "${CC_GREP}"|wc -l ''', returnStatus: true)
   if (result == 0) 
   {
-    env.CC_MSG = "false"
     echo "${CC_GREP} Not found in git commit message."
+    return false
   }
   else
   {
-    env.CC_MSG = "true"
     echo "${CC_GREP} found in git commit message."
+    return true
   }
+}
+def circuit_creator(create)
+{
+  if ( create == "true") 
+  {
+    env.url="${url_circuit_tables}"
+  }
+  else if ( create == "fill" )
+  {
+    env.url="${url_fill_circuit_tables}"
+  }
+  else
+  {
+    echo "CRITICAL no se paso argumento valido"
+    fail()
+  }
+  sh '''
+    #!/bin/bash
+    data="{
+    \"region\": \"${AWS_DEFAULT_REGION}\",
+    \"environment\": \"${ENV}\",
+    \"stackname\": \"${STACK_NAME}\",
+    \"repository_owner_account\": \"comafi\",
+    \"circuit_repository_name\": \"${circuit_repository_name}\",
+    \"target_branch\": \"${target_branch}\",
+    \"repo_user\": \"${repo_user}\",
+    \"repo_pass\": \"${repo_pass}\"
+    }"
+    curl --header "Content-Type: application/json" \
+    --request POST \
+    --data "${data}" \
+    ${url_circuit_tables}
+  '''
 }
 def main()
 {
