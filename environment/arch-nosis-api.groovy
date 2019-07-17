@@ -26,7 +26,7 @@ def setenv(def cuenta="null")
     sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
     devops.aws_config("AWS_DESA_CMF")
 	env.ENV='dev'
-    env.BUCKET="${ENV}-tesla-prius-deploy"
+    env.BUCKET="${ENV}-tesla-prius-new-deploy"
     env.STACK="${ENV}-INFRA-ARCH-NOSIS-API"
 	env.STACK_SECURITY="${ENV}-SECURITY-ARCH-NOSIS-API"
     env.PROJECT="ARCH-NOSIS-API"
@@ -43,7 +43,7 @@ def setenv(def cuenta="null")
     devops.aws_config("AWS_DESA_CMF")
     //devops.aws_config("AWS_DESA")
     env.ENV='predev'
-    env.BUCKET="${ENV}-tesla-prius-deploy"
+    env.BUCKET="${ENV}-tesla-prius-new-deploy"
     env.STACK="${ENV}-INFRA-ARCH-NOSIS-API"
 	env.STACK_SECURITY="${ENV}-SECURITY-ARCH-NOSIS-API"
     env.PROJECT="ARCH-NOSIS-API"
