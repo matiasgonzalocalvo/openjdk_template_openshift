@@ -870,7 +870,7 @@ def main()
   }
   catch (e)
   {
-    echo "\u274C CRITICAL NO ES LA ULTIMA VERSION ACTUALIZAR \u2639 \u2622"
+    echo "\u274C version de Jenkinsfile desactualizada \u2639 \u2622"
   }
 }
 main()
