@@ -40,8 +40,8 @@ def setenv(def cuenta="null")
     env.parameter_overrides_security="Environment=${ENV} Proyecto=${PROJECT}"
     env.url_fill_circuit_tables="https://dev-api.desa-comafidigital.com/circuit_creator/fill-circuit-tables"
     env.url_circuit_tables="https://dev-api.desa-comafidigital.com/circuit_creator/create-circuit-cf"
-    devops.credentials_to_variable("devops-comafi","devops-comafi")
-    devops.credentials_to_variable("devops-password","devops-password")
+    devops.credentials_to_variable("devops_comafi","devops-comafi")
+    devops.credentials_to_variable("devops_password","devops-password")
   }
   else if (env.BRANCH_NAME =~ "feature/*" || env.BRANCH_NAME =~ "PR*")
   {
@@ -62,8 +62,8 @@ def setenv(def cuenta="null")
     env.parameter_overrides_security="Environment=${ENV} Proyecto=${PROJECT}"
     env.url_fill_circuit_tables="https://predev-api.desa-comafidigital.com/circuit_creator/fill-circuit-tables"
     env.url_circuit_tables="https://predev-api.desa-comafidigital.com/circuit_creator/create-circuit-cf"
-    devops.credentials_to_variable("devops-comafi","devops-comafi")
-    devops.credentials_to_variable("devops-password","devops-password")
+    devops.credentials_to_variable("devops_comafi","devops-comafi")
+    devops.credentials_to_variable("devops_password","devops-password")
   }
   else
   {
