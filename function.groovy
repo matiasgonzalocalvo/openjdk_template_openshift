@@ -630,7 +630,21 @@ def yarn_install_functions()
     done
   '''
 }
-
+def yarn_install_lib()
+{
+  sh '''
+    #!/bin/bash
+    for proyects in proyects/* ; do
+      echo 'Building ' $proyects
+      cd $functions
+      if [ -e node_modules ] ; then
+        rm -Rf node_modules 
+      fi
+      yarn run
+      cd -
+    done
+  '''
+}
 def lambda_yarn_install()
 {
   sh '''
