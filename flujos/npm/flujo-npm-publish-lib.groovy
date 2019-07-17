@@ -40,17 +40,13 @@ def flujo()
           }
           loadvar.setenv()
         }
-        stage('Npm install LIB')
-        {
-          devops.npm_install_lib()
-        }
         stage("Yarn build Lib")
         {
-          devops.yarn_build_lib()
+          devops.yarn_install_lib()
         }
         stage('Npm publish')
         {
-          devops.set_npm_nexus_publish()
+          devops.set_npm_nexus_publish_lib()
         }
       }
       catch (e) 
