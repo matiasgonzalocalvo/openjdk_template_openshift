@@ -578,6 +578,27 @@ def set_npm_nexus_publish()
     npm publish
   '''
 }
+def set_npm_nexus_publish_lib()
+{
+  if ( fileExists(".npmrc") )
+  { 
+    echo "elimino el .npmrc"
+    sh "rm .npmrc"
+  }
+  devops.credentials_to_variable("nexus_registry","nexus_registry")
+  //devops.credentials_to_variable("content_repositories_front","content_repositories_front")
+  devops.credentials_to_variable("devops_email","devops_email")
+  devops.credentials_to_variable("auth_nexus","auth_nexus")
+  sh '''
+    #!/bin/bash
+    npm config set registry "${nexus_registry}/${content_repositories_front}"
+    npm config set email "${devops_email}"
+    npm config set always-auth true
+    npm config set _auth "${auth_nexus}"
+    npm publish /dis/*
+  '''
+}
+
 
 def redis_start()
 {
@@ -636,10 +657,7 @@ def yarn_install_lib()
     #!/bin/bash
     for proyects in proyects/* ; do
       echo 'Building ' $proyects
-      cd $functions
-      if [ -e node_modules ] ; then
-        rm -Rf node_modules 
-      fi
+      cd $proyects
       yarn run
       cd -
     done
