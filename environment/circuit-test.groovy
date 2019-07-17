@@ -28,7 +28,7 @@ def setenv(def cuenta="null")
     env.ENV='dev'
     env.BUCKET="${ENV}-comafi-base-deploy"
     env.STACK="${ENV}-INFRA-API-TEST-CC"
-    env.STACK_SECURITY="${ENV}-SECURITY-API-TEST-CC
+    env.STACK_SECURITY="${ENV}-SECURITY-API-TEST-CC"
     env.PROJECT="INFRA-API-TEST-CC"
     //VARIABLES ESPECIFICAS SEGUN EL MICROSERVICIO
     env.SECURITY_GROUP_ID_1="sg-07d08c61cd167f619"
