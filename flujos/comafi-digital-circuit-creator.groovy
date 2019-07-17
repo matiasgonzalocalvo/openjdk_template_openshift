@@ -56,7 +56,7 @@ def flujo()
         {
             stage('Circuit Creator: Create Process')
             {
-              devops.circuit_creator(create)
+              devops.circuit_creator("true")
             }    
         }
         else
@@ -102,7 +102,7 @@ def flujo()
             }           
             stage('Circuit Creator: Create Process')
             {
-              devops.circuit_creator_fill_table(fill_table)
+              devops.circuit_creator("fill")
             }                
         }
       }
