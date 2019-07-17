@@ -38,6 +38,8 @@ def setenv(def cuenta="null")
     env.CISAT_TOKEN="bnmu6WzW619tnH7jnmfsv2tAsm8Ddzikoq4u6876"
     env.parameter_overrides="UUID=${random} Project=${PROJECT} Environment=${ENV} DeployBucket=${BUCKET} StackName=${STACK} SecurityGroupId1=${SECURITY_GROUP_ID_1} SubnetId1=${SUBNET_ID_1} SubnetId2=${SUBNET_ID_2} CisatUrl=${CISAT_URL} CisatToken=${CISAT_TOKEN}"
     env.parameter_overrides_security="Environment=${ENV} Proyecto=${PROJECT}"
+    env.url_fill_circuit_tables="https://dev-api.desa-comafidigital.com/circuit_creator/fill-circuit-tables"
+    env.url_circuit_tables="https://dev-api.desa-comafidigital.com/circuit_creator/create-circuit-cf"
   }
   else if (env.BRANCH_NAME =~ "feature/*" || env.BRANCH_NAME =~ "PR*")
   {
@@ -56,6 +58,8 @@ def setenv(def cuenta="null")
     env.CISAT_TOKEN="bnmu6WzW619tnH7jnmfsv2tAsm8Ddzikoq4u6876"
     env.parameter_overrides="UUID=${random} Project=${PROJECT} Environment=${ENV} DeployBucket=${BUCKET} StackName=${STACK} SecurityGroupId1=${SECURITY_GROUP_ID_1} SubnetId1=${SUBNET_ID_1} SubnetId2=${SUBNET_ID_2} CisatUrl=${CISAT_URL} CisatToken=${CISAT_TOKEN}"
     env.parameter_overrides_security="Environment=${ENV} Proyecto=${PROJECT}"
+    env.url_fill_circuit_tables="https://predev-api.desa-comafidigital.com/circuit_creator/fill-circuit-tables"
+    env.url_circuit_tables="https://predev-api.desa-comafidigital.com/circuit_creator/create-circuit-cf"
   }
   else
   {
