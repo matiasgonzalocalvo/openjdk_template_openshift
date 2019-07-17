@@ -33,7 +33,7 @@ def setenv(def cuenta="null")
     //VARIABLES ESPECIFICAS SEGUN EL MICROSERVICIO
     env.ES_NODE="https://search-dtkpredev-pec-elasticsearch-3etjrzdcpqpkagnoi6f26m4lrm.us-east-1.es.amazonaws.com"
     env.TENANT="tenant1"
-    env.FILES_BUCKET="${ENV}-comercios-files-${ENV}"
+    env.FILES_BUCKET="${ENV}-comercios-files-new"
     env.ROLE_NAME="QueryCircuitServiceRole"
     env.parameter_overrides="UUID=${random} Environment=${ENV} DeployBucket=${BUCKET} EsNode=${ES_NODE} FilesBucket=${FILES_BUCKET} Tenant=${TENANT} RoleName=${ROLE_NAME}"
     env.parameter_overrides_security="Environment=${ENV} RoleName=${ROLE_NAME}"
@@ -51,7 +51,7 @@ def setenv(def cuenta="null")
     //VARIABLES ESPECIFICAS SEGUN EL MICROSERVICIO
     env.ES_NODE="https://search-dtkpredev-pec-elasticsearch-3etjrzdcpqpkagnoi6f26m4lrm.us-east-1.es.amazonaws.com"
     env.TENANT="tenant1"
-    env.FILES_BUCKET="${ENV}-comercios-files-${ENV}"
+    env.FILES_BUCKET="${ENV}-comercios-files-new"
     env.ROLE_NAME="QueryCircuitServiceRole"
     env.parameter_overrides="UUID=${random} Environment=${ENV} DeployBucket=${BUCKET} EsNode=${ES_NODE} FilesBucket=${FILES_BUCKET} Tenant=${TENANT} RoleName=${ROLE_NAME}"
     env.parameter_overrides_security="Environment=${ENV} RoleName=${ROLE_NAME}"
