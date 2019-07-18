@@ -56,6 +56,7 @@ def flujo()
         }*/
         stage('Lambda Yarn Install')
         {
+          devops.set_nexus_login()
           devops.lambda_yarn_install()
         }
         /*
