@@ -1,4 +1,5 @@
 #!groovy
+
 def flujo() 
 {
   pipeline 
