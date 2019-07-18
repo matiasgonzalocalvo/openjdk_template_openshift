@@ -52,7 +52,7 @@ def flujo()
         /*
         CHECK COMMIT
         */
-        if ( devops.check_commit('#cc') )
+        if ( devops.check_commit('#CC') )
         {
             stage('Circuit Creator: Create Process')
             {
