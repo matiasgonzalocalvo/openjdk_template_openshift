@@ -902,7 +902,7 @@ def circuit_creator(create)
   {
     sh '''
       #!/bin/bash
-      set +x
+      #set +x
       curl --header "Content-Type: application/json" \
       -H "Authorization: Bearer ${TOKEN}" \
       --request POST \
