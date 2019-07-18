@@ -19,14 +19,14 @@ def setenv(def cuenta="null")
   else if (env.BRANCH_NAME == "impleqa" || env.BRANCH_NAME == "qa" || env.BRANCH_NAME =~ "release/*" )
   {
     sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
-    devops.aws_config("AWS_DESA_CMF")
+    devops.aws_config("AWS_DESA")
   }
   else if (env.BRANCH_NAME == "develop" || env.BRANCH_NAME == "developjenkinsfile" )
   {
     sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
-    devops.aws_config("AWS_DESA_CMF")
+    devops.aws_config("AWS_DESA")
 	env.ENV='dev'
-    env.BUCKET="${ENV}-tesla-prius-new-deploy"
+    env.BUCKET="${ENV}-tesla-prius-deploy"
     env.STACK="${ENV}-INFRA-ARCH-NOSIS-API"
 	env.STACK_SECURITY="${ENV}-SECURITY-ARCH-NOSIS-API"
     env.PROJECT="ARCH-NOSIS-API"
@@ -40,10 +40,9 @@ def setenv(def cuenta="null")
   else if (env.BRANCH_NAME =~ "feature/*" || env.BRANCH_NAME =~ "PR*")
   {
     sh 'echo "$(date) : Seteando variables - BRANCH = ${BRANCH_NAME}"'
-    devops.aws_config("AWS_DESA_CMF")
-    //devops.aws_config("AWS_DESA")
+    devops.aws_config("AWS_DESA")
     env.ENV='predev'
-    env.BUCKET="${ENV}-tesla-prius-new-deploy"
+    env.BUCKET="${ENV}-tesla-prius-deploy"
     env.STACK="${ENV}-INFRA-ARCH-NOSIS-API"
 	env.STACK_SECURITY="${ENV}-SECURITY-ARCH-NOSIS-API"
     env.PROJECT="ARCH-NOSIS-API"
