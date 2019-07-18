@@ -549,6 +549,26 @@ def set_npm_nexus()
   """
 }
 
+def set_nexus_login()
+{
+  if ( fileExists(".npmrc") )
+  {
+    echo "elimino el .npmrc"
+    sh "rm .npmrc"
+  }
+  devops.credentials_to_variable("nexus_registry","nexus_registry")
+  devops.credentials_to_variable("nexus_front_group","nexus_front_group")
+  devops.credentials_to_variable("devops_email","devops_email")
+  devops.credentials_to_variable("auth_nexus","auth_nexus")
+  sh """
+    npm config set registry "${nexus_registry}/${nexus_front_group}"
+    npm config set email "${devops_email}"
+    npm config set always-auth true
+    npm config set _auth "${auth_nexus}"
+    cp /home/jenkins/.npmrc .npmrc    
+  """
+}
+
 def set_npm_nexus_publish()
 {
   if ( fileExists(".npmrc") )
