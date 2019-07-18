@@ -42,6 +42,7 @@ def setenv(def cuenta="null")
     env.url_circuit_tables="https://dev-api.desa-comafidigital.com/circuit_creator/create-circuit-cf"
     devops.credentials_to_variable("devops_comafi","devops-comafi")
     devops.credentials_to_variable("devops_password","devops-password")
+    env.TOKEN="vZuekWzW619tnHmYtufsv2tAsm8DdzpE2i4u6vbk"
   }
   else if (env.BRANCH_NAME =~ "feature/*" || env.BRANCH_NAME =~ "PR*")
   {
@@ -64,6 +65,7 @@ def setenv(def cuenta="null")
     env.url_circuit_tables="https://predev-api.desa-comafidigital.com/circuit_creator/create-circuit-cf"
     devops.credentials_to_variable("devops_comafi","devops-comafi")
     devops.credentials_to_variable("devops_password","devops-password")
+    env.TOKEN="vZuekWzW619tnHmYtufsv2tAsm8DdzpE2i4u6vbk"
   }
   else
   {

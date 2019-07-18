@@ -876,6 +876,7 @@ def circuit_creator(create)
       \"repo_pass\": \"${devops_password}\"
       }"
       curl --header "Content-Type: application/json" \
+      -H "Authorization: Bearer ${TOKEN}" \
       --request POST \
       --data "${data}" \
       ${url_circuit_tables}
@@ -886,6 +887,7 @@ def circuit_creator(create)
     env.url="${url_fill_circuit_tables}"
     sh '''
       #!/bin/bash
+      #set +x
       export 
       data="{
       \"region\": \"${AWS_DEFAULT_REGION}\",
@@ -898,6 +900,7 @@ def circuit_creator(create)
       \"repo_pass\": \"${devops_password}\"
       }"
       curl --header "Content-Type: application/json" \
+      -H "Authorization: Bearer ${TOKEN}" \
       --request POST \
       --data "${data}" \
       ${url_circuit_tables}
