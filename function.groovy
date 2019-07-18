@@ -869,6 +869,7 @@ def check_commit(CC_GREP)
   result = sh (script: ''' git log -1 | grep "${CC_GREP}"|wc -l ''', returnStatus: true)
   if (result == 0) 
   {
+    sh ''' git log -1  ''' 
     echo "${CC_GREP} Not found in git commit message."
     return false
   }
