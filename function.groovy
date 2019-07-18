@@ -866,17 +866,22 @@ def create_repository(def repository_name='null')
 def check_commit(CC_GREP) 
 {
   env.CC_GREP="${CC_GREP}"
-  result = sh (script: ''' git log -1 | grep "${CC_GREP}"|wc -l ''', returnStatus: true)
-  if (result == 0) 
+//  result = sh (script: ''' git log -1 | grep "${CC_GREP}"|wc -l ''', returnStatus: true)
+  result = sh (script: ''' git log -1 | grep "${CC_GREP}" ''', returnStatus: true)
+  if (result == 1) 
   {
     sh ''' git log -1  ''' 
-    echo "${CC_GREP} Not found in git commit message."
+    echo "${CC_GREP} Not found in git commit message. || result == ${result} "
     return false
+  }
+  else if (result == 0 )
+  {
+    echo "${CC_GREP} found in git commit message. || result == ${result}"
+    return true
   }
   else
   {
-    echo "${CC_GREP} found in git commit message."
-    return true
+    echo "salida distinta de 0 || result == ${result}"
   }
 }
 def circuit_creator(create)
