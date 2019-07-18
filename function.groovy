@@ -894,7 +894,7 @@ def circuit_creator(create)
       curl --header "Content-Type: application/json" \
       -H "Authorization: Bearer ${TOKEN}" \
       --request POST \
-      --data '"region": "'"${AWS_DEFAULT_REGION}"'", "environment": "'"${ENV}"'", "repository_owner_account": "comafi", "circuit_repository_name": "'"${repoName}"'", "target_branch": "'"${BRANCH_NAME}"'", "repo_user": "'"${devops_comafi}"'", "repo_pass": "'"${devops_password}"'"' \
+      --data '{"region": "'"${AWS_DEFAULT_REGION}"'", "environment": "'"${ENV}"'", "repository_owner_account": "comafi", "circuit_repository_name": "'"${repoName}"'", "target_branch": "'"${BRANCH_NAME}"'", "repo_user": "'"${devops_comafi}"'", "repo_pass": "'"${devops_password}"'"}' \
       ${url_circuit_tables}
     '''
   }
