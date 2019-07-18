@@ -885,7 +885,7 @@ def circuit_creator(create)
     env.url="${url_circuit_tables}"
     sh '''
       #!/bin/bash
-      export 
+      set +x
       curl --header "Content-Type: application/json" \
       -H "Authorization: Bearer ${TOKEN}" \
       --request POST \
@@ -898,7 +898,7 @@ def circuit_creator(create)
     env.url="${url_fill_circuit_tables}"
     sh '''
       #!/bin/bash
-      #set +x
+      set +x
       curl --header "Content-Type: application/json" \
       -H "Authorization: Bearer ${TOKEN}" \
       --request POST \
