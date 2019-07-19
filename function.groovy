@@ -924,7 +924,7 @@ def update_version()
     echo "$(date) : Version actual : $(cat ${version_txt})"
     if [ -e ${version_txt} ] ; then
       echo "$(date) : Actualizando version"
-      new_version="$(cat ${version_txt} | perl -ne 'chomp; print join(".", splice(@{[split/\./,$_]}, 0, -1), map {++$_} pop @{[split/\./,$_]}), "\n";')" 
+      new_version="$(cat ${version_txt} | perl -pe 's/^((\d+\.)*)(\d+)(.*)$/$1.($3+1).$4/e')"
       echo ${new_version}  > ${version_txt}
       echo "$(date) : Version New $(cat ${version_txt})"
     fi
