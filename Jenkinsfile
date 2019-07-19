@@ -9,7 +9,7 @@ node ()
     f_funtions="function.groovy"
     f_environment="environment/${repoName}.groovy"
     /* Variales del repo devops*/
-    branch = "master"
+    branch = "${BRANCH_NAME}"
     url_git = "https://bitbucket.org/comafi/devops-jenkins"
     credentialsId = "devops-bitbucket"
     folder = "devops"
