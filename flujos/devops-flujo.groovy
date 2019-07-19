@@ -26,6 +26,10 @@ def flujo()
             loadvar.setenv()
           }
         }
+        stage('Checkout SCM')
+        {
+          checkout scm
+        }
         stage("updateando la version")
         {
           devops.update_version()
