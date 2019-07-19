@@ -938,8 +938,8 @@ def update_version()
 }
 def determine_snapshot_release()
 {
-  package="package.json"
-  if ( fileExists(package) )
+  PackageJson="package.json"
+  if ( fileExists(PackageJson) )
   {
     def pkgInfo = readJSON file: 'package.json'
     env.repo=pkgInfo.name
