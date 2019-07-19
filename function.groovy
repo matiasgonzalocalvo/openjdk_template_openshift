@@ -938,8 +938,10 @@ def update_version()
 }
 def determine_snapshot_release()
 {
+  sh "ls -atlrh "
+  sh "cat package.json"
   package = readJSON file: 'package.json'
-  package_json=".package.json"
+  package_json="package.json"
   /*if ( fileExists(package_json) )
   {
     package = readJSON file: "${package_json}"
