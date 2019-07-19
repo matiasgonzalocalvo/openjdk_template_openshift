@@ -1,0 +1,17 @@
+<settings>
+  <server>
+    <id>github</id>
+    <username>${git_username}</username>
+    <password>${git_password}</password>
+  </server>
+  <proxies>
+   <proxy>
+      <id>example-proxy</id>
+      <active>true</active>
+      <protocol>http</protocol>
+      <host>10.245.146.29</host>
+      <port>3128</port>
+    </proxy>
+  </proxies>
+</settings>
+
