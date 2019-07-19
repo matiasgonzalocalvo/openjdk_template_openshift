@@ -927,6 +927,8 @@ def update_version()
       new_version="$(cat ${version_txt} | perl -pe 's/^((\\d+\\.)*)(\\d+)(.*)$/$1.($3+1).$4/e')"
       echo ${new_version}  > ${version_txt}
       echo "$(date) : Version New $(cat ${version_txt})"
+      git config --global user.email "devops@bancocomafi.com"
+      git config --global user.name "devops"
       git add ${version_txt}
       git commit  -m "update file ${version_txt} new version ${new_version} "
       git push
