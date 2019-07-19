@@ -942,7 +942,7 @@ def determine_snapshot_release()
   if ( fileExists(PackageJson) )
   {
     def pkgInfo = readJSON file: "${PackageJson}"
-    env.repo=pkgInfo.name
+    env.repo=pkgInfo.version
     echo "existe y el nombre es ${repo}"
   }
 }
