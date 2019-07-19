@@ -929,6 +929,15 @@ def update_version()
     fi
   '''
 }
+def determine_snapshot_release()
+{
+  sh '''
+    #!/bin/bash
+    if [ -e package.json ] ; then
+      echo existe package json
+    fi
+  '''
+}
 def main()
 {
   try

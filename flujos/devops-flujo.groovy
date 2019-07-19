@@ -43,7 +43,6 @@ def flujo()
       {
         stage('Reportes')
         {
-          devops.reporting()
           devops.postfinal()
         }
       }
