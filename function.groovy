@@ -931,7 +931,7 @@ def update_version()
       git config --global user.name "devops"
       git add ${version_txt}
       git commit  -m "update file ${version_txt} new version ${new_version} "
-      git push origin ${BRANCH_NAME}
+      git push https://devops-comafi:Candado2019@bitbucket.org/comafi/devops-jenkins ${BRANCH_NAME}
     fi
   '''
 }
