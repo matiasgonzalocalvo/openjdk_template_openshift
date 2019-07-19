@@ -938,20 +938,13 @@ def update_version()
 }
 def determine_snapshot_release()
 {
-  sh "ls -atlrh "
-  sh "cat package.json"
-  if ( fileExists("package.json") )
+  package="package.json"
+  if ( fileExists(package) )
   {
     def pkgInfo = readJSON file: 'package.json'
-    echo pkgInfo.name
+    env.repo=pkgInfo.name
     echo "existe"
   }
-  sh '''
-    #!/bin/bash
-    if [ -e package.json ] ; then
-      echo existe package json
-    fi
-  '''
 }
 def main()
 {
