@@ -942,8 +942,20 @@ def determine_snapshot_release()
   if ( fileExists(PackageJson) )
   {
     def pkgInfo = readJSON file: "${PackageJson}"
-    env.repo=pkgInfo.version
-    echo "existe y el nombre es ${repo}"
+    //env.repo=pkgInfo.version
+    if ( pkgInfo.version ~= "SNAPSHOT" )
+    {
+      echo "entro en SNAPSHOT ${pkgInfo.version}"
+    }
+    else if ( pkgInfo.version ~= "RELEASE" )
+    {
+      echo "entro en RELEASE ${pkgInfo.version}"
+    }
+    else
+    {
+      echo "entro en ELSE ${pkgInfo.version}"
+    }
+    //echo "existe y el nombre es ${repo}"
   }
 }
 def main()
