@@ -30,9 +30,14 @@ def flujo()
         {
           checkout scm
         }
+        /*
         stage("updateando la version")
         {
           devops.update_version()
+        }*/
+        stage("test package determine_snapshot_release")
+        {
+          devops.determine_snapshot_release()
         }
       }
       catch (e) 
