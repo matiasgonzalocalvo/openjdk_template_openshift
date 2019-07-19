@@ -943,6 +943,7 @@ def determine_snapshot_release()
   if ( fileExists("package.json") )
   {
     def pkgInfo = readJSON file: 'package.json'
+    echo pkgInfo.name
     echo "existe"
   }
   sh '''
