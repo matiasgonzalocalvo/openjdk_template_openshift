@@ -938,12 +938,13 @@ def update_version()
 }
 def determine_snapshot_release()
 {
+  def package = readJSON file: ".package.json"
   package_json=".package.json"
-  if ( fileExists(package_json) )
+  /*if ( fileExists(package_json) )
   {
     package = readJSON file: "${package_json}"
     print package.name
-  }
+  }*
   sh '''
     #!/bin/bash
     if [ -e package.json ] ; then
