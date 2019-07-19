@@ -943,11 +943,11 @@ def determine_snapshot_release()
   {
     def pkgInfo = readJSON file: "${PackageJson}"
     //env.repo=pkgInfo.version
-    if ( pkgInfo.version ==~ "SNAPSHOT" )
+    if ( pkgInfo.version ==~ /(.*)"SNAPSHOT"(.*)/ )
     {
       echo "entro en SNAPSHOT ${pkgInfo.version}"
     }
-    else if ( pkgInfo.version ==~ "RELEASE" )
+    else if ( pkgInfo.version ==~ /(.*)"RELEASE"(.*)/ )
     {
       echo "entro en RELEASE ${pkgInfo.version}"
     }
