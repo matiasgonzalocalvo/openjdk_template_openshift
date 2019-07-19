@@ -941,7 +941,7 @@ def determine_snapshot_release()
   package_json=".package.json"
   if ( fileExists(package_json) )
   {
-    def package = readJSON file: "${package_json}"
+    package = readJSON file: "${package_json}"
     print package.name
   }
   sh '''
