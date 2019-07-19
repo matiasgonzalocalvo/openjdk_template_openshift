@@ -42,7 +42,8 @@ def flujo()
       {
         stage('Reportes')
         {
-          devops.postfinal()
+          echo "reportes"
+          //devops.postfinal()
         }
       }
     } 
