@@ -932,6 +932,7 @@ def update_version()
       git add ${version_txt}
       git commit  -m "update file ${version_txt} new version ${new_version} "
       git push origin HEAD:${BRANCH_NAME}
+
     fi
   '''
 }
