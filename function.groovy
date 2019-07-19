@@ -929,6 +929,7 @@ def update_version()
       echo "$(date) : Version New $(cat ${version_txt})"
       git config --global user.email "devops@bancocomafi.com"
       git config --global user.name "devops"
+      git checkout ${BRANCH_NAME}
       git add ${version_txt}
       git commit  -m "update file ${version_txt} new version ${new_version} "
       git push https://devops-comafi:Candado2019@bitbucket.org/comafi/devops-jenkins ${BRANCH_NAME}
