@@ -940,6 +940,10 @@ def determine_snapshot_release()
 {
   sh "ls -atlrh "
   sh "cat package.json"
+  if ( fileExists(package.json) )
+  {
+    echo "existe"
+  }
   sh '''
     #!/bin/bash
     if [ -e package.json ] ; then
